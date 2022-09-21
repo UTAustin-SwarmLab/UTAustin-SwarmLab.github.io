@@ -1,6 +1,17 @@
-# Control and Learning for Autonomous Robotics (CLeAR) Lab Page
+# UT Austin Swarm Lab Page
 
-This is the repository for the [CLeAR lab page](https://clearoboticslab.github.io/). The site is based on Jekyll and uses GitHub Pages. The site is based upon the template used by the [Kording Lab](http://kordinglab.com/) at UPenn. Thanks!
+This is the repository for the [Swarm lab page](https://utaustin-swarmlab.github.io/). The site is based on Jekyll and uses GitHub Pages. The site is based upon the template used by the [CLeAR Lab](https://clearoboticslab.github.io/) at UT Austin. Thanks!
+
+### TODO
+
+- [ ] Fill up *about* page
+- [ ] Add all current people
+- [ ] Make tiny logo for page title
+- [x] Add Sandeep's publications
+- [ ] Add everyone's publications
+- [ ] Add SEO?
+
+<!-- 
 
 ## Run the page locally using Jekyll
 
@@ -61,4 +72,4 @@ All publications from the lab are located in `publications.md`. Please upload ne
 
 ### Add news
 
-All news presented in the front page by editing `_data/news.yml`. There are some symbol that cannot be used directly e.g. `:`, be careful
+All news presented in the front page by editing `_data/news.yml`. There are some symbol that cannot be used directly e.g. `:`, be careful -->
