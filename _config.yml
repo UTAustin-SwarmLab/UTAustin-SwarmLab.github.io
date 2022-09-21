@@ -1,11 +1,11 @@
 # Basic
-name:               "Fridovich-Keil Lab"
-title:              "Fridovich-Keil Lab at UT Austin"
-description:        "This is the official website of the Control and Learning for Autonomous Robotics Lab at UT Austin."
+name:               "Swarm Lab"
+title:              "Swarm Lab at UT Austin"
+description:        "This is the official website of the Swarm Lab at UT Austin."
 
 
 # URL
-url:                https://clearoboticslab.github.io
+url:                https://utaustin-swarmlab.github.io
 baseurl:
 #baseurl:            "" #For Root Domain
 permalink:          /:year/:month/:day/:title.html

@@ -5,29 +5,29 @@ layout: default
 <div class='container'>
     <header class="masthead text-center">
 
-      <img class='img-responsive center-block' src="/images/logo/lab_logo_large.png" width="100%" height="100%" />
+      <img class='img-responsive center-block' src="/images/logo/swarm-lab-logo.png" width="100%" height="100%" />
 
       <p>
-          <i>Department of Aerospace Engineering and Engineering Mechanics</i><br>
-          <i>Texas Robotics</i><br>
+          <i>Department of Electrical and Computer Engineering</i><br>
+          <a href="https://robotics.utexas.edu/"> Texas Robotics</a> | <a href="https://wncg.org/">Wireless Networking and Communications Group (WNCG)</a><br>
           <i>The University of Texas at Austin</i>
 
         <span style="display: block; margin-bottom: 3em"></span>
 
-      <a href="https://github.com/CLeARoboticsLab"><i class="fa fa-github"></i> CLeAR Lab</a>&nbsp;&nbsp;&nbsp;
-      <a href="mailto:dfk@utexeas.edu"><i class="fa fa-envelope-o"></i> dfk@utexas.edu</a>
+      <a href="https://github.com/UTAustin-SwarmLab"><i class="fa fa-github"></i> Swarm Lab</a>&nbsp;&nbsp;&nbsp;
+      <a href="mailto:sandeepc@utexeas.edu"><i class="fa fa-envelope-o"></i> sandeepc@utexas.edu</a>
       </p>
 
-      <div class="w3-container" style="   background: #f0f8ff; padding: 25px; border-radius:10px; border: 1px solid #5d8aa8">
+      <div class="w3-container" style="   background: #346a9a; padding: 25px; border-radius:10px; border: 1px solid #5d8aa8">
         <div style="text-align:left">
           <h3> Recent News </h3>
-          <u>Happenings of the last two months. Updated {{ 'now' | date: "%m/%d/%y" }}.</u>
+          <p> Updated {{ 'now' | date: "%m/%d/%y" }}.</p>
           <span style="display: block; margin-bottom: 1em"></span>
           <div class="news">
-              {% capture now %}{{'now' | date: '%s' | minus: 5184000 %}}{% endcapture %}
+              {% capture now %}{{'now' | date: '%s' | minus: 5184000}}{% endcapture %}
               <ul style="list-style-position:outside;padding:20px" >
                 {% for new in site.data.news %}
-                  {% capture date %}{{new.date | date: '%s' | plus: 0 %}}{% endcapture %}
+                  {% capture date %}{{new.date | date: '%s' | plus: 0}}{% endcapture %}
                   {% if date > now %}
                     <li>
                       <span>

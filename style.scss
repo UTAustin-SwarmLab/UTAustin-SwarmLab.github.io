@@ -15,7 +15,8 @@ body {
 }
 
 html {
-  font-family: "Open Sans", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  // font-family: "Roboto", sans-serif;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.6;
@@ -26,8 +27,9 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  color: #fff;
+  font-size: 18px;
+  background-color: #2c2c2c;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -37,7 +39,8 @@ body {
 }
 
 a {
-  color: #268bd2;
+  color: #03bbf9;
+  font-size: 18px;
   text-decoration: none;
 
   &:hover,
@@ -46,13 +49,18 @@ a {
   }
 }
 
+.sc {
+  font-variant: small-caps;
+  font-size: 24px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: .5rem;
   font-weight: 600;
-  font-family: "Open Sans", "Source Sans Pro";
+  font-family: "Roboto Slab";
   line-height: 1.1;
-  color: #333;
+  color: #ffffff;
   letter-spacing: -.025rem;
 }
 
@@ -73,14 +81,14 @@ h4, h5, h6 {
 }
 
 p {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica;
   font-weight: 300;
   margin: 0 0 1rem;
-  font-size: 0.8rem;
+  font-size: 18px;
 }
 
 ul, ol, dl {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica;
   font-weight: 300;
   font-size: 0.8rem;
   margin-top: 0;
@@ -155,15 +163,20 @@ hr {
   margin: 1.5rem auto;
 }
 
+i {
+  color: #ffffff;
+  font-size: 18px;
+}
+
 strong {
-  color: #333;
+  color: #ffffff;
   font-weight: 600;
 }
 
 abbr {
   font-size: 80%;
   font-weight: bold;
-  color: #555;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -185,13 +198,14 @@ blockquote {
 
 code,
 pre {
-  font-family: Monaco, "Courier New", monospace;
+  font-family: "Fira Code", monospace;
+  // font-family: "Inconsolata", Monaco, "Courier New", monospace;
 }
 
 code {
   padding: .25em .5em;
   font-size: 80%;
-  color: #bf616a;
+  color: #ff0019;
   background-color: #f9f9f9;
   border-radius: 3px;
 }
@@ -228,7 +242,7 @@ pre code {
 }
 
 .gist .gist-file {
-  font-family: Monaco, "Courier New", monospace !important;
+  font-family: "Fira Code", monospace !important;
 }
 
 .gist .markdown-body {
@@ -263,7 +277,7 @@ table {
   margin-bottom: 1rem;
   width: 100%;
   font-size: 70%;
-  border: 1px solid #e5e5e5;
+  border: 1px solid #000000;
   border-collapse: collapse;
 }
 
@@ -295,12 +309,13 @@ tbody tr:nth-child(odd) th {
 }
 
 .masthead {
-
+  // color: #000000;
   &-title {
     font-weight: 300;
+    // color: #000000;
 
     a {
-      color: #333;
+      color: #ffffff;
 
       &:hover,
       &:focus {
@@ -318,10 +333,11 @@ tbody tr:nth-child(odd) th {
     margin-bottom: .75rem;
     font-size: .75rem;
     font-weight: 600;
+    // color: #000000;
     text-transform: uppercase;
 
     a {
-      color: #333;
+      color: rgb(255, 255, 255);
 
       &:hover,
       &:focus {
@@ -343,7 +359,7 @@ tbody tr:nth-child(odd) th {
 
       &:hover,
       &:focus {
-        color: #333;
+        color: #000;
         text-decoration: none;
       }
 
@@ -357,6 +373,7 @@ tbody tr:nth-child(odd) th {
 
 .page {
   &-title {
+    // color: #ffffff;
     margin-bottom: 2rem;
   }
 }
@@ -377,7 +394,7 @@ tbody tr:nth-child(odd) th {
     margin-bottom: .25rem;
 
     a {
-      color: #333;
+      color: #ffffff;
 
       &:hover,
       &:focus {
@@ -394,7 +411,7 @@ tbody tr:nth-child(odd) th {
 
 .projects-list {
   a {
-    color: #333;
+    color: #ffffff;
   }
 }
 
@@ -408,8 +425,8 @@ tbody tr:nth-child(odd) th {
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-.highlight .k { color: #000000; font-weight: bold } /* Keyword */
-.highlight .o { color: #000000; font-weight: bold } /* Operator */
+.highlight .k { color: #ffffff; font-weight: bold } /* Keyword */
+.highlight .o { color: #ffffff; font-weight: bold } /* Operator */
 .highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #999999; font-weight: bold; font-style: italic } /* Comment.Preproc */
 .highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
@@ -470,6 +487,7 @@ tbody tr:nth-child(odd) th {
 // customization
 .pos_header {
   margin-left: 2rem;
+  // color: #000000;
 }
 
 .people {
@@ -502,26 +520,32 @@ tbody tr:nth-child(odd) th {
 }
 
 .list-item a:hover, .list-post-title:hover .name, .list-post-title .name:hover {
-  color: #c42929;
+  color: #00a6ff;
 }
 
 .page-title {
   margin-bottom: 0.6em;
+  // color: #000000;
 }
 
 .navbar-brand {
-  //font-weight: bold;
-  font-size: 20px;
-  font-weight: 300;
+  // font-weight: bold;
+  font-size: 24px;
+  font-family: 'Roboto Slab';
+  font-weight: 900;
+  color: #000000;
+  // color:rgb(255, 255, 255);
+  // background-color: #000000;
 }
 
 // change font for navbar
 .navbar, .navbar-nav>li>a {
-  background-color: white;
-  font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase;
+  background-color: #ffffff;
+  font-family: 'Roboto Slab';
+  color: #ff0000;
+  // text-transform: uppercase;
   font-weight: 400;
-  font-size: 80%;
+  font-size: 16px;
 }
 
 // fix menu bar spacing for mobile

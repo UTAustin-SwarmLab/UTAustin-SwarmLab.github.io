@@ -3,8 +3,8 @@ title: People
 permalink: /people/
 ---
 
-{% assign people_sorted = site.people | sort: 'joined' %}
-{% assign role_array = "pi|postdoc|gradstudent|researchstaff|visiting|others|alumni" | split: "|" %}
+{% assign people_sorted = site.people | sort: 'title' %}
+{% assign role_array = "pi|postdoc|gradstudent|undergrad|researchstaff|visiting|others|alumni" | split: "|" %}
 
 {% for role in role_array %}
 
@@ -22,6 +22,9 @@ permalink: /people/
 <h3>Principal Investigator</h3>
  {% elsif role == 'gradstudent' %}
 <h3>Graduate Students</h3>
+{% elsif role == 'undergrad' %}
+<h3>Undergraduate Students</h3>
+ {% elsif role == 'others' %}
  {% elsif role == 'researchstaff' %}
 <h3>Research Staff</h3>
  {% elsif role == 'visiting' %}
@@ -56,9 +59,8 @@ permalink: /people/
 
 <br>
 
-| Who are they | When were they here | Where they went |
+| Name | Time at SwarmLab | Where they went |
 | :------------- |:-------------| :-----------|
-| [Bryant Zhou](https://www.linkedin.com/in/yujing-zhou-938962151) | MS in ME (2021 - 2022) | PhD student in MAE at Princeton |
 
 {% endif %}
 {% endfor %}
