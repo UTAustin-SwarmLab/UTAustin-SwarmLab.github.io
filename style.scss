@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 24px;
 }
 
 h2 {
@@ -76,6 +76,7 @@ h2 {
 
 h3 {
   font-size: 1.3rem;
+  // font-size: 26px;
 }
 
 h4, h5, h6 {
@@ -93,7 +94,7 @@ p {
 ul, ol, dl {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -401,6 +402,7 @@ tbody tr:nth-child(odd) th {
       color: #1f1e1e;
       font-weight: 400;
       font-family: "Source Sans Pro", sans-serif;
+      font-size: 16px;
 
       &:hover,
       &:focus {
@@ -410,7 +412,7 @@ tbody tr:nth-child(odd) th {
   }
   &-post-date {
     margin-bottom: 1rem;
-    font-size: .75rem;
+    // font-size: .75rem;
     text-transform: uppercase;
   }
 }
@@ -521,7 +523,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .list-detail {
-  font-size: 15px;
+  font-size: 18px;
   color: #ffffff;
 }
 
