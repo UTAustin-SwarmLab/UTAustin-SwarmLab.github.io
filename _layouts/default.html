@@ -26,6 +26,10 @@
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site.url }}/images/logo/logo-icon-114.png">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.url }}/images/logo/logo-icon-144.png">
 
+  <!-- Add favourite fonts here -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Sans+Pro:wght@200;400&family=Source+Serif+Pro&display=swap" rel="stylesheet">
   <!-- open graph -->
 
   {% capture canonical %}{{ site.url }}{% if site.permalink contains '.html' %}{{ page.url }}{% else %}{{ page.url | remove:'index.html' | strip_slash }}{% endif %}{% endcapture %}

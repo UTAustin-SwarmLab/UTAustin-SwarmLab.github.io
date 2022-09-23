@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: .5rem;
   font-weight: 600;
-  font-family: "Roboto Slab";
+  font-family: "Source Serif Pro";
   line-height: 1.1;
   color: #000000;
   letter-spacing: -.025rem;
@@ -399,7 +399,7 @@ tbody tr:nth-child(odd) th {
 
     a {
       color: #1f1e1e;
-      font-weight: 800;
+      font-weight: 400;
       font-family: "Source Sans Pro", sans-serif;
 
       &:hover,
@@ -537,20 +537,20 @@ tbody tr:nth-child(odd) th {
 .navbar-brand {
   // font-weight: bold;
   font-size: 24px;
-  font-family: 'Roboto Slab';
-  font-weight: 900;
-  color: #000000;
+  // font-family: 'Spectral', 'Roboto Slab', 'Alegreya';
+  // font-weight: 900;
+  // color: #000000;
   // color:rgb(255, 255, 255);
   // background-color: #000000;
 }
 
 // change font for navbar
 .navbar, .navbar-nav>li>a {
-  background-color: #0e0d0d;
-  font-family: 'Roboto Slab';
-  color: #ff0000;
+  background-color: #1f1f1f;
+  // font-family: 'Roboto Slab';
+  // color: #ff0000;
   // text-transform: uppercase;
-  font-weight: 400;
+  // font-weight: 500;
   font-size: 16px;
 }
 

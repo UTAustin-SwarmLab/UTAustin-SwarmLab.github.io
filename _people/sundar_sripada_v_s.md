@@ -9,15 +9,14 @@ avatar: sundar.jpg
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>
 
 <i class="fa fa-envelope-o"></i> `sundarsripadavs@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/fp_resume.pdf)<br>
+<i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/sundar_resume.pdf)<br>
 <i class="fa fa-external-link"></i> [Personal Website](https://ss26.github.io/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>
 Austin, TX 78712
 
-<span class="sc">**Sundar Sripada V. S.**</span> is a Master's student at the University of Texas at Austin. 
-Sundar is interested in understanding multi-agent autonomous systems through machine/deep reinforcement learning, and in the interplay of computer vision and robotics.
+<span class="sc">**Sundar Sripada V. S.**</span> is a Master's student in ECE since Fall 2022. Sundar is interested in understanding multi-agent autonomous systems through machine/deep reinforcement learning, and in the interplay of computer vision and robotics.
 
 Sundar holds a B.Eng in Electronics and Communication from Anna University, Chennai. 
 

@@ -1,5 +1,5 @@
 ---
-name: Ruihan Zhao
+name: Ruihan (Philip) Zhao
 position: gradstudent
 avatar: philip.png
 ---
