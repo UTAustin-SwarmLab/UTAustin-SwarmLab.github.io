@@ -4,13 +4,13 @@ layout: default
 
 <div class='container'>
     <header class="masthead text-center">
-
-      <img class='img-responsive center-block' src="/images/logo/swarm-lab-logo.png" width="100%" height="100%" />
-
+      <!-- <h3> Welcome to Swarm Lab at UT Austin</h3> -->
+      <img class='img-responsive center-block' src="/images/logo/swarm-lab-landing-image.png" width="100%" height="80%" />
+      
       <p>
-          <i>Department of Electrical and Computer Engineering</i><br>
+          <i style="font-weight: 400;">Department of Electrical and Computer Engineering</i><br>
           <a href="https://robotics.utexas.edu/"> Texas Robotics</a> | <a href="https://wncg.org/">Wireless Networking and Communications Group (WNCG)</a><br>
-          <i>The University of Texas at Austin</i>
+          <i style="font-weight: 400;">The University of Texas at Austin</i>
 
         <span style="display: block; margin-bottom: 3em"></span>
 
@@ -25,7 +25,7 @@ layout: default
           <span style="display: block; margin-bottom: 1em"></span>
           <div class="news">
               {% capture now %}{{'now' | date: '%s' | minus: 7884000}}{% endcapture %}
-              <ul style="color: #FFFFFF;list-style-position:outside;padding:20px;" >
+              <ul style="font-weight: 400; color: #FFFFFF;list-style-position:outside;padding:20px;" >
                 {% for new in site.data.news %}
                   {% capture date %}{{new.date | date: '%s' | plus: 0}}{% endcapture %}
                   {% if date > now %}

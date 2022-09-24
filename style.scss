@@ -31,6 +31,7 @@ html {
 body {
   color: #2c2c2c;
   font-size: 18px;
+  font-weight: 300;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -41,9 +42,10 @@ body {
 }
 
 a {
-  color: #0365f9;
+  color: #031cf9;
   font-size: 18px;
   text-decoration: none;
+  font-weight: 400;
 
   &:hover,
   &:focus {
@@ -274,7 +276,7 @@ pre code {
 img {
   display: block;
   max-width: 100%;
-  margin: 0 0 1rem;
+  margin: -4rem 0 0.5rem;
   border-radius: 5px;
 }
 

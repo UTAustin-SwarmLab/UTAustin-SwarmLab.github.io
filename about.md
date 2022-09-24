@@ -4,6 +4,9 @@ permalink: /about/
 ---
 
 ### About us
+
+<!-- <img class='img-responsive center-block' src="/images/logo/swarm-lab-logo.png" width="100%" height="100%" /> -->
+
 We are a group of scientists and engineers working at the intersection between robotics, control theory, machine learning, and game theory to design high performance, interactive autonomous systems. Our lab is based in the [Department of Electrical and Computer Engineering](https://www.ece.utexas.edu) and [Texas Robotics](https://robotics.utexas.edu) at UT Austin.
 
 ### Research
