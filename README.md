@@ -2,11 +2,32 @@
 
 This is the repository for the [Swarm lab page](https://utaustin-swarmlab.github.io/). The site is based on Jekyll and uses GitHub Pages. The site is based upon the template used by the [CLeAR Lab](https://clearoboticslab.github.io/) at UT Austin. Thanks!
 
+### Add yourself! 
+
+If you're part of UT Austin Swarm Lab (if you're in the Slack), or collaborate with Dr. Sandeep Chinchali, you can submit a pull request to be added to the website!  **Please read these steps before you submit a PR**.
+
+- Fork this repository and clone it
+- Add an entry under the `_people` directory as follows:
+    - Make a file with `<your_name>.md`
+    - Copy paste the contents from `people_template.md`
+    - For the first 5 lines that describe the page:
+        - name: Your Name
+        - position: One of the following - `pi|postdoc|gradstudent|undergrad|researchstaff|visiting|others|alumni`
+        - avatar: A picture of you added to the `images` directory
+    - Fill in the rest of your details according to the template or how you see fit
+    - Remove the instruction lines in bold, except **Office**
+    - Optionally, you can add your resume/CV to the `documents` directory
+- Finally, submit a pull request to the `source` branch of this repository and we'll merge it ASAP. 
+- If you need help, text Sundar ([@ss26](https://github.com/ss26)) in the Swarm Lab Slack or send an email to sundarsripadavs@utexas.edu 
+
+### Add your publication!
+
+Just copy the BibTex entry of your paper from Google Scholar and paste it in `_bibliography/references.bib`, after the first 4 lines.
+
 ### TODO
 
 - [ ] Fill up *about* page
-- [ ] Add all current people
-- [ ] Make tiny logo for page title
+- [x] Make tiny logo for page title
 - [x] Add Sandeep's publications
 - [ ] Add everyone's publications
 - [ ] Add SEO?
