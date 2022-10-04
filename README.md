@@ -13,11 +13,11 @@ If you're part of UT Austin Swarm Lab (if you're in the Slack), or collaborate w
     - For the first 5 lines that describe the page:
         - name: Your Name
         - position: One of the following - `pi|postdoc|gradstudent|undergrad|researchstaff|visiting|others|alumni`
-        - avatar: A picture of you added to the `images` directory
+        - avatar: A picture of you added to the `images/people` directory
     - Fill in the rest of your details according to the template or how you see fit
     - Remove the instruction lines in bold, except **Office**
     - Optionally, you can add your resume/CV to the `documents` directory
-- Finally, submit a pull request to the `source` branch of this repository and we'll merge it ASAP. 
+- Finally, submit a pull request to the `source` branch of this repository and we'll merge it ASAP
 - If you need help, text Sundar ([@ss26](https://github.com/ss26)) in the Swarm Lab Slack or send an email to sundarsripadavs@utexas.edu 
 
 ### Add your publication!
