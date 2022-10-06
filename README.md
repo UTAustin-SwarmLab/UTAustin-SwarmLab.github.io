@@ -24,6 +24,15 @@ If you're part of UT Austin Swarm Lab (if you're in the Slack), or collaborate w
 
 Just copy the BibTex entry of your paper from Google Scholar and paste it in `_bibliography/references.bib`, after the first 4 lines.
 
+
+### Publish an update 
+
+If you're part of the UT Austin Swarm Lab organization and you've made a change, reviewed and merged a pull request, you can do the following to publish your updates to the website. This assumes you have a local version of this repository on your PC. 
+
+- `git pull` the most recent merged changes locally
+- `rake publish` to convert the files in `source` branch to static site in `master branch`. This automatically calls a GitHub _action_ to deploy the contents of `master` branch to https://utaustin-swarmlab.github.io! 
+- Again, if this doesn't work, ping Sundar!
+
 ### TODO
 
 - [ ] Fill up *about* page
