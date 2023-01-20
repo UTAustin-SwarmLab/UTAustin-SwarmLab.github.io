@@ -8,7 +8,7 @@ avatar: oguzhan_b.png
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `oguzhanbaser@utexas.edu`<br>
+<i class="fa fa-envelope-o"></i> `oguzhanbaser at utexas.edu`<br>
 <i class="fa fa-external-link"></i> [Personal Website](http://oguzhan-baser.github.io/)
 
 **Office**<br>
