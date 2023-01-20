@@ -9,7 +9,8 @@ For metrics and citations, please refer to Sandeep's [Google Scholar profile](ht
 
 ### 2023
 
-Agarwal, S., Fridovich-Keil, D., & Chinchali, S. P. (2023) _Robust Forecasting for Robotic Control: A Game-Theoretic Approach_, in IEEE International Conference on Robotics and Automation (under review).
+{% bibliography --query @*[year=2023] %}
+
 
 ### 2022
 
