@@ -17,4 +17,4 @@ Austin, TX 78712
 **Don't Change format of following line**
 
 <span class="sc">**Oguzhan Akcin**</span> is a PhD student in ECE since 2021. He holds a B.Sc. in Electrical and Electronics Engineering from Bogazici University, Istanbul.
-Oguzhan is interested in multi-agent systems, game theory and machine learning applications in Blockchain. 
+Oguzhan is interested in multi-agent systems, game theory, and machine learning applications in Blockchain. 
