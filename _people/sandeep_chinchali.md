@@ -1,7 +1,7 @@
 ---
 name: Sandeep Chinchali
 position: pi
-avatar: sandeep.jpg
+avatar: SandeepChinchali.png
 ---
 
 <img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
