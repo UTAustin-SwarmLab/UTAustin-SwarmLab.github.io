@@ -175,6 +175,11 @@ i {
   font-size: 18px;
 }
 
+text_home {
+  color: #000000;
+  font-size: 24px;
+}
+
 strong {
   // color: #000000;
   font-weight: 600;
@@ -306,7 +311,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .container {
-  max-width: 60rem;
+  max-width: 50rem;
 //  padding: 2rem 1.5rem;
   margin-left:  auto;
   margin-right: auto;
@@ -556,7 +561,7 @@ tbody tr:nth-child(odd) th {
   // color: #ff0000;
   // text-transform: uppercase;
   // font-weight: 500;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 // fix menu bar spacing for mobile

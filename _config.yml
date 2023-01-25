@@ -18,15 +18,15 @@ highlighter:        rouge
 
 # Navigation
 nav:
-  - name:           "home"
+  - name:           "HOME"
     href:           "/"
-  - name:           "about"
+  - name:           "ABOUT"
     href:           "/about"
-  - name:           "publications"
+  - name:           "PUBLICATIONS"
     href:           "/publications"
-  - name:           "people"
+  - name:           "PEOPLE"
     href:           "/people"
-  - name:           "lab pictures"
+  - name:           "LAB PICTURES"
     href:           "/lab_pictures"
 #  - name:           "blog"
 #    href:           "/blog"
