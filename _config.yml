@@ -60,15 +60,18 @@ defaults:
   -
     scope:
       path:         ""
-      type:         "lab pictures"
+      type:         "lab_pictures"
     values:
-      layout:       "page"
+      layout:       "profile"
 
 
 collections:
   people:
     output: true
     permalink: /people/:title/index.html
+  lab_pictures:
+    output: true
+    permalink: /lab_pictures/:title/index.html
 
 scholar:
   style: apa
