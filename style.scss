@@ -91,6 +91,7 @@ p {
   font-weight: 300;
   margin: 0 0 1rem;
   font-size: 24px;
+  line-height: 1.5;
   color:#2e2d2d;
 }
 
@@ -172,12 +173,16 @@ hr {
 
 i {
   color: #000000;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 text_home {
   color: #000000;
   font-size: 24px;
+}
+
+li {
+  font-size: 22px;  
 }
 
 strong {
@@ -561,7 +566,7 @@ tbody tr:nth-child(odd) th {
   // color: #ff0000;
   // text-transform: uppercase;
   // font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 // fix menu bar spacing for mobile

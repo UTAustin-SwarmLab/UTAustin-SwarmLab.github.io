@@ -1,7 +1,7 @@
 ---
 name: Po-han Li
 position: gradstudent
-avatar: po-han.jpeg
+avatar: po-han.jpg
 ---
 
 <img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">

@@ -65,7 +65,7 @@ collections:
     permalink: /people/:title/index.html
 
 scholar:
-  style: apa
+  style: chicago-author-date # apa, chicago-author-date, ieee, , nature, vancouver
   locale: en
 
   sort_by: none
