@@ -9,28 +9,28 @@ layout: default
       
       <p>
           <i style="font-weight: 400;">Department of Electrical and Computer Engineering</i><br>
-          <a href="https://robotics.utexas.edu/"> Texas Robotics</a> | <a href="https://wncg.org/">Wireless Networking and Communications Group (WNCG)</a><br>
+          <a href="https://robotics.utexas.edu/" style="font-size: 24px"> Texas Robotics</a> | <a href="https://wncg.org/" style="font-size: 24px">Wireless Networking and Communications Group (WNCG)</a><br>
           <i style="font-weight: 400;">The University of Texas at Austin</i>
 
         <span style="display: block; margin-bottom: 3em"></span>
 
-      <a href="https://github.com/UTAustin-SwarmLab"><i class="fa fa-github"></i> Swarm Lab</a>&nbsp;&nbsp;&nbsp;
-      <a href="mailto:sandeepc@utexeas.edu"><i class="fa fa-envelope-o"></i> sandeepc@utexas.edu</a>
+      <a href="https://github.com/UTAustin-SwarmLab" style="font-size: 24px"><i class="fa fa-github"></i> Swarm Lab</a>&nbsp;&nbsp;&nbsp;
+      <a href="mailto:sandeepc@utexeas.edu" style="font-size: 24px"><i class="fa fa-envelope-o"></i> sandeepc@utexas.edu</a>
       </p>
 
-      <div class="w3-container" style="   background: #346a9a; padding: 25px; border-radius:10px; border: 1px solid #5d8aa8">
+      <div class="w3-container" style="   background: #f0f8ff; padding: 25px; border-radius:10px; border: 1px solid #5d8aa8">
         <div style="text-align:left">
-          <h3 style="color: #FFFFFF"> Recent News </h3>
-          <p style="color: #FFFFFF"> Here's a list of recent news of the last 3 months, updated {{ 'now' | date: "%m/%d/%y" }}.</p>
+          <h2> Recent News </h2>
+          <u>Happenings of the last two months. Updated {{ 'now' | date: "%m/%d/%y" }}.</u>
           <span style="display: block; margin-bottom: 1em"></span>
           <div class="news">
-              {% capture now %}{{'now' | date: '%s' | minus: 7884000}}{% endcapture %}
-              <ul style="font-weight: 400; color: #FFFFFF;list-style-position:outside;padding:20px;" >
+              {% capture now %}{{'now' | date: '%s' | minus: 5184000 %}}{% endcapture %}
+              <ul style="list-style-position:outside;padding:20px" >
                 {% for new in site.data.news %}
-                  {% capture date %}{{new.date | date: '%s' | plus: 0}}{% endcapture %}
+                  {% capture date %}{{new.date | date: '%s' | plus: 0 %}}{% endcapture %}
                   {% if date > now %}
                     <li>
-                      <span style="color: #FFFFFF;">
+                      <span>
                         {{ new.details }}
                       </span>
                     </li>
@@ -45,7 +45,7 @@ layout: default
 
       <div class="col-lg-12", id="Sponsors">
         <div class="section-title" style="padding-top: 25px">
-          <h2>Sponsors</h2></div>
+          <h1>Sponsors</h1></div>
       </div>
 
       <div class="trend-entry d-flex">

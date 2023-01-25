@@ -26,6 +26,8 @@ nav:
     href:           "/publications"
   - name:           "people"
     href:           "/people"
+  - name:           "lab pictures"
+    href:           "/lab_pictures"
 #  - name:           "blog"
 #    href:           "/blog"
 #  - name:           "resources"

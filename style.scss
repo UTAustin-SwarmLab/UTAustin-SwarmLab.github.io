@@ -35,6 +35,7 @@ body {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+  
 }
 
 .MathJax_Display{
@@ -43,7 +44,7 @@ body {
 
 a {
   color: #031cf9;
-  font-size: 18px;
+  font-size: 24px;
   text-decoration: none;
   font-weight: 400;
 
@@ -69,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 2em;
 }
 
 h2 {
@@ -89,7 +90,7 @@ p {
   font-family: "Source Sans Pro";
   font-weight: 300;
   margin: 0 0 1rem;
-  font-size: 18px;
+  font-size: 24px;
   color:#2e2d2d;
 }
 
@@ -115,7 +116,7 @@ dd {
 
 ul {
   /*font-family: Helvetica, 'Ubuntu Mono';*/
-  font-size: 0.8rem;
+  font-size: 24px;
   list-style: inside circle;
   padding-left: 0;
 
@@ -305,7 +306,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .container {
-  max-width: 40rem;
+  max-width: 60rem;
 //  padding: 2rem 1.5rem;
   margin-left:  auto;
   margin-right: auto;
@@ -540,7 +541,7 @@ tbody tr:nth-child(odd) th {
 
 .navbar-brand {
   // font-weight: bold;
-  font-size: 24px;
+  font-size: 30px;
   // font-family: 'Spectral', 'Roboto Slab', 'Alegreya';
   // font-weight: 900;
   // color: #000000;
@@ -555,7 +556,7 @@ tbody tr:nth-child(odd) th {
   // color: #ff0000;
   // text-transform: uppercase;
   // font-weight: 500;
-  font-size: 16px;
+  font-size: 24px;
 }
 
 // fix menu bar spacing for mobile
