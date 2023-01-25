@@ -57,6 +57,12 @@ defaults:
       type:         "people"
     values:
       layout:       "profile"
+  -
+    scope:
+      path:         ""
+      type:         "lab pictures"
+    values:
+      layout:       "page"
 
 
 collections:
