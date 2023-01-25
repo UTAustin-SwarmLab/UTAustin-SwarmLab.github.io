@@ -18,14 +18,16 @@ highlighter:        rouge
 
 # Navigation
 nav:
-  - name:           "home"
+  - name:           "HOME"
     href:           "/"
-  - name:           "about"
+  - name:           "ABOUT"
     href:           "/about"
-  - name:           "publications"
+  - name:           "PUBLICATIONS"
     href:           "/publications"
-  - name:           "people"
+  - name:           "PEOPLE"
     href:           "/people"
+  - name:           "LAB PICTURES"
+    href:           "/lab_pictures"
 #  - name:           "blog"
 #    href:           "/blog"
 #  - name:           "resources"
@@ -55,15 +57,24 @@ defaults:
       type:         "people"
     values:
       layout:       "profile"
+  -
+    scope:
+      path:         ""
+      type:         "lab_pictures"
+    values:
+      layout:       "albums"
 
 
 collections:
   people:
     output: true
     permalink: /people/:title/index.html
+  lab_pictures:
+    output: true
+    permalink: /lab_pictures/:title/index.html
 
 scholar:
-  style: apa
+  style: chicago-author-date # apa, chicago-author-date, ieee, , nature, vancouver
   locale: en
 
   sort_by: none

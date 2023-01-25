@@ -35,6 +35,7 @@ body {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+  
 }
 
 .MathJax_Display{
@@ -43,7 +44,19 @@ body {
 
 a {
   color: #031cf9;
-  font-size: 18px;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: 400;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.link-in-caption {
+  color: #031cf9;
+  font-size: 22px;
   text-decoration: none;
   font-weight: 400;
 
@@ -69,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 2em;
 }
 
 h2 {
@@ -89,7 +102,8 @@ p {
   font-family: "Source Sans Pro";
   font-weight: 300;
   margin: 0 0 1rem;
-  font-size: 18px;
+  font-size: 24px;
+  line-height: 1.5;
   color:#2e2d2d;
 }
 
@@ -115,7 +129,7 @@ dd {
 
 ul {
   /*font-family: Helvetica, 'Ubuntu Mono';*/
-  font-size: 0.8rem;
+  font-size: 24px;
   list-style: inside circle;
   padding-left: 0;
 
@@ -171,7 +185,16 @@ hr {
 
 i {
   color: #000000;
-  font-size: 18px;
+  font-size: 22px;
+}
+
+text_home {
+  color: #000000;
+  font-size: 24px;
+}
+
+li {
+  font-size: 22px;  
 }
 
 strong {
@@ -276,8 +299,22 @@ pre code {
 img {
   display: block;
   max-width: 100%;
-  margin: -4rem 0 0.5rem;
+  margin: 1rem 0 0.5rem;
   border-radius: 5px;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 60%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 table {
@@ -305,7 +342,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .container {
-  max-width: 40rem;
+  max-width: 50rem;
 //  padding: 2rem 1.5rem;
   margin-left:  auto;
   margin-right: auto;
@@ -506,6 +543,12 @@ tbody tr:nth-child(odd) th {
   margin-top: 0.75em;
 }
 
+.labpictures {
+  margin: auto;
+  text-align: center;
+  margin-top: 0.75em;
+}
+
 .list-item-people {
   display: inline-block;
   padding-right: 1em;
@@ -540,7 +583,7 @@ tbody tr:nth-child(odd) th {
 
 .navbar-brand {
   // font-weight: bold;
-  font-size: 24px;
+  font-size: 30px;
   // font-family: 'Spectral', 'Roboto Slab', 'Alegreya';
   // font-weight: 900;
   // color: #000000;
@@ -555,7 +598,7 @@ tbody tr:nth-child(odd) th {
   // color: #ff0000;
   // text-transform: uppercase;
   // font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 // fix menu bar spacing for mobile
