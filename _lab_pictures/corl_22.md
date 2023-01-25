@@ -35,5 +35,6 @@ location: Auckland, New Zealand
     <i>Po-han Li presenting <a class="link-in-caption" href="https://openreview.net/forum?id=iM932PeUi_7"> his work with Oguzhan Akcin</a> at CoRL 2022</i>
   </div>
 
-</div>
+    <span style="display: block; margin-bottom: 4em"></span>
 
+</div>
