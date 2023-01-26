@@ -18,4 +18,4 @@ Austin, TX 78712
 
 <span class="sc">**Po-han Li**</span> entered the ECE PhD program in fall 2021. Prior to that, he was an undergraduate student in Department of Electrical Engineering at National Taiwan University.
 
-His research interests focus on perturbation in control and optimization, task-aware communication, and decentralized data sharing. He is co-advised by Dr. [Ufuk Topcu](https://www.ae.utexas.edu/people/faculty/faculty-directory/topcu).
+His research interests focus on perturbation in control and optimization, task-aware communication, and decentralized data sharing. He is co-advised by [Dr. Ufuk Topcu](https://www.ae.utexas.edu/people/faculty/faculty-directory/topcu).
