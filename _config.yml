@@ -74,15 +74,20 @@ collections:
     permalink: /lab_pictures/:title/index.html
 
 scholar:
-  style: chicago-author-date # apa, chicago-author-date, ieee, , nature, vancouver
+  style: american-institute-of-aeronautics-and-astronautics #american-institute-of-aeronautics-and-astronautics modern-language-association apa, chicago-author-date, ieee, nature, vancouver
   locale: en
 
   sort_by: none
   order: ascending
+  group_by: year
+  group_order: descending
+  bibliography_group_tag: h3
+  bibliography_list_tag: ul
+  bibliography_item_tag: nobull
 
   source: ./_bibliography
   bibliography: references.bib
-  bibliography_template: "{{reference}}"
+  bibliography_template: bib # "{{reference}}"
 
   replace_strings: true
   join_strings:    true
