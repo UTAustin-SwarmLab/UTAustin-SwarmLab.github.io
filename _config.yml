@@ -28,10 +28,10 @@ nav:
     href:           "/people"
   - name:           "LAB PICTURES"
     href:           "/lab_pictures"
-#  - name:           "blog"
-#    href:           "/blog"
+  - name:           "BLOG"
+    href:           "/blog"
 #  - name:           "resources"
-#    href:           "/resources"
+#    href:           "/resources" be careful of indentation!
 
 # Sass
 sass:

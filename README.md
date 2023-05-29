@@ -33,12 +33,15 @@ If you're part of the UT Austin Swarm Lab organization and you've made a change,
 - `rake publish` to convert the files in `source` branch to static site in `master branch`. This automatically calls a GitHub _action_ to deploy the contents of `master` branch to https://utaustin-swarmlab.github.io! 
 - Again, if this doesn't work, ping Sundar!
 
-### TODO
+### How to add posts
 
-- [ ] Fill up *about* page
-- [x] Make tiny logo for page title
-- [x] Add Sandeep's publications
-- [ ] Add everyone's publications
+- **Directly edit on Github**, you can simply go to `_posts` and click `New file` then put some markdown file e.g. `YYYY-MM-DD-post_name.md` and start writing blog post. Github also allows you to preview it so it's nice for people who don't want to clone the repo.
+
+- **Clone the repository**, kind of the same as directly add post on Github. You just have to clone the repository. Then add new post file, commit and push to the repo. Please make all changes via Pull Request.
+
+The changes will take approximately half a minute to render.
+
+### TODO
 - [ ] Add SEO?
 
 <!-- 
@@ -71,14 +74,6 @@ categories: blog
 ```
 
 We have 4 categories: `scientists`, `students`, `discussion`, `blog` you can choose and this will be rendered to different location.
-
-### How to add posts
-
-- **Directly edit on Github**, you can simply go to `_posts` and click `New file` then put some markdown file e.g. `2016-02-03-post-name.md` and start writing blog post. Github also allows you to preview it so it's nice for people who don't want to clone the repo.
-
-- **Clone the repository**, kind of the same as directly add post on Github. You just have to clone the repository. Then add new post file, commit and push to the repo. Please make all changes via Pull Request.
-
-The changes will take approximately half a minute to render.
 
 ### Add yourself
 

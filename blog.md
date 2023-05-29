@@ -3,18 +3,18 @@ title: blog
 permalink: /blog/
 ---
 
-### **Blog posts from the lab**
+# **Blog Posts**
 
 <div class="content list">
   {% for post in site.posts %}
-    {% if post.categories contains 'newblog' %}
+    {% if post.categories contains 'blog' %}
     <div class="list-item">
       <p class="list-post-title">
         <a href="{{ post.url | prepend: site.baseurl }}">
             <div class="row">
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <img src="/{% if post.header-img %}{{ post.header-img }}{% else %}{{ site.header-img }}{% endif %}">
-                </div>
+                </div> -->
                 <div class="col-sm-8">
                     <h3 class="post-title">
                         {{ post.title }}
