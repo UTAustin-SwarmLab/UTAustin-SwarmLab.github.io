@@ -37,6 +37,8 @@ If you're part of the UT Austin Swarm Lab organization and you've made a change,
 
 - **Directly edit on Github**, you can simply go to `_posts` and click `New file` then put some markdown file e.g. `YYYY-MM-DD-post_name.md` and start writing blog post. Github also allows you to preview it so it's nice for people who don't want to clone the repo.
 
+- **Template**: see markdown files in `./_posts/` for examples. You can copy paste the template and start writing your own post. Please make sure you put the header correctly.
+
 - **Clone the repository**, kind of the same as directly add post on Github. You just have to clone the repository. Then add new post file, commit and push to the repo. Please make all changes via Pull Request.
 
 The changes will take approximately half a minute to render.

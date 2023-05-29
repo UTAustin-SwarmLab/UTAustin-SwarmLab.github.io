@@ -15,7 +15,7 @@ permalink: /blog/
                 <!-- <div class="col-sm-4">
                     <img src="/{% if post.header-img %}{{ post.header-img }}{% else %}{{ site.header-img }}{% endif %}">
                 </div> -->
-                <div class="col-sm-8">
+                <div class="col-md-12">
                     <h3 class="post-title">
                         {{ post.title }}
                     </h3>
