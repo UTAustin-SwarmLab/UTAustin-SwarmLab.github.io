@@ -9,7 +9,7 @@ avatar: minkyu_choi.png
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
 <i class="fa fa-envelope-o"></i> `minkyu.choi@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/your_resume_filename.pdf)<br>
+<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/your_resume_filename.pdf)<br> -->
 <i class="fa fa-external-link"></i> [Personal Website](https://minkyuchoi-07.github.io/about/)
 
 **Office**<br>
