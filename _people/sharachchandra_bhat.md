@@ -1,6 +1,6 @@
 ---
 name: Sharachchandra Bhat
-position: gradstudent
+position: alumni
 avatar: sharachchandra.png
 ---
 
