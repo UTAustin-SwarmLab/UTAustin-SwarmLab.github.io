@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Swarm Lab</title>
+		<link>https://utaustin-swarmlab.github.io</link>
+		<atom:link href="https://utaustin-swarmlab.github.io/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Task-aware Distributed Source Coding under Dynamic Bandwidth</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction:&lt;/h3&gt;
+
+&lt;p&gt;In today’s interconnected world, we are surrounded by networks of sensors and devices that constantly generate and exchange large amounts of data. However, limited communication bandwidth poses a challenge when it comes to transmitting this data efficiently. To address this issue, we developed a solution called “NDPCA”. In this blog post, we will break down this approach and explain in simple terms.&lt;/p&gt;
+
+&lt;h3 id=&quot;background&quot;&gt;Background:&lt;/h3&gt;
+
+&lt;p&gt;Efficiently compressing correlated data is crucial to avoid overwhelming communication channels in multi-sensor networks. Typically, each sensor independently compresses its data before transmitting it to a central node, where a decoder reconstructs the information. The decoded data is then fed into a pre-trained machine learning-based task model to generate the desired output. It is important to note that the quality of the final output relies on compressing only the relevant features for the task at hand. Furthermore, the overall performance is highly influenced by the available bandwidth.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-problem&quot;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;In real-world scenarios, the availability of bandwidth can vary, with higher bandwidths generally leading to better task performance. To tackle this challenge, we aimed to design a novel framework that enables flexible data compression from multiple sources, adapting to the varying bandwidth conditions while minimizing computing and storage overhead.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-solution-neural-distributed-principal-component-analysis-ndpca&quot;&gt;The Solution: Neural Distributed Principal Component Analysis (NDPCA)&lt;/h3&gt;
+
+&lt;p&gt;We developed a cutting-edge approach called Neural Distributed Principal Component Analysis (NDPCA). This framework consists of independent encoders and a joint decoder, allowing for efficient data compression and transmission. NDPCA’s key advantage is its ability to adapt to any available bandwidth using a single model, simplifying the computational and storage requirements.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-ndpca-works&quot;&gt;How NDPCA Works:&lt;/h3&gt;
+
+&lt;h4 id=&quot;learning-low-rank-task-representations&quot;&gt;&lt;em&gt;Learning Low-Rank Task Representations&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;NDPCA employs a technique called principal component analysis to learn low-rank task representations from the data. By focusing on the most important features, the framework can efficiently compress the data without sacrificing task performance.&lt;/p&gt;
+
+&lt;h4 id=&quot;distributed-compression&quot;&gt;&lt;em&gt;Distributed Compression&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;Each sensor in the network independently compresses its data using the learned low-rank task representations. This step ensures that only relevant information is transmitted, reducing the communication overhead.&lt;/p&gt;
+
+&lt;h4 id=&quot;joint-decoding&quot;&gt;&lt;em&gt;Joint Decoding&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;At the central node, a joint decoder reconstructs the compressed data from multiple sensors and feeds it into the task model. The decoder’s role is crucial as it enables the accurate reconstruction of the original data, ensuring high-quality results.&lt;/p&gt;
+
+&lt;h3 id=&quot;benefits-and-significance&quot;&gt;Benefits and Significance:&lt;/h3&gt;
+
+&lt;p&gt;The NDPCA framework offers several key advantages:&lt;/p&gt;
+
+&lt;h4 id=&quot;adaptability-to-varying-bandwidth&quot;&gt;&lt;em&gt;Adaptability to Varying Bandwidth&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;NDPCA can dynamically adjust its compression rate to match the available bandwidth, maximizing the performance of the task model. This flexibility is particularly valuable in real-world scenarios where bandwidth availability can fluctuate.&lt;/p&gt;
+
+&lt;h4 id=&quot;reduced-computing-and-storage-overhead&quot;&gt;&lt;em&gt;Reduced Computing and Storage Overhead&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;By utilizing a single model and distributed compression, NDPCA significantly reduces the computational and storage requirements compared to traditional methods. This efficiency makes it feasible to implement in resource-constrained environments.&lt;/p&gt;
+
+&lt;h4 id=&quot;improved-task-performance&quot;&gt;&lt;em&gt;Improved Task Performance&lt;/em&gt;:&lt;/h4&gt;
+&lt;p&gt;By compressing only the relevant features for the task, NDPCA ensures that the task model receives high-quality data, leading to improved overall performance and accuracy.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion:&lt;/h3&gt;
+
+&lt;p&gt;Our paper “Task-aware Distributed Source Coding under Dynamic Bandwidth” introduces a groundbreaking approach called NDPCA, offering a novel solution to the challenges of data compression and communication in multi-sensor networks. By focusing on task-relevant features and adapting to varying bandwidth conditions, NDPCA provides an efficient and flexible framework for optimizing data transmission. The significance of this work lies in its potential to enhance communication efficiency and improve task performance in a wide range of applications, from Internet of Things (IoT) devices to large-scale sensor networks.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 12 Jun 2023 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2023/06/12/TaskAwareDSC.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/06/12/TaskAwareDSC.html</guid>
+			</item>
+		
+			<item>
+				<title>Differentially Private Timeseries Forecasts for Networked Control: Protecting Privacy without Sacrificing Accuracy</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;In the age of interconnected systems and data-driven decision-making, accurate forecasting plays a crucial role in optimizing control strategies. However, concerns regarding data privacy have led to the introduction of anonymization noise in forecasting models, which compromises their accuracy. Balancing the need for accurate forecasts and the privacy of input data is a challenging problem. In our recent paper titled &lt;a href=&quot;https://arxiv.org/abs/2210.00358&quot;&gt;Differentially Private Timeseries Forecasts for Networked Control&lt;/a&gt;, we propose a novel approach to address this trade-off by providing economic incentives to forecasting models while minimizing control costs. In this blog post, we will delve into the key insights and findings of this paper.&lt;/p&gt;
+
+&lt;center&gt;
+    &lt;img style=&quot;border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&quot; src=&quot;/images/post/DP_LQG_system_graph.png&quot; /&gt;
+    &lt;br /&gt;
+    &lt;div style=&quot;color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;&quot;&gt;&lt;strong&gt;System graph:&lt;/strong&gt;  A controller incentivizes multiple forecasting models to reduce differentially private noise and combines the resulting forecasts to minimize its control cost.&lt;/div&gt;
+    &lt;br /&gt;&lt;br /&gt;
+&lt;/center&gt;
+
+&lt;h3 id=&quot;the-challenge&quot;&gt;The Challenge&lt;/h3&gt;
+&lt;p&gt;Accuracy vs. Privacy Forecasting models rely on historical data to make predictions about future events. However, sharing this data openly poses privacy risks. To address this concern, anonymization noise is added to the data, which reduces the accuracy of the forecasts. The challenge lies in finding the optimal balance between accuracy and privacy, considering the cost implications of control decisions based on imperfect forecasts.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-proposed-solution&quot;&gt;The Proposed Solution&lt;/h3&gt;
+&lt;p&gt;We propose an approach that allocates economic incentives to forecasting models to encourage them to reduce anonymization noise while maintaining acceptable privacy levels. By reducing the noise, the accuracy of the forecasts improves, leading to better control decisions. We tackle this problem through a biconvex optimization framework, specifically focusing on linear quadratic regulators (LQRs), which are widely used in control systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;comparing-incentive-allocation-schemes&quot;&gt;Comparing Incentive Allocation Schemes&lt;/h3&gt;
+&lt;p&gt;To evaluate the effectiveness of their proposed approach, we compare it to a uniform incentive allocation scheme. The results are promising, as the proposed solution demonstrates significant cost reductions. In the case of synthetic timeseries, control costs decrease by 2.5 times, while for the Uber demand forecast, costs decrease by 2.7 times. These findings highlight the potential of incentivizing forecasting models to enhance their accuracy without compromising privacy.&lt;/p&gt;
+
+&lt;center&gt;
+    &lt;img style=&quot;border-radius: 0.25em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&quot; src=&quot;/images/post/uber_merged_plot.png&quot; /&gt;
+    &lt;br /&gt;
+    &lt;div style=&quot;color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;&quot;&gt;&lt;strong&gt;Results on the Uber demand:&lt;/strong&gt; Ours (green) outperforms the uniform (blue) with lower control costs, while the more incentives the controller has, the lower the cost.&lt;/div&gt;
+    &lt;br /&gt;&lt;br /&gt;
+&lt;/center&gt;
+
+&lt;h3 id=&quot;implications-and-future-directions&quot;&gt;Implications and Future Directions&lt;/h3&gt;
+&lt;p&gt;The research presented in this paper has important implications for networked control systems and the broader field of data privacy. By providing economic incentives to forecasting models, decision-makers can strike a balance between accurate forecasts and privacy protection. The findings of this study pave the way for future research on privacy-preserving forecasting techniques and incentive mechanisms in control systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;The paper “Differentially Private Timeseries Forecasts for Networked Control” introduces an innovative approach to address the accuracy-privacy trade-off in forecasting models. By allocating economic incentives to forecasting models, control costs can be significantly reduced while maintaining acceptable privacy levels. This research opens new avenues for improving decision-making in networked control systems while safeguarding sensitive data. As the field progresses, we can expect further advancements in privacy-preserving techniques and incentive allocation mechanisms, ultimately benefiting both accuracy and privacy in various domains.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 28 May 2023 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</guid>
+			</item>
+		
+	</channel>
+</rss>
