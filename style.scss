@@ -307,6 +307,17 @@ img {
   border-radius: 5px;
 }
 
+figcaption {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: gray;
+  margin-top: 10px;
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+}
+
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {
   float: left;
