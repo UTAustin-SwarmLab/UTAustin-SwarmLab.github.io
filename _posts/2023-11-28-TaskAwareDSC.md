@@ -8,7 +8,7 @@ categories: blog
 
 # Leveraging Neural Distributed Principal Component Analysis for Efficient Data Transmission
 
-[Link to paper](https://arxiv.org/abs/2305.15523)
+[Link to paper](https://openreview.net/forum?id=1A4ZqTmnye)
 
 In today's interconnected world, the constant exchange of data among various sensors and devices has never been more vital. The efficient transmission of this data presents several challenges:
 1. How do we define important features from a data distribution?
