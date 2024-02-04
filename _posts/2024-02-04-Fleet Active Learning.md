@@ -22,15 +22,17 @@ The recent surge in the success and popularity of machine learning (ML) models p
    <p></p>
 </figure>
 
-## The Challenge of Redundancy in Data Collection**
+## The Challenge of Redundancy in Data Collection
 
 When AVs operate independently to collect data, there's a significant risk of redundancy. Multiple vehicles may gather similar data points, which does not add value to the training models. This redundancy not only wastes resources but also fails to enrich the models' learning with new, diverse information. Given constraints like bandwidth and computational resources, it's crucial for these vehicles to prioritize the collection of unique and informative data points that can substantially improve their deep neural networks (DNNs).
 
 <figure>
     <img src="{{site.baseurl}}/images/post/fal_toy_example.png" alt="Toy Example" width="50%" height="auto">
-   <figcaption>Illustrative example of distributed (red) vs. interactive (blue) data selection in 2D space, showcasing the reduction in redundancy and broader data coverage. </figcaption>
+   <figcaption>Toy Example</figcaption>
    <p></p>
 </figure>
+
+Here, we show a toy example of the data selection process in a 2D space. The red crosses represent the data selected by the distributed approach, while the blue circles represent the data selected by the interactive approach. Compared to the distributed approach, the interactive approach selects a more diverse set of data points, covering a broader range of scenarios.
 
 # A Collaborative Solution through Submodular Maximization
 
@@ -46,11 +48,13 @@ With rigorous theoretical analysis and empirical results, we show that our propo
 
 <figure>
     <img src="{{site.baseurl}}/images/post/fal_results.jpg" alt="Fleet Active Learning Results">
-   <figcaption>Quantitative results demonstrating the impact of Fleet Active Learning. Here, our proposed approach, <strong>Interactive</strong>, outperforms the traditional <strong>Distributed</strong> baseline and matches the performance of the upper bound <strong>Centralized</strong> approach.
+   <figcaption> Experimental Results.
     </figcaption>
    <p></p>
 </figure>
 
-# Conclusion: Revolutionizing Data Collection**
+Experimental results demonstrate the impact of Fleet Active Learning. Here, our proposed approach, **Interactive**, outperforms the traditional **Distributed** baseline and matches the performance of the upper bound **Centralized** approach in diverse datasets including Berkeley DeepDrive.
+
+# Conclusion: Revolutionizing Data Collection
 
 Our work "Fleet Active Learning: A Submodular Maximization Approach" offers a promising avenue for enhancing the capabilities of AVs through smarter data collection methods. By adopting the FAL framework, fleets of autonomous vehicles can efficiently gather diverse data essential for training robust ML models. This approach not only optimizes resource use but also paves the way for the development of more advanced, reliable, and safe autonomous driving technologies. As we stand on the cusp of fully autonomous transportation, innovations like FAL are instrumental in overcoming the hurdles of data collection and model training, marking a significant leap forward in the journey towards more intelligent, more autonomous vehicles.
