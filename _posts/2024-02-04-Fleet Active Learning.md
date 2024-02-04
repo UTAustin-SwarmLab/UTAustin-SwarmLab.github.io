@@ -27,7 +27,7 @@ The recent surge in the success and popularity of machine learning (ML) models p
 When AVs operate independently to collect data, there's a significant risk of redundancy. Multiple vehicles may gather similar data points, which does not add value to the training models. This redundancy not only wastes resources but also fails to enrich the models' learning with new, diverse information. Given constraints like bandwidth and computational resources, it's crucial for these vehicles to prioritize the collection of unique and informative data points that can substantially improve their deep neural networks (DNNs).
 
 <figure>
-    <img src="{{site.baseurl}}/images/post/fal_toy_example.png" alt="Toy Example">
+    <img src="{{site.baseurl}}/images/post/fal_toy_example.png" alt="Toy Example" width="50%" height="auto">
    <figcaption>Illustrative example of distributed (red) vs. interactive (blue) data selection in 2D space, showcasing the reduction in redundancy and broader data coverage. </figcaption>
    <p></p>
 </figure>
