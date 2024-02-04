@@ -10,7 +10,7 @@ categories: blog
 
 [Link to paper](https://openreview.net/forum?id=1A4ZqTmnye)
 
-In today's interconnected world, the constant exchange of data among various sensors and devices has never been more vital. The efficient transmission of this data presents several challenges:
+In today's interconnected world, the constant exchange of data among various sensors and devices has never been more vital. The efficient transmission of the data presents several challenges:
 1. How do we define important features from a data distribution?
 2. How do we extend this to multiple data distributions or modalities setting?
 3. How do we compress and prioritize the features so that we can transmit the important features first to save network bandwidth?
