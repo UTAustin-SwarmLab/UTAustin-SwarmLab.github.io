@@ -12,7 +12,7 @@ categories: blog
 
 In today's interconnected world, the constant exchange of data among various sensors and devices has never been more vital. The efficient transmission of this data presents several challenges:
 1. How do we define important features from a data distribution?
-2. How do we extend this to a multiple data distributions or modalities setting?
+2. How do we extend this to multiple data distributions or modalities setting?
 3. How do we compress and prioritize the features so that we can transmit the important features first to save network bandwidth?
 
 To tackle these challenges, our collaborative work with researchers from the Honda Research Institute has given birth to a transformative solution known as Neural Distributed Principal Component Analysis, or NDPCA. In this blog, we will briefly cover the intricacies of NDPCA and its pivotal role in simplifying complex data transmission processes.
@@ -46,7 +46,7 @@ Our solution, NDPCA, represents a breakthrough in this field. It comprises indep
 NDPCA harnesses the power of principal component analysis to learn low-rank task representations from the data. By focusing on the most essential features, the framework can efficiently compress the data without compromising task performance.
 
 ### Distributed Compression
-Each sensor in the network independently compresses its data using the learned low-rank task representations. This step ensures that only relevant information is transmitted, effectively reducing communication overhead between the sensors, which can be upto $$O(n^2)$$.
+Each sensor in the network independently compresses its data using the learned low-rank task representations. This step ensures that only relevant information is transmitted, effectively reducing communication overhead between the sensors, which can be upto O(n^2).
 
 ### Joint Decoding
 At the central node, a joint decoder plays a pivotal role in reconstructing the compressed data from multiple sensors. This reconstructed data is then fed into the task model, ensuring that only the important task-relevant features are represented, ultimately leading to maintaining the task performance.
