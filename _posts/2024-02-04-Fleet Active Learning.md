@@ -46,7 +46,7 @@ With rigorous theoretical analysis and empirical results, we show that our propo
 
 <figure>
     <img src="{{site.baseurl}}/images/post/fal_results.jpg" alt="Fleet Active Learning Results">
-   <figcaption>Quantitative results demonstrating the impact of Fleet Active Learning. Here, our proposed approach, **Interactive**, outperforms the traditional **Distributed** baseline and matches the performance of the upper bound **Centralized** approach.
+   <figcaption>Quantitative results demonstrating the impact of Fleet Active Learning. Here, our proposed approach, <strong>Interactive</strong>, outperforms the traditional <strong>Distributed</strong> baseline and matches the performance of the upper bound <strong>Centralized</strong> approach.
     </figcaption>
    <p></p>
 </figure>
