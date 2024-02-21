@@ -20,7 +20,7 @@ permalink: /blog/
                         {{ post.title }}
                     </h3>
                     <p class="list-post-title">
-                      posted on {{ post.date | date: "%B %-d, %Y" }}
+                      Posted on {{ post.date | date: "%B %-d, %Y" }}
                     </p>
                     <p class="list-detail" >
                       {{ post.content | strip_html | truncatewords:30 }}
