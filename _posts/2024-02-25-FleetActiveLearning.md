@@ -8,7 +8,7 @@ categories: blog
 
 # Fleet Active Learning with Submodular Maximization
 
-[Link to paper](https://arxiv.org/abs/2402.08570)
+[Link to paper](https://openreview.net/forum?id=low-53sFqn)
 
 ## Motivation
 
