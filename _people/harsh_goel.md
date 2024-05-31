@@ -16,6 +16,6 @@ avatar: harsh_goel.jpg
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>
 Austin, TX 78712
 
-<span class="sc">**Harsh Goel**</span> is a Ph.D. student in ECE since Fall 2023. Prior to this, he obtained a MS. degree in Robotics from the University of Pennsylvania and B.Eng degree in Mechanical Engineering from the National University of Singapore.
+<span class="sc">**Harsh Goel**</span> is a Ph.D. student in ECE since Fall 2023. Prior to this, he obtained a MS in Robotics from the University of Pennsylvania and a B.Eng in Mechanical Engineering from the National University of Singapore.
 
 Harsh's research interests lie at the intersection of Multi-Agent Systems, Embodied AI and Reinforcement Learning. Outside of research, Harsh enjoys playing tennis, hiking and listening to music.
