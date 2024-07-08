@@ -78,7 +78,7 @@ Now, we will describe the two main takeaways from our experiments with these two
    <p></p>
 </figure>
 
-We show similar results with the real-world demonstration (check the figure below). In the absence of shielding, we observe safety violations due to the communication delay while using our university’s public Wi-Fi network for sensor data transmission. Additionally, note that the distance between both cars is lower in the presence of &epsilon;-shields, highlighting better task efficiency.
+We show similar results with the real-world demonstration (check the figure below). In the absence of shielding, we observe safety violations due to the communication delay while using our university’s public Wi-Fi network for sensor data transmission. Additionally, note that the distance between both cars is lower in the presence of &epsilon;-shields (Random Delay), highlighting better task efficiency.
 
 <figure style="text-align: center;">
     <img src="{{site.baseurl}}/images/post/safe_teleop_real_results.jpeg" alt="Approach" width="90%" height="auto" style="margin: auto; display: block;">
