@@ -15,8 +15,8 @@ Recently, an increasing number of robotic applications adapt remote assistance t
 We identify the following two crucial reasons:
 
 <ol>
-    <li> <strong>Mobile robots are constrained by their onboard computing power and cannot run powerful deep neural networks (DNNs) for perception and control tasks.</strong> Hence, it is preferred to offload sensor observations to a remote server via wireless networks, where these powerful DNNs can be run.
-    <li><strong>Autonomous robots cannot handle all possible edge cases.</strong> While encountering new scenarios (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.
+    <li> <strong>Mobile robots are constrained by their onboard computing power and cannot run powerful deep neural networks (DNNs) for perception and control tasks.</strong> Hence, it is preferred to offload sensor observations to a remote server via wireless networks, where these powerful DNNs can be run.</li>
+    <li><strong>Autonomous robots cannot handle all possible edge cases.</strong> While encountering new scenarios (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.</li>
 </ol>
 
 Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to violation of key safety properties.
@@ -38,8 +38,8 @@ We implemented our proposed solution on a real-world leader-follower setup. The 
 
 To develop a safe networked control system, as shown in the figure above, we require the following:
 <ol>
-    <li><strong>Ability to accurately model the interaction between the mobile robot and the environment in the presence of delay.</strong> Previous works make assumptions about the delay transitions, such as the delay is constant and non-decreasing. However, we end up with a very conservative model of the interaction with these assumptions.
-    <li><strong>Ability to trade off safety for efficiency according to the user's needs.</strong> This is important as we are dealing with a system with stochastic delays. Optimizing for absolute safety would translate to optimizing for the worst-case delay, which might occur very rarely.
+    <li><strong>Ability to accurately model the interaction between the mobile robot and the environment in the presence of delay.</strong> Previous works make assumptions about the delay transitions, such as the delay is constant and non-decreasing. However, we end up with a very conservative model of the interaction with these assumptions.</li>
+    <li><strong>Ability to trade off safety for efficiency according to the user's needs.</strong> This is important as we are dealing with a system with stochastic delays. Optimizing for absolute safety would translate to optimizing for the worst-case delay, which might occur very rarely.</li>
 </ol>
 
 ## Modeling the interaction between the robot and the environment in the presence of delay
@@ -61,15 +61,15 @@ With the DC-MDP and the shield for the required safety specification, the naive 
 We test our approach on the following two simulation environments:
 
 <ol>
-    <li><strong>Leader-Follower Simulation Setup:</strong> The follower should get as close as possible to the leader while maintaining a safe distance. The state information contains the relative distance and the relative velocity.
-    <li><strong>Grid World Simulation Setup:</strong> The robot has to traverse an 8x8 grid from start to goal without colliding with an adversary. An episode is declared a win if the robot reaches the goal, a loss if the robot collides with the obstacle, and a tie if the robot does not reach the goal. 
+    <li><strong>Leader-Follower Simulation Setup:</strong> The follower should get as close as possible to the leader while maintaining a safe distance. The state information contains the relative distance and the relative velocity.</li>
+    <li><strong>Grid World Simulation Setup:</strong> The robot has to traverse an 8x8 grid from start to goal without colliding with an adversary. An episode is declared a win if the robot reaches the goal, a loss if the robot collides with the obstacle, and a tie if the robot does not reach the goal.</li>
 </ol>
 
 Now, we will describe the two main takeaways from our experiments with these two simulation environments.
 
 <ol>
-    <li><strong>The set of safe states expands for the DC-MDP.</strong> Since the DC-MDP accurately models the robot-environment interaction without any conservative assumptions on the delay transitions, we observe more safe states when compared to the previous models with conservative assumptions on delay transitions, such as constant maximum delays. This directly translates to aggressive robot behavior or higher task efficiency. In the figure shown below, note that for the same value of maximum allowable delay, the set of safe states for DC-MDP (Random Delay) is much larger than that obtained with the constant maximum delay assumption.
-    <li><strong>&epsilon;-shields trade off safety for efficiency.</strong> Our experiments show that we can decrease the value of &epsilon; to lower the achievable safety probability, thereby achieving higher robot task efficiency. This is shown by a reduced distance from the leader in the leader-follower environment and an increased number of wins in the grid-world environment. 
+    <li><strong>The set of safe states expands for the DC-MDP.</strong> Since the DC-MDP accurately models the robot-environment interaction without any conservative assumptions on the delay transitions, we observe more safe states when compared to the previous models with conservative assumptions on delay transitions, such as constant maximum delays. This directly translates to aggressive robot behavior or higher task efficiency. In the figure shown below, note that for the same value of maximum allowable delay, the set of safe states for DC-MDP (Random Delay) is much larger than that obtained with the constant maximum delay assumption.</li>
+    <li><strong>&epsilon;-shields trade off safety for efficiency.</strong> Our experiments show that we can decrease the value of &epsilon; to lower the achievable safety probability, thereby achieving higher robot task efficiency. This is shown by a reduced distance from the leader in the leader-follower environment and an increased number of wins in the grid-world environment.</li>
 </ol>
 
 <figure style="text-align: center;">
