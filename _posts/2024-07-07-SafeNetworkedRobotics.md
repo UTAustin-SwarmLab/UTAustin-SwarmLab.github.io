@@ -10,16 +10,16 @@ categories: blog
 
 ## Motivation
 
-Recently, an increasing number of robotic applications adapt remote assistance through teleoperation, ranging from remote manipulation for surgery to emergency take-over of autonomous vehicles. Teleoperation is even used to control food delivery robots from command centers hundreds of miles away. What has contributed to this trend? 
+Recently, an increasing number of robotic applications have adopted remote assistance through teleoperation, ranging from remote manipulation for surgery to emergency takeover of autonomous vehicles. Teleoperation is even used to control food delivery robots from command centers hundreds of miles away. What has contributed to this trend? 
 
 We identify the following two crucial reasons:
 
 <ol>
     <li> <strong>Mobile robots are constrained by their onboard computing power and cannot run powerful deep neural networks (DNNs) for perception and control tasks.</strong> Hence, it is preferred to offload sensor observations to a remote server via wireless networks, where these powerful DNNs can be run.</li>
-    <li><strong>Autonomous robots cannot handle all possible edge cases.</strong> While encountering new scenarios (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.</li>
+    <li><strong>Autonomous robots cannot handle all possible edge cases.</strong> While encountering a new scenario (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.</li>
 </ol>
 
-<p>Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to violation of key safety properties.</p>
+<p>Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to the violation of key safety properties.</p>
 
 Therefore, in this work, we ask the following key question: <strong>How do we ensure safe networked control over wireless networks with stochastic communication delays?</strong> This blog will briefly explain our proposed solution and experimental results, including a real-world demonstration of safe networked control using F1/10th cars while transmitting sensor data through our university's public Wi-Fi network.
 
@@ -46,7 +46,7 @@ To develop a safe networked control system, as shown in the figure above, we req
 
 Typically, Markov Decision Processes (MDPs) are used to model the interaction between a robot and its environment. To extend MDPs to the networked control setting, we developed Delayed Communication Markov Decision Processes (DC-MDP) <strong>without any conservative assumptions about the delay transitions.</strong>
 
-Our key intuition is that by augmenting the states of the basic MDP (model of the interaction in the absence of delay) with fixed-length action buffers containing the number of actions corresponding to the actual delay, we can represent system states with arbitrary delays. Additionally, given the delay transition probability, we can accurately obtain the transition probability between the system states for two consecutive time steps with arbitrary delays. We refer the readers to Section 5.A of the manuscript. 
+Our key intuition is that by augmenting the states of the basic MDP (model of the interaction in the absence of delay) with fixed-length action buffers containing the number of actions corresponding to the actual delay, we can represent system states with arbitrary delays. Additionally, given the delay transition probability, we can accurately obtain the transition probability between the system states for two consecutive time steps with arbitrary delays. We refer the readers to Section 5.A of the manuscript for further details. 
 
 ## Ensuring Safety 
 
@@ -54,7 +54,7 @@ We use Linear Temporal Logic (LTL) to formally represent our desired notion of s
 
 ## Achieving Safety-Efficiency Trade-Off
 
-With the DC-MDP and the shield for the required safety specification, the naive solution is to apply shielding to the DC-MDP and ensure absolute safety for the networked control system. However, we note that this adversely affects the system's task performance. This is attributed to the fact that ensuring absolute safety always considers the worst-case scenario, which is the maximum delay case. However, the maximum delay case is a very rare occurrence. Hence, we propose &epsilon;-shields that can trade off safety for task efficiency.  We refer the reader to Algorithm 1 in our manuscript for the definition and synthesis of &epsilon;-shields. Intuitively, &epsilon; is a value between 0 and 1, and increasing &epsilon; increases safety.  Our proposed &epsilon;-shields can guarantee any desired safety probability. This flexibility allows the user to trade off safety to achieve higher task efficiency. 
+With the DC-MDP and the shield for the required safety specification, the naive solution is to apply shielding to the DC-MDP and ensure absolute safety for the networked control system. However, we note that this adversely affects the system's task performance. This is attributed to the fact that ensuring absolute safety always considers the worst-case scenario, which is the maximum delay case. However, the maximum delay case is a very rare occurrence. Hence, we propose &epsilon;-shields that can trade off safety for task efficiency.  We refer the reader to Algorithm 1 in our manuscript for the definition and synthesis of &epsilon;-shields. Intuitively, &epsilon; is a value between 0 and 1, and increasing &epsilon; increases safety. Our proposed &epsilon;-shields can guarantee any desired safety probability. This flexibility allows the user to trade off safety to achieve higher task efficiency. 
 
 ## Experimental Results
 
@@ -78,7 +78,7 @@ Now, we will describe the two main takeaways from our experiments with these two
    <p></p>
 </figure>
 
-We show similar results with the real-world demonstration (check the figure below). In the absence of shielding, we observe safety violations due to the communication delay while using our university’s public Wi-Fi network for sensor data transmission. Additionally, note that the distance between both cars is lower in the presence of e-shields, highlighting better task efficiency.
+We show similar results with the real-world demonstration (check the figure below). In the absence of shielding, we observe safety violations due to the communication delay while using our university’s public Wi-Fi network for sensor data transmission. Additionally, note that the distance between both cars is lower in the presence of &epsilon;-shields, highlighting better task efficiency.
 
 <figure style="text-align: center;">
     <img src="{{site.baseurl}}/images/post/safe_teleop_real_results.jpeg" alt="Approach" width="90%" height="auto" style="margin: auto; display: block;">
