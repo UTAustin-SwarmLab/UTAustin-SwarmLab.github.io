@@ -19,7 +19,7 @@ We identify the following two crucial reasons:
     <li><strong>Autonomous robots cannot handle all possible edge cases.</strong> While encountering new scenarios (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.</li>
 </ol>
 
-Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to violation of key safety properties.
+<p>Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to violation of key safety properties.</p>
 
 Therefore, in this work, we ask the following key question: <strong>How do we ensure safe networked control over wireless networks with stochastic communication delays?</strong> This blog will briefly explain our proposed solution and experimental results, including a real-world demonstration of safe networked control using F1/10th cars while transmitting sensor data through our university's public Wi-Fi network.
 
