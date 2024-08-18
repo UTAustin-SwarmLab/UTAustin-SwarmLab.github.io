@@ -3,6 +3,27 @@ title: blog
 permalink: /blog/
 ---
 
+<head>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+      }
+    });
+  </script>
+  <!-- Load MathJax -->
+  <script type="text/javascript" async 
+          src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+</head>
+
 # **Blog Posts**
 
 <div class="content list">
