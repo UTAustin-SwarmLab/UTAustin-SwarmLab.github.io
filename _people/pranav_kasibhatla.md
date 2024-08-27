@@ -1,6 +1,6 @@
 ---
 name: Pranav Kasibhatla
-position: undergrad
+position: alumni
 avatar: pranav.jpg
 ---
 
