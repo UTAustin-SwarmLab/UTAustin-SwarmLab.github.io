@@ -61,7 +61,7 @@ permalink: /people/
 
 | Name | Time at SwarmLab | Where they went |
 | :------------- |:-------------| :-----------|
-|Sharachchandra Bhat| 2021-2022 | Tesla|
+|Sharachchandra Bhat| 2021-2023 | Tesla|
 |Pranav Kasibhatla| 2023-2024 |Columbia University|
 
 {% endif %}
