@@ -117,8 +117,6 @@ A unique aspect of our approach is the incorporation of strategic behavior by ma
 
 In this game, the payment controller acts as the leader, setting incentive price and buybacks to stabilize the token price. Token holders, acting as followers, adjust their behavior based on the controller's actions. By modeling the token economy as a Stackelberg game, ControlPay can anticipate strategic behavior and optimize token supply to maximize overall welfare within the network. We also show that ControlPay achieves the Stackelberg equilibrium, where the payment controller maximizes the utility of token holders while minimizing control costs.
 
-
-
 ## Experiments and Results
 
 We validated ControlPay through extensive simulations using both synthetic and real-world data from the Helium network. We compared ControlPay with traditional methods like the "burn-and-mint" (No Control) model, which simply buys back and pays out the same amount of tokens, and the proportional integral derivative (PID) controller, which adjusts token payments and buybacks based on past data on token price and reserves. Here are some example simulation results for comparison:
