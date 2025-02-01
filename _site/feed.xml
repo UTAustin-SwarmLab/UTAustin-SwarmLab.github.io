@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Swarm Lab</title>
+		<link>https://utaustin-swarmlab.github.io</link>
+		<atom:link href="https://utaustin-swarmlab.github.io/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>CSA: Bridging Modalities with Unimodal Power</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;csa-bridging-modalities-with-unimodal-power&quot;&gt;CSA: Bridging Modalities with Unimodal Power&lt;/h1&gt;
+
+&lt;p&gt;Proceedings of the International Conference on Learning Representations (ICLR)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; This post introduces &lt;em&gt;CSA&lt;/em&gt;, a novel method for bridging modalities with unimodal power. CSA leverages existing unimodal encoders to create a shared multimodal feature space, achieving competitive results with minimal training data and computational resources.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/2410.07610&quot;&gt;arXiv link&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/UTAustin-SwarmLab/Multi-modal-Data-Alignment&quot;&gt;Code&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In the world of artificial intelligence, multimodal models like CLIP have shown impressive capabilities in tasks ranging from image classification to cross-modal retrieval. However, these models often demand enormous amounts of training data, which can be a significant challenge. What if we could achieve similar results with far less data and computation? That is the question that led us to develop Canonical Similarity Analysis (CSA).&lt;/p&gt;
+
+&lt;h2 id=&quot;the-challenge-of-multimodal-learning&quot;&gt;The Challenge of Multimodal Learning&lt;/h2&gt;
+&lt;p&gt;Multimodal models aim to create a shared feature space where data from different modalities (like images and text) can be compared. The traditional approach involves training models on massive datasets of paired multimodal data. For example, the original CLIP model was trained on 400 million image-text pairs, requiring significant computational resources. This approach also faces challenges with data quality, as internet-sourced data can be noisy or mislabeled.&lt;/p&gt;
+
+&lt;h2 id=&quot;our-approach-leveraging-unimodal-encoders&quot;&gt;Our Approach: Leveraging Unimodal Encoders&lt;/h2&gt;
+&lt;p&gt;We hypothesized that we could build powerful multimodal encoders by leveraging existing, well-developed unimodal encoders. Unimodal encoders, like DINO for images and GTR for text, are trained on single modalities and require significantly less data than their multimodal counterparts. Our idea is to map the features from these unimodal encoders into a shared multimodal feature space using limited data.&lt;/p&gt;
+
+&lt;h3 id=&quot;system-plot&quot;&gt;System Plot:&lt;/h3&gt;
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/CSA_system_graph.png&quot; alt=&quot;CSA System Plot&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;CSA: System Overview&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The CSA system works by first using pre-trained unimodal encoders to extract features from different modalities, such as images and text. These encoders, which have already been trained on large datasets of single-modality data, create a representation of the input in a feature space specific to their modality. Then, Canonical Correlation Analysis (CCA) is applied to these unimodal features. CCA identifies the dimensions of each unimodal feature space that are most correlated with each other. It finds linear transformations that project the unimodal features into a shared, lower-dimensional space. Finally, CSA calculates a weighted cosine similarity between the transformed features of different modalities, using the correlation coefficients derived from CCA as weights. This similarity score is used for various downstream tasks, such as classification and retrieval. The hyperparameter s controls how many dimensions are considered when calculating the weighted cosine similarity, allowing for a trade-off between noise reduction and retention of information. The entire process is achieved without any training of neural networks, making it highly efficient.&lt;/p&gt;
+
+&lt;h2 id=&quot;introducing-canonical-similarity-analysis-csa&quot;&gt;Introducing Canonical Similarity Analysis (CSA)&lt;/h2&gt;
+&lt;p&gt;To achieve this, we developed Canonical Similarity Analysis (CSA). CSA uses two unimodal encoders to encode data into unimodal features, and then projects these features into a joint multimodal feature space. The core of CSA is its method for mapping unimodal features to a multimodal space and a novel similarity function for replicating CLIP’s similarity score. We use Canonical Correlation Analysis (CCA) to find the bases in each unimodal feature space that maximize correlation. This process involves a matrix decomposition without the need for training neural networks, making CSA computationally efficient. We then calculate a weighted cosine similarity in this space. By discarding information from less correlated bases, CSA focuses on the most relevant multimodal information. How CSA Works&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Unimodal Encoding: First, we use pre-trained unimodal encoders to extract features from each modality.&lt;/li&gt;
+  &lt;li&gt;CCA Mapping: Next, we use CCA to find the optimal linear transformations that map these features into a common space. CCA identifies the dimensions of the unimodal feature spaces that are most correlated and obtain the correlation coefficients.&lt;/li&gt;
+  &lt;li&gt;Weighted Cosine Similarity: We then calculate a weighted cosine similarity score to measure the similarity of two multimodal data points, using the correlation coefficients as weights.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;data-efficiency-and-performance&quot;&gt;Data Efficiency and Performance&lt;/h2&gt;
+&lt;p&gt;One of the most remarkable features of CSA is its data efficiency. In our experiments, CSA matched or exceeded the performance of CLIP in image classification, mislabeled data detection, and misinformation detection while requiring $50,000$ times less paired multimodal data for fine-tuning.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;On ImageNet classification, CSA only needs $35,000$ training samples to match CLIP’s performance.&lt;/li&gt;
+  &lt;li&gt;In Leafy Spurge classification, CSA outperformed CLIP with only $800$ training images.&lt;/li&gt;
+  &lt;li&gt;CSA also showed superior performance in detecting mislabeled ImageNet images compared to CLIP, ASIF, and LLaVA.&lt;/li&gt;
+  &lt;li&gt;We tested CSA on detecting misinformative news captions from the COSMOS dataset, and it outperformed both CLIP and ASIF.&lt;/li&gt;
+  &lt;li&gt;We also showed that CSA is robust to noisy data. Even with $50\%$ of training labels randomly shuffled, CSA maintained a high level of accuracy.&lt;/li&gt;
+  &lt;li&gt;We’ve demonstrated CSA’s versatility with modalities beyond image and text, including audio and text, paving the way for new modality pairs, such as lidar and text.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;limitations-and-future-directions&quot;&gt;Limitations and Future Directions&lt;/h2&gt;
+&lt;p&gt;While CSA is effective, it currently focuses on bimodal data, unlike models like ImageBind, which can handle six modalities. In addition, the performance of CSA relies on the quality of the unimodal encoders used.
+Our future work will explore:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Extending CSA to more than two modalities.&lt;/li&gt;
+  &lt;li&gt;Understanding the relationship between the training set size and performance.&lt;/li&gt;
+  &lt;li&gt;Fine-tuning the unimodal encoders for improved feature spaces.&lt;/li&gt;
+  &lt;li&gt;Applying CSA to intramodal data, such as multi-view images.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;CSA offers a compelling solution to the challenges of multimodal learning. By leveraging the power of unimodal encoders and using a novel similarity analysis method, CSA achieves competitive results with minimal training data and computational resources. We believe that CSA opens up new possibilities for efficient and robust multimodal machine learning towards binding emerging modalities.&lt;/p&gt;
+</description>
+				<pubDate>Fri, 24 Jan 2025 00:00:00 -0600</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2025/01/24/CSA.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2025/01/24/CSA.html</guid>
+			</item>
+		
+			<item>
+				<title>Fleet Supervisor Allocation: A Submodular Maximization Approach</title>
+        <description>&lt;p&gt;&lt;em&gt;By Oguzhan A.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;fleet-supervisor-allocation-a-submodular-maximization-approach&quot;&gt;Fleet Supervisor Allocation: A Submodular Maximization Approach&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://openreview.net/forum?id=9dsBQhoqVr&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Today, robotic fleets are deployed across diverse industries, performing tasks ranging from autonomous driving to healthcare and package delivery. These robots are often trained in simulated environments and often struggle to adapt to real-world scenarios, making continuous data collection crucial for high performance.&lt;/p&gt;
+
+&lt;p&gt;A common method for training robots is Imitation Learning (IL), where humans supervise robots to perform tasks. However, a significant challenge arises when the number of robots far exceeds the number of human supervisors, necessitating assigning limited humans to the most informative robots..&lt;/p&gt;
+
+&lt;p&gt;Additionally, human supervision is often provided through teleoperation over a network, especially when robots are geographically distributed. This introduces challenges related to network reliability which can cause interruptions in data collection.&lt;/p&gt;
+
+&lt;p&gt;To address these challenges, we introduce &lt;strong&gt;Adaptive Submodular Allocation (ASA)&lt;/strong&gt;, a novel approach that optimizes human supervision in multi-robots systems by dynamically allocating supervisors based on informativeness and network reliability of each robot.&lt;/p&gt;
+
+&lt;h2 id=&quot;problem-the-supervisor-allocation-problem&quot;&gt;Problem: The Supervisor Allocation Problem&lt;/h2&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/fsa_problem.png&quot; alt=&quot;Supervisor Allocation Problem&quot; width=&quot;90%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Supervisor Allocation Problem&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We consider a fleet of \(N_{robot}\) robots, operating with shared policy \(\pi_R^t\) at time \(t\), where each robot has its own state representation \(s_i^t \in S \). In each time step, human supervisors with policy \(\pi_H\) can be allocated to the robots based on the allocation policy \(\pi_A\). The allocation is subject to the network connectivity \(c_i^t\), which can be unreliable.&lt;/p&gt;
+
+&lt;p&gt;Here our objective is to find an allocation policy \(\pi_A\) that maximize the Return on Human Effort (RoHE) metric, which measures the performance of the robot fleet normalized by the human effort. This metric is proposed by Hoque et al. (2023) for &lt;a href=&quot;https://bair.berkeley.edu/blog/2023/04/06/ifl/&quot;&gt;Interactive Fleet Learning&lt;/a&gt; problem, and we extend it to account for uncertain network connectivity. Our objective can be formulated as:&lt;/p&gt;
+
+\[\max_{\pi_A \in \Omega} \mathbb{E}_C \left[ \frac{N_{\text{human}}}{N_{\text{robot}}} \frac{\sum_{i \in I} \sum_{t=0}^T r(s_i^t, a^t_i)}{1 + \sum _{t=0}^T \| \pi_A(C^t, s^t, a^t, I) \|} \right]\]
+
+&lt;p&gt;Here \(T\) is the time horizon, \(r(s_i^t, a^t_i)\) is the reward function, and \(\Omega\) is the set of all allocation policies. The RoHE metric evaluates the efficiency of human supervision by considering both the rewards and human effort.&lt;/p&gt;
+
+&lt;h2 id=&quot;our-approach-adaptive-submodular-allocation-asa&quot;&gt;Our Approach: Adaptive Submodular Allocation (ASA)&lt;/h2&gt;
+
+&lt;p&gt;Our approach, Adaptive Submodular Allocation (ASA), leverages submodular maximization to optimize the allocation of human supervisors to robots.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-submodular-maximization&quot;&gt;Why Submodular Maximization?&lt;/h3&gt;
+
+&lt;p&gt;Submodular functions are well-suited for optimization problems where diminishing returns occur. In our context, the more similar the states of selected robots,the less new information we gain by selecting another robot from a similar state. Submodularity helps us formalize this diminishing returns principle.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/fsa_toy_example.png&quot; alt=&quot;Supervisor Allocation Problem&quot; width=&quot;50%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;A Toy Example of Why Submodular Maximization&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, the blue contour represents uncertainty levels, with darker shades indicating higher uncertainty. Traditional score-based allocations (purple crosses) tend to select overlapping areas of high uncertainty resulting in redundant data collection. In constrast, submodular maximization (yellow plus signs) selects a more diverse set of robots, reducing redundancy while still capturing high uncertainty areas, leading to more informative data collection and better performance.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-asa-works&quot;&gt;How ASA Works&lt;/h3&gt;
+
+&lt;p&gt;We now explain how ASA works. We will first define the submodular objective function and then describe how ASA leverages this function to address the Fleet Supervisor Allocation problem.&lt;/p&gt;
+
+&lt;h4 id=&quot;submodular-objective-function&quot;&gt;Submodular Objective Function&lt;/h4&gt;
+
+&lt;p&gt;Adaptive Submodular Allocation (ASA) leverages stochastic submodular maximization to address the Fleet Supervisor Allocation problem. The objective \(f_{C^t}(X)\) captures the value of supervising a set of robots \(X\) balancing diversity and informativeness:&lt;/p&gt;
+
+\[f_{C^t}(X) = \sum_{i \in I} \max_{j \in X} c^t_j, M^t_{j,i}.\]
+
+&lt;p&gt;Here, \(c^t_j\) represents the connection reliability of robot \(j\) and \( M^t_{j,i} \) measures the value of supervision of robot \(j\) for robot \(i\). Here we define \( M_{j,i} \). However, the objective function \(f_{C^t}(X)\) is stochastic due to the uncertain network connectivity. Instead, we optimize the expected value of the objective function \(F(X) = \mathbb{E}_{C^t} [f_{C^t}(X)].\) Hence the problem becomes: 
+\(\max_{X \subseteq I} F(X),\)&lt;/p&gt;
+
+\[\text{subject to:} \; |X| \leq N_{\text{human}},\]
+
+&lt;h4 id=&quot;adaptive-submodular-allocation-asa-policy&quot;&gt;Adaptive Submodular Allocation (ASA) Policy&lt;/h4&gt;
+
+&lt;p&gt;We now present our ASA policy which uses a greedy algorithm to iteratively select robots with the highest marginal gain based on the estimated expected value funtion, \(\widehat{F}\). The algorithm is as follows:&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/fsa_algorithm.png&quot; alt=&quot;Supervisor Allocation Problem&quot; width=&quot;50%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Adaptive Submodular Allocation Algorithm&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Starting with an empty set of selected robots, the algorithm iteratively selects the robot that provides the highest marginal gain in expected value function \(\widehat{F}\). If the marginal gain falls below a preset threshold or the number of selected robots reaches the number of human supervisors, the algorithm terminates.&lt;/p&gt;
+
+&lt;p&gt;Here the key component is the expected value function \(\widehat{F}\) which estimates the expected value of the submodular objective function \(F\). Initially, \(\widehat{F}\) is set to the connection probabilities and updated whenever a robot’s connection success is observed. This updating ensures ASA adapts to real-time network conditions.&lt;/p&gt;
+
+&lt;p&gt;The estimated value function \(\widehat{F}\) is defined as:&lt;/p&gt;
+
+\[\widehat{F}(X) = \sum_c f_c(X) \widehat{p}_\xi,\]
+
+&lt;p&gt;where \(\widehat{p}_\xi\) represents the estimated connection probability of realization \( \xi \). The algorithm updates \(\widehat{p}_{\xi} \) after each allocation if observations on the allocations are available, dynamically improving allocation decisions.&lt;/p&gt;
+
+&lt;p&gt;This policy is shown to approximate the optimal solution with a factor of \(1 - 1/e\), providing robust and scalable performance across various network environments.&lt;/p&gt;
+
+&lt;h2 id=&quot;experimental-results&quot;&gt;Experimental Results&lt;/h2&gt;
+
+&lt;p&gt;We evaluated ASA in a simulated environment of 100 robots under various network conditions, including real-world 5G data. ASA outperformed benchmark methods, improving RoHE by up to 3.37× compared to traditional approaches, particularly in environments with unstable connectivity.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/fsa_experiments.png&quot; alt=&quot;ASA Experimental Results&quot; /&gt;
+   &lt;figcaption&gt;ASA Experimental Results&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, each column represents a different environment, while each row corresponds to a network configuration. We can see that ASA consistently outperforms other policies in terms of RoHE, demonstrating the effectiveness of our approach.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;We introduce the ASA policy, offering a robust solution to the Fleet Supervisor Allocation problem. Our policy leverages stochastic submodular maximization to effectively balance human supervision and task performance across diverse environments. Through smarter allocation, ASA improves both fleet efficiency and data collection, laying the groundwork for more scalable autonomous fleets.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 19 Sep 2024 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/09/19/FleetSupervisorAllocation.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/09/19/FleetSupervisorAllocation.html</guid>
+			</item>
+		
+			<item>
+				<title>PEERNet: Benchmarking Networked Robotics on Wifi, 5G, and Beyond</title>
+        <description>&lt;p&gt;&lt;em&gt;By Aditya N.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;peernet-benchmarking-networked-robotics-on-wifi-5g-and-beyond&quot;&gt;PEERNet: Benchmarking Networked Robotics on Wifi, 5G, and Beyond&lt;/h1&gt;
+
+&lt;p&gt;Proceedings of the International Conference on Intelligent Robots and Systems (IROS)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt; This post introduces &lt;em&gt;PEERNet&lt;/em&gt;, a Python package for real-time benchmarking of networked robotic systems. It provides concise and modular methods for performance analysis of the entire system stack.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;link to paper:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/2409.06078&quot;&gt;PEERNet: Benchmarking Networked Robotics on Wifi, 5G, and Beyond&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img src=&quot;https://hackmd.io/_uploads/ryxuxVStA.png&quot; alt=&quot;figure-1&quot; width=&quot;650&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;PEERNet is an end-to-end profiling tool for networked robotics. It excels in ease of deployment across various platforms and offers extensive benchmarking capabilities.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-benchmark-networked-robotics&quot;&gt;Why benchmark networked robotics?&lt;/h2&gt;
+&lt;p&gt;Consider a mobile robot running a Machine Learning (ML) pipeline for perception, localization, and path planning. Here and in many other practical scenarios, offloading computationally expensive ML tasks to a cloud server over public networks is a viable optimization.&lt;/p&gt;
+
+&lt;p&gt;Introducing offloaded computation brings up several system-design questions which require hard statistics and real data to answer:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Which ML model maximizes decision accuracy while minimizing end-to-end latency?&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;How much better is the end-to-end latency when using a 5G network as opposed to a 4G LTE network?&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;How does data compression affect end-to-end latency in offloaded inference? Is the overhead of compression worth the faster networking latency? Does that answer change when using a 5G network as opposed to LTE or WiFi?&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;More generally, real-time benchmarking is required for:&lt;/p&gt;
+
+&lt;p&gt;1.&lt;strong&gt;Deployment in the real world:&lt;/strong&gt; Before a robotic system can be deployed, decisions need to be made on hardware, ML models, networking protocols, etc.–these decisions must be informed by real-world statistics.&lt;/p&gt;
+
+&lt;p&gt;2.&lt;strong&gt;Debugging exising systems:&lt;/strong&gt; Finding and removing bottlenecks in existing robotic systems requires hard numbers. ML model latency, network delay, or even hardware limitations could all be a system’s bottleneck.&lt;/p&gt;
+
+&lt;p&gt;3.&lt;strong&gt;Optimizing networked robotics:&lt;/strong&gt; Many novel techniques for optimizing data sharing, offloading policies, and distributed ML are in active development. Assessing the performance of new algorithms on real hardware is essential before optimizations can be applied.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-makes-benchmarking-non-trivial&quot;&gt;What makes benchmarking non-trivial?&lt;/h2&gt;
+&lt;p&gt;Benchmarking networked robotics is fundamentally more challenging than simply timing ML models and testing sensors. The incorporation of networks into robotic systems significantly complicates the benchmarking problem by introducing:&lt;/p&gt;
+
+&lt;p&gt;1.&lt;strong&gt;Stochastic delay&lt;/strong&gt;: Network delays are highly stochastic and system dependent. Delays are hard to predict and often change significantly from one setup to another.&lt;/p&gt;
+
+&lt;p&gt;2.&lt;strong&gt;Network Timing and Asymmetric Delay&lt;/strong&gt;: Profiling networking operations by itself is difficult due to imperfect clock synchronization. Round-trip times, while commonly used, are of little use in networked robotic systems, where devices rarely upload and download similar amounts of data. For example, our mobile robot from earlier may upload gigabytes of images and lidar scans while downloading only bytes of labels. Hence, round-trip delay fails to provide any meaningful insight into this system.&lt;/p&gt;
+
+&lt;h2 id=&quot;introducing-peernet&quot;&gt;Introducing PEERNet&lt;/h2&gt;
+&lt;p&gt;We present PEERNet, the &lt;strong&gt;P&lt;/strong&gt;rofiler for &lt;strong&gt;E&lt;/strong&gt;nd-to-&lt;strong&gt;E&lt;/strong&gt;nd &lt;strong&gt;R&lt;/strong&gt;eal-time &lt;strong&gt;Net&lt;/strong&gt;worked Robotics. PEERNet is a highly modular and extensible package for profiling networked robotic systems, complete with one-way network delay estimation. PEERNet interfaces with industry standard hardware and software such as Nvidia embedded GPUs, Robot Operating System (ROS), and Zero MQ (ZMQ). PEERNet exposes a CLI for rapid benchmarking of offloaded inference systems, and we demonstrate PEERNet’s ease of use and versatility.&lt;/p&gt;
+
+&lt;p&gt;At a high level, PEERNet focuses on profiling networked robotics by looking at the life-cycle of data. When sensors sample data, serializable logging metadata is attached, and propagated through the system normally. This metadata includes all necessary information for tracking and profiling sampling time, ML inference latency, and one-way network delay.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiments&quot;&gt;Experiments&lt;/h2&gt;
+&lt;p&gt;We illustrate and validate PEERNet by implementing and profiling three networked robotic systems. All of our experiments are conducted on physical hardware and live wireless networks, demonstrating that PEERNet is modular, robust, and capable of precisely profiling various systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;benchmarking-offloaded-inference&quot;&gt;Benchmarking offloaded inference&lt;/h3&gt;
+&lt;p&gt;Our first experiment demonstrates how PEERNet can be used to profile and understand offloaded image classification, such as in our mobile robot example. By precisely quantifying latency costs across local and cloud hardware and for various model sizes, PEERNet allows for intelligent device/model selection.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img src=&quot;https://hackmd.io/_uploads/S1pz-4HK0.png&quot; alt=&quot;efficientnet_model_sizes_paired&quot; width=&quot;400&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;PEERNet precisely quantifies inference costs of diffent ML classifiers at the edge and in the cloud.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;identifying-non-intuitive-behavior-in-vison-language-models&quot;&gt;Identifying non-intuitive behavior in Vison Language Models&lt;/h3&gt;
+&lt;p&gt;In our second experiment, we use PEERNet to explore inference with Vision Language Models (VLMs) at the edge, an emerging task in robotic pipelines. We show that PEERNet is capable of identifying non-intuitive behaviors in VLM inference, such as a bimodal output token distribution.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img src=&quot;https://hackmd.io/_uploads/BJoQ-4BFC.png&quot; alt=&quot;llava&quot; width=&quot;600&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;PEERNet identifies that a Vision Language Model (VLM) returns a strongly bimodal distribution of caokens, speeds, and inference caimes.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;optimizing-teleoperation-of-a-robot-arm&quot;&gt;Optimizing teleoperation of a robot arm&lt;/h3&gt;
+&lt;p&gt;Our final experiment applies PEERNet to benchmark a full teleoperation pipeline. We explore all combinations of edge device, cloud compute, compression, and network on a teleoperated robot arm performing a pick-and-place task. We demonstrate that profiling with PEERNet solves the hardware selection problem, and is easily applicable to existing robotic pipelines.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;img src=&quot;https://hackmd.io/_uploads/Hy9EbNBFC.png&quot; alt=&quot;stacked-barplot&quot; width=&quot;400&quot; /&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;looking-to-try-peernet-out&quot;&gt;Looking to try PEERNet out?&lt;/h2&gt;
+&lt;p&gt;Our code is open-source! You can find it at &lt;a href=&quot;github.com/UTAustin-SwarmLab/PEERNet&quot;&gt;our repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+				<pubDate>Tue, 17 Sep 2024 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/09/17/PeerNet.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/09/17/PeerNet.html</guid>
+			</item>
+		
+			<item>
+				<title>ControlPay: An Adaptive Payment Controller for Blockchain Economies</title>
+        <description>&lt;p&gt;&lt;em&gt;By Oguzhan A.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;controlpay-an-adaptive-payment-controller-for-blockchain-economies&quot;&gt;ControlPay: An Adaptive Payment Controller for Blockchain Economies&lt;/h1&gt;
+
+&lt;p&gt;Proceedings of the International Conference on Blockchain (ICB) 2024&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_intro.png&quot; alt=&quot;&quot; width=&quot;30%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In recent years, decentralized platforms like Helium, BitTensor, and FileCoin have reshaped how services such as wireless networks, machine learning, and storage are provided. These platforms operate on a token-based economy, rewarding service providers with cryptocurrency tokens. However, managing these economies is a complex challenge, particularly when token supply strategies fail to account for market fluctuations. The collapse of Luna, for example, highlighted the devastating effects of inadequate token price stabilization, resulting in massive financial losses for users and raising concerns about the sustainability of blockchain economies. Our new paper, &lt;em&gt;ControlPay: An Adaptive Payment Controller for Blockchain Economies&lt;/em&gt;, offers a solution by introducing a control-theoretic approach to stabilizing blockchain token economies.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;Decentralized platforms rely on native tokens to incentivize service providers. These tokens are essential for maintaining and expanding network infrastructure, but current approaches to managing token supply—like the “burn-and-mint” model—are often rigid and vulnerable to market volatility. For instance, maintaining a fixed exchange rate between tokens and USD can lead to the depletion of reserves, destabilizing the entire network. While some platforms have implemented adaptive mechanisms, these are often reactive heuristics lacking the predictive capabilities needed to maintain stability in the long term.&lt;/p&gt;
+
+&lt;p&gt;Additionally, the presence of strategic behavior by market participants further complicates the management of token economies. Token holders may act strategically to maximize their profits, leading to price fluctuations and network instability. Traditional control mechanisms are ill-equipped to handle these challenges, resulting in suboptimal token supply strategies and increased network costs.&lt;/p&gt;
+
+&lt;h2 id=&quot;our-approach-controlpay&quot;&gt;Our Approach: ControlPay&lt;/h2&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_model.png&quot; alt=&quot;ControlPay&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;ControlPay: Our Payment Controller for Blockchain Economies&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;To address these challenges, we introduce &lt;em&gt;ControlPay&lt;/em&gt;, an adaptive payment controller for blockchain economies. ControlPay leverages advanced control theory and game-theoretic models to optimize token supply and stabilize token prices. Unlike traditional approaches, ControlPay is predictive, using forecasts of consumer demand and supplier growth to dynamically adjust token supply. By modeling the token economy as a dynamic system and incorporating strategic behavior, ControlPay provides a comprehensive solution for managing decentralized token economies.&lt;/p&gt;
+
+&lt;p&gt;Specifically, ControlPay combines the following key features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Modeling the Token Economy as a Dynamic System:&lt;/strong&gt; We develop a dynamic model of the token economy, integrating key variables such as token supply, price, reserves, income, and demand.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;A Model Predictive Control Approach:&lt;/strong&gt; We design a control mechanism based on model predictive control (MPC) to manage token supply and price, optimizing control actions to stabilize the token economy.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Strategic Behavior and Game Theory:&lt;/strong&gt; We model the market as a Stackelberg game between token holders and the payment controller, anticipating strategic behavior and optimizing token supply to maximize overall welfare within the network.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the following sections, we detail our approach to modeling the token economy, designing ControlPay, and incorporating strategic behavior through game theory.&lt;/p&gt;
+
+&lt;h3 id=&quot;modeling-the-token-economy-as-a-dynamic-system&quot;&gt;Modeling the Token Economy as a Dynamic System&lt;/h3&gt;
+
+&lt;p&gt;We begin by modeling the token economy as a dynamic system, integrating various factors such as token supply, price, reserves, income, and demand. Specifically, we consider the following components:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;State Variables:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Circulating Supply \(S_t\)&lt;/em&gt;: The total number of tokens in circulation.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Reserves \(R_t^{USD}\), \(R_t^{Tok}\)&lt;/em&gt;: The reserves in USD and tokens.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Price \(p_t^{Tok}\)&lt;/em&gt;: The price of the token.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Control Variables:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Token Payments \(u^P_t\)&lt;/em&gt;: The amount of tokens paid to service providers.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Token Buybacks \(u^B_t\)&lt;/em&gt;: The amount of tokens bought back from the market to stabilize the price.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Incentive Price \(\Delta p_t\)&lt;/em&gt;: The price difference between the token’s market price and the buyback price.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;External Factors:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Income \(Inc_t\)&lt;/em&gt;: The income generated by the platform.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Demand \(D_t\)&lt;/em&gt;: The demand for tokens.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Using these variables, we define the dynamics of the token economies as a set of equations that describe how the state variables evolve over time. More specifically, we model the change in circulating supply, reserves, and price as:&lt;/p&gt;
+
+\[S_{t+1} = S_t + u^P_t - \frac{u^B_t}{p_t^{Tok} +\Delta p_t},\]
+
+\[R_{t+1}^{USD} = R_t^{USD} - u^B_t + Inc_t,\]
+
+\[R_{t+1}^{Tok} = R_t^{Tok} - u^P_t + \frac{u^B_t}{p_t^{Tok} +\Delta p_t},\]
+
+\[p_{t+1}^{Tok} = \frac{D_{t+1}}{S_{t+1}}.\]
+
+&lt;p&gt;Here, circulating supply is updated based on token payments and buybacks, reserves are updated based on income and buybacks from the market, and the price is updated based on the demand and circulating supply of tokens. With these equations, we define the state \(x_t\), control \(u_t\), and forecasted external factors \(s_t\) as follows:&lt;/p&gt;
+
+\[x_t = [S_t, R_t^{USD}, R_t^{Tok}, p_t^{Tok}],\]
+
+\[u_t = [u^B_t, u^P_t, \Delta p_t],\]
+
+\[s_t = [\hat{D_t}, \hat{Inc_t}].\]
+
+&lt;p&gt;Finally, we can express the dynamics of the token economy \(f\) as a function of the state, control, and external factors:&lt;/p&gt;
+
+\[x_{t+1} = f(x_t, u_t, s_t) = \begin{bmatrix} x_t(0) + u_t(1) - \frac{u_t(0)}{x_t(3)+u_t(2)} \\ x_{t}(1) - u_{t}(0) + s_{t}(1) \\ x_{t}(2) + \frac{u_t(0)}{x_t(3)+u_t(2)} - u_{t}(1) \\ \frac{s_{t+1}(0)}{x_{t+1}(0)}  \end{bmatrix}.\]
+
+&lt;h3 id=&quot;controlpay-a-model-predictive-control-approach&quot;&gt;ControlPay: A Model Predictive Control Approach&lt;/h3&gt;
+
+&lt;p&gt;With the token economy modeled as a dynamic system, we can now design a control mechanism to manage token supply and price. Our approach, &lt;em&gt;ControlPay&lt;/em&gt;, is based on model predictive control (MPC), a control strategy that uses a model of the system to predict future behavior and optimize control actions. In the context of token economies, ControlPay uses forecasts of consumer demand and supplier growth to optimize token supply dynamically, providing a robust solution that can significantly reduce network costs while maintaining price stability. To achieve this we define the following optimization problem:&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_opt.png&quot; alt=&quot;&quot; width=&quot;30%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;where \(J\) is the cost function, \(x_{t+1} = f(x_t, u_t, s_t)\) represents the dynamics of the token economy, and \(\mathcal{X}\) and \(\mathcal{U}\) are the state and control constraints, respectively. By solving this optimization problem, ControlPay can adaptively adjust token payments and buybacks to stabilize the token price and ensure the sustainability of the network.&lt;/p&gt;
+
+&lt;p&gt;An example cost function \(J\) could be:&lt;/p&gt;
+
+\[J(x_0, u_{0:H-1}) = \sum_{t=0}^{H-1} \begin{bmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix}^\top \begin{bmatrix} \left( x_{t+1}(3) - \bar{x}_{t+1}(3) \right)^2 \\ \left( u_t(0) - \bar{u}_t(0) \right)^2 \\ \left( u_{t}(1) - \bar{u}_t(1) \right)^2 \end{bmatrix},\]
+
+&lt;p&gt;where \(\beta_1, \beta_2, \beta_3\) are weighting factors. This cost function penalizes deviations of the token price from the USD price, control actions, and changes in control actions, ensuring that the token price remains stable and control actions are smooth.&lt;/p&gt;
+
+&lt;p&gt;Unlike traditional approaches like PID controllers, which are reactive, ControlPay is predictive. It uses forecasts of consumer demand and supplier growth to dynamically optimize token supply, providing a robust solution that can significantly reduce network costs while maintaining price stability.&lt;/p&gt;
+
+&lt;h3 id=&quot;strategic-behavior-and-game-theory&quot;&gt;Strategic Behavior and Game Theory&lt;/h3&gt;
+
+&lt;p&gt;A unique aspect of our approach is the incorporation of strategic behavior by market participants. We model the market as a Stackelberg game between token holders and the payment controller. Token holders, seeking to maximize the value of their tokens, may act strategically, affecting the stability of the token economy. ControlPay anticipates these actions and adjusts its strategy accordingly, ensuring that both token holders and the network benefit.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_stackelberg.png&quot; alt=&quot;Token Economy Model with Rational Market&quot; height=&quot;auto&quot; width=&quot;80%&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In this game, the payment controller acts as the leader, setting incentive price and buybacks to stabilize the token price. Token holders, acting as followers, adjust their behavior based on the controller’s actions. By modeling the token economy as a Stackelberg game, ControlPay can anticipate strategic behavior and optimize token supply to maximize overall welfare within the network. We also show that ControlPay achieves the Stackelberg equilibrium, where the payment controller maximizes the utility of token holders while minimizing control costs.&lt;/p&gt;
+
+&lt;h2 id=&quot;experiments-and-results&quot;&gt;Experiments and Results&lt;/h2&gt;
+
+&lt;p&gt;We validated ControlPay through extensive simulations using both synthetic and real-world data from the Helium network. We compared ControlPay with traditional methods like the “burn-and-mint” (No Control) model, which simply buys back and pays out the same amount of tokens, and the proportional integral derivative (PID) controller, which adjusts token payments and buybacks based on past data on token price and reserves. Here are some example simulation results for comparison:&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_exp.png&quot; alt=&quot;Some Simulation Results&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Some example simulation results for comparison.&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The two left columns show trajectories using real Helium data, demonstrating that &lt;em&gt;ControlPay&lt;/em&gt; (green) closely follows the reference (purple), while the reactive PID (blue) is highly oscillatory. The right columns validate our approach’s adaptability using synthetic data, showing how &lt;em&gt;ControlPay&lt;/em&gt; adjusts to a decreasing price trajectory. Unlike PID, &lt;em&gt;ControlPay&lt;/em&gt; avoids overshooting, maintaining price stability even as demand shifts.&lt;/p&gt;
+
+&lt;p&gt;Below are the network cost and control effort comparisons for the three methods:&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_exp_boxplot.png&quot; alt=&quot;Network Cost and Control Effort as a box-plot&quot; width=&quot;50%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Network cost and control effort comparison.&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;ControlPay&lt;/em&gt; outperforms traditional methods by reducing network costs by up to 2.4× while using similar control effort. This demonstrates the effectiveness of our approach in stabilizing token prices and reducing network costs.&lt;/p&gt;
+
+&lt;p&gt;Additionally, we conducted experiments to evaluate ControlPay’s performance in environments with strategic behavior. Our results show that ControlPay effectively balances the interests of token holders and the payment controller, maximizing overall welfare within the token economy. The figure below illustrates how ControlPay finds a game strategy to sell only \(\alpha^*_t\) tokens to maximize node utility and minimize control cost, compared to simply holding (\(\alpha_t = 0\)) or selling all tokens (\(\alpha_t = 1\)).&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/controlpay_exp_game.png&quot; alt=&quot;Stackelberg Game Plot&quot; height=&quot;auto&quot; width=&quot;50%&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Network cost and utility of token owners.&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;As blockchain infrastructures continue to grow, the need for adaptive control mechanisms like ControlPay will become increasingly critical. By integrating advanced control theory and game-theoretic models, ControlPay provides a comprehensive solution for managing decentralized token economies. We are excited to present our findings at the International Conference on Blockchain (ICB) 2024 and look forward to further discussions on how ControlPay can help shape the future of blockchain economies.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 18 Aug 2024 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html</guid>
+			</item>
+		
+			<item>
+				<title>Safe Networked Robotics with Probabilistic Verification</title>
+        <description>&lt;p&gt;&lt;em&gt;By Sai Shankar Narasimhan.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/abstract/document/10347353&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;Recently, an increasing number of robotic applications have adopted remote assistance through teleoperation, ranging from remote manipulation for surgery to emergency takeover of autonomous vehicles. Teleoperation is even used to control food delivery robots from command centers hundreds of miles away. What has contributed to this trend?&lt;/p&gt;
+
+&lt;p&gt;We identify the following two crucial reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt; &lt;strong&gt;Mobile robots are constrained by their onboard computing power and cannot run powerful deep neural networks (DNNs) for perception and control tasks.&lt;/strong&gt; Hence, it is preferred to offload sensor observations to a remote server via wireless networks, where these powerful DNNs can be run.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Autonomous robots cannot handle all possible edge cases.&lt;/strong&gt; While encountering a new scenario (out of the training distribution), it is necessary to have a human-in-the-loop to take over control.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Though teleoperation has a lot of potential benefits, there are practical concerns that need to be addressed. For example, while using public communication networks, stochastic communication delays could potentially lead to the violation of key safety properties.&lt;/p&gt;
+
+&lt;p&gt;Therefore, in this work, we ask the following key question: &lt;strong&gt;How do we ensure safe networked control over wireless networks with stochastic communication delays?&lt;/strong&gt; This blog will briefly explain our proposed solution and experimental results, including a real-world demonstration of safe networked control using F1/10th cars while transmitting sensor data through our university’s public Wi-Fi network.&lt;/p&gt;
+
+&lt;p&gt;To motivate the requirements of a safe networked control system, let us take a look at our proposed solution, shown in the image below.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/safe_teleop_approach.jpeg&quot; alt=&quot;Approach&quot; width=&quot;90%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;Our proposed safe networked control approach&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We implemented our proposed solution on a real-world leader-follower setup. The leader is uncontrolled and can exhibit stochastic motion. The follower is controlled remotely by a teleoperator or using a DNN. The sensor observations are transmitted to the remote server or cloud through a public Wi-Fi connection (step 1). The teleoperator or the DNN generates a control command, which is transmitted back to the follower (step 2). We propose a &lt;strong&gt;shield&lt;/strong&gt; that restricts or modifies an unsafe control command based on its communication delay magnitude (step 3). Finally, the follower executes the “safe” control command (step 4).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-do-we-need-to-achieve-safe-networked-control&quot;&gt;What do we need to achieve safe networked control?&lt;/h2&gt;
+
+&lt;p&gt;To develop a safe networked control system, as shown in the figure above, we require the following:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;&lt;strong&gt;Ability to accurately model the interaction between the mobile robot and the environment in the presence of delay.&lt;/strong&gt; Previous works make assumptions about the delay transitions, such as the delay is constant and non-decreasing. However, we end up with a very conservative model of the interaction with these assumptions.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Ability to trade off safety for efficiency according to the user&apos;s needs.&lt;/strong&gt; This is important as we are dealing with a system with stochastic delays. Optimizing for absolute safety would translate to optimizing for the worst-case delay, which might occur very rarely.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;modeling-the-interaction-between-the-robot-and-the-environment-in-the-presence-of-delay&quot;&gt;Modeling the interaction between the robot and the environment in the presence of delay&lt;/h2&gt;
+
+&lt;p&gt;Typically, Markov Decision Processes (MDPs) are used to model the interaction between a robot and its environment. To extend MDPs to the networked control setting, we developed Delayed Communication Markov Decision Processes (DC-MDP) &lt;strong&gt;without any conservative assumptions about the delay transitions.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our key intuition is that by augmenting the states of the basic MDP (model of the interaction in the absence of delay) with fixed-length action buffers containing the number of actions corresponding to the actual delay, we can represent system states with arbitrary delays. Additionally, given the delay transition probability, we can accurately obtain the transition probability between the system states for two consecutive time steps with arbitrary delays. We refer the readers to Section 5.A of the manuscript for further details.&lt;/p&gt;
+
+&lt;h2 id=&quot;ensuring-safety&quot;&gt;Ensuring Safety&lt;/h2&gt;
+
+&lt;p&gt;We use Linear Temporal Logic (LTL) to formally represent our desired notion of safety for the system as safety specifications. We refer the readers to Section 3 of our manuscript for a detailed discussion on LTL and safety specifications. Given an MDP and a safety specification, the preferred approach to ensure safety is shielding. For any given system state, shielding allows those actions to be executed for which the maximum safety probability is 1.0. This ensures that the system is safe. Additionally, executing shielded actions ensures that the system always remains in a safe state. The literature on shielding is vast and will not be covered in this blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;achieving-safety-efficiency-trade-off&quot;&gt;Achieving Safety-Efficiency Trade-Off&lt;/h2&gt;
+
+&lt;p&gt;With the DC-MDP and the shield for the required safety specification, the naive solution is to apply shielding to the DC-MDP and ensure absolute safety for the networked control system. However, we note that this adversely affects the system’s task performance. This is attributed to the fact that ensuring absolute safety always considers the worst-case scenario, which is the maximum delay case. However, the maximum delay case is a very rare occurrence. Hence, we propose ε-shields that can trade off safety for task efficiency.  We refer the reader to Algorithm 1 in our manuscript for the definition and synthesis of ε-shields. Intuitively, ε is a value between 0 and 1, and increasing ε increases safety. Our proposed ε-shields can guarantee any desired safety probability. This flexibility allows the user to trade off safety to achieve higher task efficiency.&lt;/p&gt;
+
+&lt;h2 id=&quot;experimental-results&quot;&gt;Experimental Results&lt;/h2&gt;
+
+&lt;p&gt;We test our approach on the following two simulation environments:&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;&lt;strong&gt;Leader-Follower Simulation Setup:&lt;/strong&gt; The follower should get as close as possible to the leader while maintaining a safe distance. The state information contains the relative distance and the relative velocity.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Grid World Simulation Setup:&lt;/strong&gt; The robot has to traverse an 8x8 grid from start to goal without colliding with an adversary. An episode is declared a win if the robot reaches the goal, a loss if the robot collides with the obstacle, and a tie if the robot does not reach the goal.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now, we will describe the two main takeaways from our experiments with these two simulation environments.&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;&lt;strong&gt;The set of safe states expands for the DC-MDP.&lt;/strong&gt; Since the DC-MDP accurately models the robot-environment interaction without any conservative assumptions on the delay transitions, we observe more safe states when compared to the previous models with conservative assumptions on delay transitions, such as constant maximum delays. This directly translates to aggressive robot behavior or higher task efficiency. In the figure shown below, note that for the same value of maximum allowable delay, the set of safe states for DC-MDP (Random Delay) is much larger than that obtained with the constant maximum delay assumption.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;&amp;epsilon;-shields trade off safety for efficiency.&lt;/strong&gt; Our experiments show that we can decrease the value of &amp;epsilon; to lower the achievable safety probability, thereby achieving higher robot task efficiency. This is shown by a reduced distance from the leader in the leader-follower environment and an increased number of wins in the grid-world environment.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/safe_teleop_sim_results.jpeg&quot; alt=&quot;Approach&quot; width=&quot;90%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;The left figures show the expansion in the set of safe states when we use DC-MDP. The right figures show empirically how our proposed &amp;epsilon;-shields gracefully trade off safety for efficiency.&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We show similar results with the real-world demonstration (check the figure below). In the absence of shielding, we observe safety violations due to the communication delay while using our university’s public Wi-Fi network for sensor data transmission. Additionally, note that the distance between both cars is lower in the presence of ε-shields (Random Delay), highlighting better task efficiency.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/safe_teleop_real_results.jpeg&quot; alt=&quot;Approach&quot; width=&quot;90%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;The figure highlights the efficacy of our safe networked control approach in a real-world leader-follower setup. Observe the safety violations in the absence of shielding and higher task efficiency (lower distance between the cars) while using our proposed DC-MDP.&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Our work, “Safe Networked Robotics with Probabilistic Verification”, provides a novel approach to ensure safety for networked control systems. Through multiple simulation and real-world experiments, we demonstrate how our approach can gracefully trade off safety for efficiency while dealing with stochastic communication delays.&lt;/p&gt;
+
+</description>
+				<pubDate>Sun, 07 Jul 2024 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/07/07/SafeNetworkedRobotics.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/07/07/SafeNetworkedRobotics.html</guid>
+			</item>
+		
+			<item>
+				<title>Decentralized Data Collection for Robotic Fleet Learning: A Game-Theoretic Approach</title>
+        <description>&lt;p&gt;&lt;em&gt;By Oguzhan A.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;robotic-fleet-data-collection-through-game-theory&quot;&gt;Robotic Fleet Data Collection Through Game Theory&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://proceedings.mlr.press/v205/akcin23a.html&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;In the rapidly evolving landscape of autonomous vehicles (AVs) and robotics, the efficient collection and utilization of data are crucial. Traditional data collection methods often lead to redundancy and inefficient use of bandwidth and storage. To deal with these challenges, we propose a strategic game between robots to sample data points to optimize data sampling, aiming to minimize the gap between current and target data distributions. This game-theoretic solution reaches a Nash equilibrium with only one message passing between AVs, offering an optimal strategy for data collection across robotic fleets.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-challenge&quot;&gt;The Challenge&lt;/h3&gt;
+
+&lt;p&gt;AVs traditionally operate in isolation, prioritizing data collection based on individual, often greedy strategies. This isolation can lead to resource wastage and inefficiency. Coordination among AVs is essential to ensure the selection of the most valuable data points, avoiding redundancy and optimizing the collective data collection effort.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/data_games_toy_example.jpg&quot; alt=&quot;Toy Example&quot; width=&quot;50%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;A motivating toy example with 2 robots and 2 classes&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, we show a toy example of why data collection needs to be coordinated. Here there are two robots observing data with only 2 classes. The axes represent the number of data points for each class. Our goal is to reach a target distribution (blue cross) where each class has 120 data points, represented by (120,120). The robots start at (0,0) with no data points in the cloud. The possible combinations that can be uploaded from robots 1 and 2 are shown as the shaded feasible action spaces (yellow and purple). This shaded region is determined by the robot’s local data distribution and vision model accuracy. &lt;strong&gt;&lt;em&gt;Greedy&lt;/em&gt;&lt;/strong&gt; (black) individually calculates the projection of the target distribution onto each robot’s feasible action space, but the sum of actions may not be optimal leading to a high error (red). However, &lt;strong&gt;&lt;em&gt;Oracle&lt;/em&gt;&lt;/strong&gt; accounts for the two robots’ action spaces and this minimizes the error between the target dataset and the sum of actions (grey).&lt;/p&gt;
+
+&lt;h2 id=&quot;a-game-theoretic-solution&quot;&gt;A Game-Theoretic Solution&lt;/h2&gt;
+
+&lt;p&gt;We frame the data collection problem as a &lt;em&gt;potential game&lt;/em&gt; between networked AVs. Then, we show that this game reaches Nash equilibria based on the best-iterated response policy after only one message passings between the AVs. This equilibrium represents the collective optimization of data collection strategies, ensuring an optimal solution for the entire fleet.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-interactive-policy-works&quot;&gt;How Interactive Policy Works&lt;/h3&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/data_games_framework.png&quot; alt=&quot;Game-Theoretic Data Collection&quot; /&gt;
+   &lt;figcaption&gt;Game-Theoretic Data Collection&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Each step in our cooperative algorithm is numbered in blue. First, each AV &lt;em&gt;i&lt;/em&gt; observes a sequence of images in round &lt;em&gt;r&lt;/em&gt; of data collection (&lt;em&gt;step 1&lt;/em&gt;). Then, it classifies each image with a local vision model (&lt;em&gt;step 2&lt;/em&gt;). Then it samples a limited set of images according to its action policy which governs what distribution of data points to upload. Crucially, the action to what data points to upload is chosen cooperatively with other AVs using a distributed optimization problem (&lt;em&gt;step 3&lt;/em&gt;). Next, each AV transmits its local cache of data points to the cloud (&lt;em&gt;step 4&lt;/em&gt;). The current cloud dataset is updated with the newly uploaded data points (&lt;em&gt;step 5&lt;/em&gt;). The combined cloud dataset can be used to periodically retrain new model parameters (&lt;em&gt;step 6&lt;/em&gt;), which are then downloaded by the AVs (&lt;em&gt;step 7&lt;/em&gt;). All AVs share a goal of minimizing the distance between the collected cloud dataset and the target dataset.&lt;/p&gt;
+
+&lt;h2 id=&quot;experimental-results&quot;&gt;Experimental Results&lt;/h2&gt;
+
+&lt;p&gt;We show that our &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; approach is able to achieve superior performance to the traditional distributed approach and achieves the same performance as an optimal &lt;strong&gt;&lt;em&gt;Oracle&lt;/em&gt;&lt;/strong&gt; policy. Our &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; approach achieves performance improvements by up to 21% in classification accuracy compared to the standard benchmarks.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/data_games_results.png&quot; alt=&quot;Experimental Results&quot; /&gt;
+   &lt;figcaption&gt;Experimental Results&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, each row represents a different dataset. &lt;em&gt;Column 1:&lt;/em&gt; As expected by our theory, &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; minimizes the L2-norm distance (optimization objective, y-axis) better than &lt;strong&gt;&lt;em&gt;Greedy&lt;/em&gt;&lt;/strong&gt; and matches the omniscient &lt;strong&gt;&lt;em&gt;Oracle&lt;/em&gt;&lt;/strong&gt;. &lt;em&gt;Column 2:&lt;/em&gt; Clearly, &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt;  achieves a much more balanced distribution of classes (target distribution is uniform) than benchmarks. &lt;em&gt;Column 3:&lt;/em&gt; Since &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; achieves a more balanced dataset, this experimentally translates to a higher DNN accuracy (statistically significant) on a held-out test dataset.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Our work “Decentralized Data Collection for Robotic Fleet Learning” introduces a novel, theoretically grounded, cooperative data sampling policy for networked robotic fleets, which converges to an Oracle policy upon termination. Additionally, it converges in a single iteration under mild practical assumption, which allows communication efficiency on real-world datasets. Our approach is a first step towards an increasingly timely problem as today’s AV fleets measure terabytes of heterogeneous data in diverse operating contexts.&lt;/p&gt;
+
+</description>
+				<pubDate>Mon, 26 Feb 2024 00:00:00 -0600</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html</guid>
+			</item>
+		
+			<item>
+				<title>Fleet Active Learning: A Submodular Maximization Approach</title>
+        <description>&lt;p&gt;&lt;em&gt;By Oguzhan A.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;fleet-active-learning-with-submodular-maximization&quot;&gt;Fleet Active Learning with Submodular Maximization&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://openreview.net/forum?id=low-53sFqn&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;The recent success and popularity of machine learning (ML) models provide unique opportunities for developing ML models. Today, we can collect data from previously unseen diverse environments, which can be used to increase the robustness and overall performance of these ML models. This is especially true in the context of autonomous vehicles (AVs), where the collection and processing of diverse and informative data are pivotal for enhancing ML models. These models, integral to the vehicles’ perception, prediction, and planning capabilities, thrive on varied datasets that enable them to generalize across different environments. However, the current methods for data collection are not efficient enough to utilize the full potential of the data collection. Addressing this gap, our novel “Fleet Active Learning” framework emerges as a solution to three pivotal challenges:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;How do we efficiently gather diverse and informative data in a fleet of robots?&lt;/li&gt;
+  &lt;li&gt;How can we scale data collection methods to accommodate large fleets without overwhelming bandwidth and storage capacities?&lt;/li&gt;
+  &lt;li&gt;How do we optimize the data collection process to enhance the performance of ML models?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;the-challenge-of-redundancy-in-data-collection&quot;&gt;The Challenge of Redundancy in Data Collection&lt;/h3&gt;
+
+&lt;p&gt;When AVs operate independently to collect data, there is a significant risk of redundancy. Multiple vehicles may gather similar data points, which doesn’t add value to the collected dataset. This redundancy not only wastes resources but also fails to enrich the models’ learning with new, diverse information. Given constraints like bandwidth and computational resources, it is crucial for these vehicles to prioritize the collection of unique and informative data points that can substantially improve their ML models’ performance.&lt;/p&gt;
+
+&lt;figure style=&quot;text-align: center;&quot;&gt;
+    &lt;img src=&quot;/images/post/fal_toy_example.png&quot; alt=&quot;Toy Example&quot; width=&quot;50%&quot; height=&quot;auto&quot; style=&quot;margin: auto; display: block;&quot; /&gt;
+   &lt;figcaption&gt;A motivating toy example with 3 robots&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, we show a toy example of why redundancy is a huge problem in data collection in a fleet setting. Here the robots observe 3 different data distributions that are mapped into a 2D space. The red crosses represent the data selected by each robot independently in a distributed manner, while the blue circles represent the data selected by robots interactively. Compared to the distributed approach, the interactive approach selects a more diverse set of data points, covering a broader range of scenarios.&lt;/p&gt;
+
+&lt;h2 id=&quot;an-interactive-solution-through-submodular-maximization&quot;&gt;An Interactive Solution through Submodular Maximization&lt;/h2&gt;
+
+&lt;p&gt;Our work addresses these challenges by introducing a fleet active learning framework that leverages the submodular maximization approach. This approach is adept at handling situations where the value of adding data points diminishes over time - a concept known as diminishing returns. In essence, the method prioritizes data points that offer the most significant incremental value, ensuring that the selected dataset is not just large but also highly informative.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-fleet-active-learning-works&quot;&gt;How Fleet Active Learning Works&lt;/h3&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/fal_framework.jpg&quot; alt=&quot;Fleet Active Learning Framework&quot; /&gt;
+   &lt;figcaption&gt;Fleet Active Learning Framework: A collaborative approach to data gathering&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Each robot in the fleet observes a stream of data points and processes them using its neural network to obtain predictions and embeddings. These embeddings and predictions are then used to select an action to sample data points, maximizing a submodular function while considering the previous robots’ actions. The aggregated action is passed to the next robot, repeating the process until all robots have taken an action. At the end of each round, the actions are shared with the cloud, which labels the newly acquired data points and updates the training dataset with the new data points. The model is retrained with the new dataset, and the updated model weights are shared with all robots, which update their model parameters accordingly.&lt;/p&gt;
+
+&lt;h2 id=&quot;experimental-results&quot;&gt;Experimental Results&lt;/h2&gt;
+
+&lt;p&gt;We show that our decentralized interactive approach is able to achieve superior performance compared to the traditional distributed approach and achieves the same performance as an upper-bound “Centralized” approach. Our FAL framework achieved up to a 25% increase in classification accuracy compared to a completely distributed baseline.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/fal_results.jpg&quot; alt=&quot;Fleet Active Learning Results&quot; /&gt;
+   &lt;figcaption&gt;Experimental Results&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the figure above, each column represents a different dataset. &lt;em&gt;Row 1&lt;/em&gt; shows the submodular objective of the cloud dataset across the rounds. Both the &lt;strong&gt;&lt;em&gt;Centralized&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; policies achieve similar objectives, while the &lt;strong&gt;&lt;em&gt;Distributed&lt;/em&gt;&lt;/strong&gt; fails to reach the same level of performance. &lt;em&gt;Row 2&lt;/em&gt; presents the accuracy of the retrained neural networks using the accumulated dataset in each round &lt;em&gt;r&lt;/em&gt;. The accuracy plots exhibit a similar trend as the submodular objective, with the &lt;strong&gt;&lt;em&gt;Interactive&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Centralized&lt;/em&gt;&lt;/strong&gt; policies consistently outperforming other benchmark policies.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Our work “Fleet Active Learning: A Submodular Maximization Approach” introduces a framework for enhancing the capabilities of AVs through smarter data collection methods. By adopting the FAL framework, fleets of autonomous vehicles can efficiently gather diverse data essential for training robust ML models, enabling the development of more robust and better-performing autonomous vehicles.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 25 Feb 2024 00:00:00 -0600</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/02/25/FleetActiveLearning.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/25/FleetActiveLearning.html</guid>
+			</item>
+		
+			<item>
+				<title>Online Foundation Model Selection in Robotics</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;how-to-choose-the-right-foundation-model-for-robotics-exploring-online-learning-for-model-selection&quot;&gt;How to Choose the Right Foundation Model for Robotics? Exploring Online Learning for Model Selection&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/2402.08570&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;The integration of foundation models into robotics marks a new era of innovation, promising to transform the landscape with unprecedented efficiency and capabilities. 
+However, this transition is not without its challenges, particularly in the selection between high-performance, expensive closed-source models and more accessible, albeit potentially less powerful, open-source alternatives. This paper presents a solution to this dilemma, introducing an online learning framework that adeptly navigates the intricate trade-offs between cost, efficiency, and performance of both closed-source and open-source models.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;The solution’s backbone is a user-centric online model selection pipeline (as shown below), utilizing a pre-trained open-source encoder to simplify complex data into low-dimensional embeddings for an online learning algorithm. This strategy not only avoids the steep costs associated with collecting data from closed-source models for supervised-learning methods but also leverages the adaptability of online learning to select models, considering factors such as performance, time efficiency, and financial limitations.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/online_system.png&quot; alt=&quot;System Pipeline&quot; /&gt;
+   &lt;figcaption&gt;Online model selection pipeline&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the pipeline, a user sends their intentions in natural language and images to a model selected from a range of available options.
+To do so, an encoder first processes the language and visual inputs to extract features. 
+These features help an online learning algorithm select the suitable model that maximizes accuracy and minimizes response latency and monetary costs. 
+The algorithm should avoid selecting models that execute incorrectly, marked with red crosses. 
+The above examples come from the ALFRED dataset.&lt;/p&gt;
+
+&lt;h2 id=&quot;theory-and-experiments&quot;&gt;Theory and Experiments&lt;/h2&gt;
+
+&lt;p&gt;A thorough theoretical analysis underpins the superiority of contextual algorithms over non-contextual counterparts in model selection, demonstrating how the proposed method effectively balances these factors to make informed decisions. The experimental results further corroborate this, showcasing a significant improvement in task success rates across various language-based robotic applications, highlighting up to a  14% increase in efficiency compared to conventional methods.&lt;/p&gt;
+
+&lt;p&gt;Expanding on these findings, the paper delves deeper into the nuances of online learning algorithms, exploring their potential to revolutionize model selection processes. It examines the scalability of the proposed framework, considering its applicability across a broad spectrum of robotic tasks. The discussion extends to the implications of these advancements for the broader field of robotics, emphasizing the role of intelligent model selection in enhancing the autonomy and versatility of robotic systems.&lt;/p&gt;
+
+&lt;!-- Moreover, the paper addresses potential challenges and future directions, including the integration of more complex decision-making algorithms and the exploration of new domains for application. It calls for a collaborative effort within the research community to refine and expand upon the proposed framework, highlighting the importance of interdisciplinary approaches in tackling the multifaceted challenges of robotics and artificial intelligence. --&gt;
+
+&lt;p&gt;In conclusion, this study not only provides a pragmatic solution to a pressing challenge in robotics but also lays the groundwork for future innovations. By bridging theoretical analysis with empirical evidence, it underscores the transformative potential of online learning algorithms in model selection, setting a new benchmark for efficiency, cost-effectiveness, and adaptability in robotic applications.&lt;/p&gt;
+</description>
+				<pubDate>Sat, 17 Feb 2024 00:00:00 -0600</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2024/02/17/OnlineModelSelection.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/17/OnlineModelSelection.html</guid>
+			</item>
+		
+			<item>
+				<title>Task-aware Distributed Source Coding under Dynamic Bandwidth</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;leveraging-neural-distributed-principal-component-analysis-for-efficient-data-transmission&quot;&gt;Leveraging Neural Distributed Principal Component Analysis for Efficient Data Transmission&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://openreview.net/forum?id=1A4ZqTmnye&quot;&gt;Link to paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In today’s interconnected world, the constant exchange of data among various sensors and devices has never been more vital. The efficient transmission of the data presents several challenges:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;How do we define important features from a data distribution?&lt;/li&gt;
+  &lt;li&gt;How do we extend this to multiple data distributions or modalities settings?&lt;/li&gt;
+  &lt;li&gt;How do we compress and prioritize the features so that we can transmit the important features first to save network bandwidth?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;To tackle these challenges, our collaborative work with researchers from the Honda Research Institute has given birth to a transformative solution known as Neural Distributed Principal Component Analysis, or NDPCA. In this blog, we will briefly cover the intricacies of NDPCA and its pivotal role in simplifying complex data transmission processes.&lt;/p&gt;
+
+&lt;!-- ![Pipeline of NDPCA](&quot;/images/post/pipeline_DAE_icml.png&quot;) --&gt;
+&lt;!-- &lt;object data=&quot;/images/post/pipeline_DAE_icml.pdf&quot; type=&quot;application/pdf&quot; width=&quot;1000px&quot; height=&quot;400px&quot;&gt;
+    &lt;embed src=&quot;/images/post/pipeline_DAE_icml.pdf&quot;&gt;
+        &lt;p&gt;This browser does not support PDFs&lt;/p&gt;
+    &lt;/embed&gt;
+&lt;/object&gt; --&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/images/post/pipeline_DAE_icml.png&quot; alt=&quot;NDPCA Pipeline&quot; /&gt;
+   &lt;figcaption&gt;Pipeline of NDPCA&lt;/figcaption&gt;
+   &lt;p&gt;&lt;/p&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;the-setting&quot;&gt;The Setting&lt;/h2&gt;
+&lt;p&gt;Here is our pipeline of NDPCA: each sensor independently compresses its data before transmitting it to a central node, where a decoder reconstructs all the data. This reconstructed data is then fed into a pre-trained machine-learning task model, which produces the desired output. It’s crucial to note that the quality of the final output hinges on compressing only the relevant features for the task at hand, and the overall performance is closely tied to available bandwidth.&lt;/p&gt;
+
+&lt;p&gt;For instance, the sensors are satellites compressing images of the Earth. The task model is a machine-learning model that can detect natural disasters from the images. The bandwidth is the communication channel between the satellites and the ground station.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-challenge-variable-bandwidth&quot;&gt;The Challenge: Variable Bandwidth&lt;/h2&gt;
+&lt;p&gt;In real-world scenarios, bandwidth availability can be unpredictable, with higher bandwidths typically yielding better task performance. To confront this challenge head-on, we design a novel framework capable of flexible data compression from multiple sources. This framework seamlessly adapts to varying bandwidth conditions while minimizing computing and storage overhead with a single model.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution-ndpca&quot;&gt;The Solution: NDPCA&lt;/h2&gt;
+&lt;p&gt;Our solution, NDPCA, represents a breakthrough in this field. It comprises independent encoders and a joint decoder, facilitating efficient data compression and transmission. NDPCA’s standout feature is its adaptability to any available bandwidth using a single model, thereby simplifying computational and storage requirements significantly.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-closer-look-at-ndpca&quot;&gt;A Closer Look at NDPCA&lt;/h2&gt;
+&lt;h3 id=&quot;learning-low-rank-task-representations&quot;&gt;Learning Low-Rank Task Representations&lt;/h3&gt;
+&lt;p&gt;NDPCA harnesses the power of principal component analysis to learn low-rank task representations from the data. By focusing on the most essential features, the framework can efficiently compress the data without compromising task performance.&lt;/p&gt;
+
+&lt;h3 id=&quot;distributed-compression&quot;&gt;Distributed Compression&lt;/h3&gt;
+&lt;p&gt;Each sensor in the network independently compresses its data using the learned low-rank task representations. This step ensures that only relevant information is transmitted, effectively reducing communication overhead between the sensors, which can be up to O(n^2).&lt;/p&gt;
+
+&lt;h3 id=&quot;joint-decoding&quot;&gt;Joint Decoding&lt;/h3&gt;
+&lt;p&gt;At the central node, a joint decoder plays a pivotal role in reconstructing the compressed data from multiple sensors. This reconstructed data is then fed into the task model, ensuring that only the important task-relevant features are represented, ultimately leading to maintaining the task performance.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-benefits-and-significance&quot;&gt;The Benefits and Significance&lt;/h1&gt;
+&lt;h2 id=&quot;adaptability-to-varying-bandwidth&quot;&gt;Adaptability to Varying Bandwidth&lt;/h2&gt;
+&lt;p&gt;NDPCA can dynamically compress and transmit the most important features to match the available bandwidth, thereby maximizing the performance of the task model. This adaptability proves invaluable in real-world scenarios where bandwidth availability can fluctuate unpredictably.&lt;/p&gt;
+
+&lt;h2 id=&quot;reduced-computing-and-storage-overhead&quot;&gt;Reduced Computing and Storage Overhead&lt;/h2&gt;
+&lt;p&gt;By employing a single model and distributed compression, NDPCA significantly reduces the computational and storage requirements in comparison to traditional methods. This efficiency renders NDPCA viable even in resource-constrained environments.&lt;/p&gt;
+
+&lt;h2 id=&quot;enhanced-task-performance&quot;&gt;Enhanced Task Performance&lt;/h2&gt;
+&lt;p&gt;By compressing only the features that are pertinent to the task at hand, NDPCA ensures that the task model receives data of the highest quality. This, in turn, leads to improved overall performance and accuracy.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Our paper, titled “Task-aware Distributed Source Coding under Dynamic Bandwidth,” introduces NDPCA as a revolutionary solution to the challenges of data compression and communication in multi-sensor networks. By prioritizing the transmission of task-relevant features from multiple data sources and adapting to varying bandwidth conditions, NDPCA provides an efficient and flexible framework for optimizing data transmission. The significance of this work lies in its potential to enhance communication efficiency and improve task performance across a wide range of applications, from Internet of things devices to large-scale sensor networks.&lt;/p&gt;
+</description>
+				<pubDate>Tue, 28 Nov 2023 00:00:00 -0600</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2023/11/28/TaskAwareDSC.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/11/28/TaskAwareDSC.html</guid>
+			</item>
+		
+			<item>
+				<title>Differentially Private Timeseries Forecasts for Networked Control: Protecting Privacy without Sacrificing Accuracy</title>
+        <description>&lt;p&gt;&lt;em&gt;By Po-han&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;In the age of interconnected systems and data-driven decision-making, accurate forecasting plays a crucial role in optimizing control strategies. However, concerns regarding data privacy have led to the introduction of anonymization noise in forecasting models, which compromises their accuracy. Balancing the need for accurate forecasts and the privacy of input data is a challenging problem. In our recent paper titled &lt;a href=&quot;https://arxiv.org/abs/2210.00358&quot;&gt;Differentially Private Timeseries Forecasts for Networked Control&lt;/a&gt;, we propose a novel approach to address this trade-off by providing economic incentives to forecasting models while minimizing control costs. In this blog post, we will delve into the key insights and findings of this paper.&lt;/p&gt;
+
+&lt;center&gt;
+    &lt;img style=&quot;border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&quot; src=&quot;/images/post/DP_LQG_system_graph.png&quot; /&gt;
+    &lt;br /&gt;
+    &lt;div style=&quot;color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;&quot;&gt;&lt;strong&gt;System graph:&lt;/strong&gt;  A controller incentivizes multiple forecasting models to reduce differentially private noise and combines the resulting forecasts to minimize its control cost.&lt;/div&gt;
+    &lt;br /&gt;&lt;br /&gt;
+&lt;/center&gt;
+
+&lt;h3 id=&quot;the-challenge&quot;&gt;The Challenge&lt;/h3&gt;
+&lt;p&gt;Accuracy vs. Privacy Forecasting models rely on historical data to make predictions about future events. However, sharing this data openly poses privacy risks. To address this concern, anonymization noise is added to the data, which reduces the accuracy of the forecasts. The challenge lies in finding the optimal balance between accuracy and privacy, considering the cost implications of control decisions based on imperfect forecasts.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-proposed-solution&quot;&gt;The Proposed Solution&lt;/h3&gt;
+&lt;p&gt;We propose an approach that allocates economic incentives to forecasting models to encourage them to reduce anonymization noise while maintaining acceptable privacy levels. By reducing the noise, the accuracy of the forecasts improves, leading to better control decisions. We tackle this problem through a biconvex optimization framework, specifically focusing on linear quadratic regulators (LQRs), which are widely used in control systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;comparing-incentive-allocation-schemes&quot;&gt;Comparing Incentive Allocation Schemes&lt;/h3&gt;
+&lt;p&gt;To evaluate the effectiveness of their proposed approach, we compare it to a uniform incentive allocation scheme. The results are promising, as the proposed solution demonstrates significant cost reductions. In the case of synthetic timeseries, control costs decrease by 2.5 times, while for the Uber demand forecast, costs decrease by 2.7 times. These findings highlight the potential of incentivizing forecasting models to enhance their accuracy without compromising privacy.&lt;/p&gt;
+
+&lt;center&gt;
+    &lt;img style=&quot;border-radius: 0.25em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&quot; src=&quot;/images/post/uber_merged_plot.png&quot; /&gt;
+    &lt;br /&gt;
+    &lt;div style=&quot;color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;&quot;&gt;&lt;strong&gt;Results on the Uber demand:&lt;/strong&gt; Ours (green) outperforms the uniform (blue) with lower control costs, while the more incentives the controller has, the lower the cost.&lt;/div&gt;
+    &lt;br /&gt;&lt;br /&gt;
+&lt;/center&gt;
+
+&lt;h3 id=&quot;implications-and-future-directions&quot;&gt;Implications and Future Directions&lt;/h3&gt;
+&lt;p&gt;The research presented in this paper has important implications for networked control systems and the broader field of data privacy. By providing economic incentives to forecasting models, decision-makers can strike a balance between accurate forecasts and privacy protection. The findings of this study pave the way for future research on privacy-preserving forecasting techniques and incentive mechanisms in control systems.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Our paper “Differentially Private Timeseries Forecasts for Networked Control” introduces an innovative approach to address the accuracy-privacy trade-off in forecasting models. By allocating economic incentives to forecasting models, control costs can be significantly reduced while maintaining acceptable privacy levels. This research opens new avenues for improving decision-making in networked control systems while safeguarding sensitive data. As the field progresses, we can expect further advancements in privacy-preserving techniques and incentive allocation mechanisms, ultimately benefiting both accuracy and privacy in various domains.&lt;/p&gt;
+</description>
+				<pubDate>Sun, 28 May 2023 00:00:00 -0500</pubDate>
+				<link>https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</link>
+				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</guid>
+			</item>
+		
+	</channel>
+</rss>

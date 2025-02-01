@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ControlPay: An Adaptive Payment Controller for Blockchain Economies</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="https://utaustin-swarmlab.github.io/css/zoom.css" rel="stylesheet">
+  <script src="https://utaustin-swarmlab.github.io/js/zoom.js"></script>
+  <script src="https://utaustin-swarmlab.github.io/js/transition.js"></script>
+
+  <link rel="stylesheet" href="/style.css">
+  <!-- favicon -->
+  <!-- <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/favicon.ico"> -->
+  <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/images/logo/swarm-lab-landing-image.png">
+  <!-- <link rel="apple-touch-icon-precomposed" href="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-144.png"> -->
+
+  <!-- Add favourite fonts here -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <!-- open graph -->
+
+  
+  
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html">
+  <meta property="og:title" content="ControlPay: An Adaptive Payment Controller for Blockchain Economies">
+  <meta property="og:site_name" content="Swarm Lab at UT Austin">
+  <meta property="og:description" content="ICB 2024 paper"/>
+  <meta property="og:image" content="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+
+</head>
+
+<script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//kordinglab.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+<body id="page-top" style="padding-top: 7em;">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class='navbar-brand page-scroll' href='/'>
+              <span style="font-family: 'Source Sans Pro', sans-serif; font-weight:600; color: #FFFFFF;">Swarm Lab</span>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                      
+                      <li><a class='name' href="/" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">HOME</a></li>
+                      
+                      <li><a class='name' href="/about" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">ABOUT</a></li>
+                      
+                      <li><a class='name' href="/publications" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PUBLICATIONS</a></li>
+                      
+                      <li><a class='name' href="/people" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PEOPLE</a></li>
+                      
+                      <li><a class='name' href="/lab_pictures" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">LAB PICTURES</a></li>
+                      
+                      <li><a class='name' href="/blog" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">BLOG</a></li>
+                      
+                    </ul>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+</nav>
+
+  <div class="container content post">
+  <h3><strong>ControlPay: An Adaptive Payment Controller for Blockchain Economies</strong><br/>
+  <small>posted on August 18, 2024</small></h3>
+  <hr>
+  <p><em>By Oguzhan A.</em></p>
+
+<h1 id="controlpay-an-adaptive-payment-controller-for-blockchain-economies">ControlPay: An Adaptive Payment Controller for Blockchain Economies</h1>
+
+<p>Proceedings of the International Conference on Blockchain (ICB) 2024</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_intro.png" alt="" width="30%" height="auto" style="margin: auto; display: block;" />
+   <figcaption></figcaption>
+   <p></p>
+</figure>
+
+<p>In recent years, decentralized platforms like Helium, BitTensor, and FileCoin have reshaped how services such as wireless networks, machine learning, and storage are provided. These platforms operate on a token-based economy, rewarding service providers with cryptocurrency tokens. However, managing these economies is a complex challenge, particularly when token supply strategies fail to account for market fluctuations. The collapse of Luna, for example, highlighted the devastating effects of inadequate token price stabilization, resulting in massive financial losses for users and raising concerns about the sustainability of blockchain economies. Our new paper, <em>ControlPay: An Adaptive Payment Controller for Blockchain Economies</em>, offers a solution by introducing a control-theoretic approach to stabilizing blockchain token economies.</p>
+
+<h2 id="the-problem">The Problem</h2>
+
+<p>Decentralized platforms rely on native tokens to incentivize service providers. These tokens are essential for maintaining and expanding network infrastructure, but current approaches to managing token supply—like the “burn-and-mint” model—are often rigid and vulnerable to market volatility. For instance, maintaining a fixed exchange rate between tokens and USD can lead to the depletion of reserves, destabilizing the entire network. While some platforms have implemented adaptive mechanisms, these are often reactive heuristics lacking the predictive capabilities needed to maintain stability in the long term.</p>
+
+<p>Additionally, the presence of strategic behavior by market participants further complicates the management of token economies. Token holders may act strategically to maximize their profits, leading to price fluctuations and network instability. Traditional control mechanisms are ill-equipped to handle these challenges, resulting in suboptimal token supply strategies and increased network costs.</p>
+
+<h2 id="our-approach-controlpay">Our Approach: ControlPay</h2>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_model.png" alt="ControlPay" height="auto" style="margin: auto; display: block;" />
+   <figcaption>ControlPay: Our Payment Controller for Blockchain Economies</figcaption>
+   <p></p>
+</figure>
+
+<p>To address these challenges, we introduce <em>ControlPay</em>, an adaptive payment controller for blockchain economies. ControlPay leverages advanced control theory and game-theoretic models to optimize token supply and stabilize token prices. Unlike traditional approaches, ControlPay is predictive, using forecasts of consumer demand and supplier growth to dynamically adjust token supply. By modeling the token economy as a dynamic system and incorporating strategic behavior, ControlPay provides a comprehensive solution for managing decentralized token economies.</p>
+
+<p>Specifically, ControlPay combines the following key features:</p>
+
+<ul>
+  <li><strong>Modeling the Token Economy as a Dynamic System:</strong> We develop a dynamic model of the token economy, integrating key variables such as token supply, price, reserves, income, and demand.</li>
+  <li><strong>A Model Predictive Control Approach:</strong> We design a control mechanism based on model predictive control (MPC) to manage token supply and price, optimizing control actions to stabilize the token economy.</li>
+  <li><strong>Strategic Behavior and Game Theory:</strong> We model the market as a Stackelberg game between token holders and the payment controller, anticipating strategic behavior and optimizing token supply to maximize overall welfare within the network.</li>
+</ul>
+
+<p>In the following sections, we detail our approach to modeling the token economy, designing ControlPay, and incorporating strategic behavior through game theory.</p>
+
+<h3 id="modeling-the-token-economy-as-a-dynamic-system">Modeling the Token Economy as a Dynamic System</h3>
+
+<p>We begin by modeling the token economy as a dynamic system, integrating various factors such as token supply, price, reserves, income, and demand. Specifically, we consider the following components:</p>
+
+<p><strong>State Variables:</strong></p>
+<ul>
+  <li><em>Circulating Supply \(S_t\)</em>: The total number of tokens in circulation.</li>
+  <li><em>Reserves \(R_t^{USD}\), \(R_t^{Tok}\)</em>: The reserves in USD and tokens.</li>
+  <li><em>Price \(p_t^{Tok}\)</em>: The price of the token.</li>
+</ul>
+
+<p><strong>Control Variables:</strong></p>
+<ul>
+  <li><em>Token Payments \(u^P_t\)</em>: The amount of tokens paid to service providers.</li>
+  <li><em>Token Buybacks \(u^B_t\)</em>: The amount of tokens bought back from the market to stabilize the price.</li>
+  <li><em>Incentive Price \(\Delta p_t\)</em>: The price difference between the token’s market price and the buyback price.</li>
+</ul>
+
+<p><strong>External Factors:</strong></p>
+<ul>
+  <li><em>Income \(Inc_t\)</em>: The income generated by the platform.</li>
+  <li><em>Demand \(D_t\)</em>: The demand for tokens.</li>
+</ul>
+
+<p>Using these variables, we define the dynamics of the token economies as a set of equations that describe how the state variables evolve over time. More specifically, we model the change in circulating supply, reserves, and price as:</p>
+
+\[S_{t+1} = S_t + u^P_t - \frac{u^B_t}{p_t^{Tok} +\Delta p_t},\]
+
+\[R_{t+1}^{USD} = R_t^{USD} - u^B_t + Inc_t,\]
+
+\[R_{t+1}^{Tok} = R_t^{Tok} - u^P_t + \frac{u^B_t}{p_t^{Tok} +\Delta p_t},\]
+
+\[p_{t+1}^{Tok} = \frac{D_{t+1}}{S_{t+1}}.\]
+
+<p>Here, circulating supply is updated based on token payments and buybacks, reserves are updated based on income and buybacks from the market, and the price is updated based on the demand and circulating supply of tokens. With these equations, we define the state \(x_t\), control \(u_t\), and forecasted external factors \(s_t\) as follows:</p>
+
+\[x_t = [S_t, R_t^{USD}, R_t^{Tok}, p_t^{Tok}],\]
+
+\[u_t = [u^B_t, u^P_t, \Delta p_t],\]
+
+\[s_t = [\hat{D_t}, \hat{Inc_t}].\]
+
+<p>Finally, we can express the dynamics of the token economy \(f\) as a function of the state, control, and external factors:</p>
+
+\[x_{t+1} = f(x_t, u_t, s_t) = \begin{bmatrix} x_t(0) + u_t(1) - \frac{u_t(0)}{x_t(3)+u_t(2)} \\ x_{t}(1) - u_{t}(0) + s_{t}(1) \\ x_{t}(2) + \frac{u_t(0)}{x_t(3)+u_t(2)} - u_{t}(1) \\ \frac{s_{t+1}(0)}{x_{t+1}(0)}  \end{bmatrix}.\]
+
+<h3 id="controlpay-a-model-predictive-control-approach">ControlPay: A Model Predictive Control Approach</h3>
+
+<p>With the token economy modeled as a dynamic system, we can now design a control mechanism to manage token supply and price. Our approach, <em>ControlPay</em>, is based on model predictive control (MPC), a control strategy that uses a model of the system to predict future behavior and optimize control actions. In the context of token economies, ControlPay uses forecasts of consumer demand and supplier growth to optimize token supply dynamically, providing a robust solution that can significantly reduce network costs while maintaining price stability. To achieve this we define the following optimization problem:</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_opt.png" alt="" width="30%" height="auto" style="margin: auto; display: block;" />
+   <figcaption></figcaption>
+   <p></p>
+</figure>
+
+<p>where \(J\) is the cost function, \(x_{t+1} = f(x_t, u_t, s_t)\) represents the dynamics of the token economy, and \(\mathcal{X}\) and \(\mathcal{U}\) are the state and control constraints, respectively. By solving this optimization problem, ControlPay can adaptively adjust token payments and buybacks to stabilize the token price and ensure the sustainability of the network.</p>
+
+<p>An example cost function \(J\) could be:</p>
+
+\[J(x_0, u_{0:H-1}) = \sum_{t=0}^{H-1} \begin{bmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{bmatrix}^\top \begin{bmatrix} \left( x_{t+1}(3) - \bar{x}_{t+1}(3) \right)^2 \\ \left( u_t(0) - \bar{u}_t(0) \right)^2 \\ \left( u_{t}(1) - \bar{u}_t(1) \right)^2 \end{bmatrix},\]
+
+<p>where \(\beta_1, \beta_2, \beta_3\) are weighting factors. This cost function penalizes deviations of the token price from the USD price, control actions, and changes in control actions, ensuring that the token price remains stable and control actions are smooth.</p>
+
+<p>Unlike traditional approaches like PID controllers, which are reactive, ControlPay is predictive. It uses forecasts of consumer demand and supplier growth to dynamically optimize token supply, providing a robust solution that can significantly reduce network costs while maintaining price stability.</p>
+
+<h3 id="strategic-behavior-and-game-theory">Strategic Behavior and Game Theory</h3>
+
+<p>A unique aspect of our approach is the incorporation of strategic behavior by market participants. We model the market as a Stackelberg game between token holders and the payment controller. Token holders, seeking to maximize the value of their tokens, may act strategically, affecting the stability of the token economy. ControlPay anticipates these actions and adjusts its strategy accordingly, ensuring that both token holders and the network benefit.</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_stackelberg.png" alt="Token Economy Model with Rational Market" height="auto" width="80%" style="margin: auto; display: block;" />
+   <figcaption></figcaption>
+   <p></p>
+</figure>
+
+<p>In this game, the payment controller acts as the leader, setting incentive price and buybacks to stabilize the token price. Token holders, acting as followers, adjust their behavior based on the controller’s actions. By modeling the token economy as a Stackelberg game, ControlPay can anticipate strategic behavior and optimize token supply to maximize overall welfare within the network. We also show that ControlPay achieves the Stackelberg equilibrium, where the payment controller maximizes the utility of token holders while minimizing control costs.</p>
+
+<h2 id="experiments-and-results">Experiments and Results</h2>
+
+<p>We validated ControlPay through extensive simulations using both synthetic and real-world data from the Helium network. We compared ControlPay with traditional methods like the “burn-and-mint” (No Control) model, which simply buys back and pays out the same amount of tokens, and the proportional integral derivative (PID) controller, which adjusts token payments and buybacks based on past data on token price and reserves. Here are some example simulation results for comparison:</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_exp.png" alt="Some Simulation Results" height="auto" style="margin: auto; display: block;" />
+   <figcaption>Some example simulation results for comparison.</figcaption>
+   <p></p>
+</figure>
+
+<p>The two left columns show trajectories using real Helium data, demonstrating that <em>ControlPay</em> (green) closely follows the reference (purple), while the reactive PID (blue) is highly oscillatory. The right columns validate our approach’s adaptability using synthetic data, showing how <em>ControlPay</em> adjusts to a decreasing price trajectory. Unlike PID, <em>ControlPay</em> avoids overshooting, maintaining price stability even as demand shifts.</p>
+
+<p>Below are the network cost and control effort comparisons for the three methods:</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_exp_boxplot.png" alt="Network Cost and Control Effort as a box-plot" width="50%" height="auto" style="margin: auto; display: block;" />
+   <figcaption>Network cost and control effort comparison.</figcaption>
+   <p></p>
+</figure>
+
+<p><em>ControlPay</em> outperforms traditional methods by reducing network costs by up to 2.4× while using similar control effort. This demonstrates the effectiveness of our approach in stabilizing token prices and reducing network costs.</p>
+
+<p>Additionally, we conducted experiments to evaluate ControlPay’s performance in environments with strategic behavior. Our results show that ControlPay effectively balances the interests of token holders and the payment controller, maximizing overall welfare within the token economy. The figure below illustrates how ControlPay finds a game strategy to sell only \(\alpha^*_t\) tokens to maximize node utility and minimize control cost, compared to simply holding (\(\alpha_t = 0\)) or selling all tokens (\(\alpha_t = 1\)).</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/controlpay_exp_game.png" alt="Stackelberg Game Plot" height="auto" width="50%" style="margin: auto; display: block;" />
+   <figcaption>Network cost and utility of token owners.</figcaption>
+   <p></p>
+</figure>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>As blockchain infrastructures continue to grow, the need for adaptive control mechanisms like ControlPay will become increasingly critical. By integrating advanced control theory and game-theoretic models, ControlPay provides a comprehensive solution for managing decentralized token economies. We are excited to present our findings at the International Conference on Blockchain (ICB) 2024 and look forward to further discussions on how ControlPay can help shape the future of blockchain economies.</p>
+
+  <ul class="share-buttons">
+  <a style="color:#3b5998;" href="https://www.facebook.com/sharer/sharer.php?u=https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html" title="Share on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+  <a style="color:#0084b4;" href="https://twitter.com/intent/tweet?text=https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html" title="Share on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+</ul>
+
+  <!-- <div id="disqus_thread"></div> -->
+</div>
+
+
+  <script id="dsq-count-scr" src="//kordinglab.disqus.com/count.js" async></script>
+  <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-34145995-1");
+    pageTracker._trackPageview();
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34145995-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-34145995-1');
+  </script>
+
+</body>
+
+</html>
