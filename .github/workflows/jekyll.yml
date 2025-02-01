@@ -69,4 +69,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact-name: _site # Ensure this matches the name used in the upload step
+          artifact-name: github-pages # Ensure this matches the name used in the upload step
