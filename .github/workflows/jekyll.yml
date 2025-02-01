@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
+          path: _site
 
   deploy:
     environment:
@@ -87,7 +87,9 @@ jobs:
           path: ${{ runner.temp }}
 
       - name: Extract Artifact
-        run: tar -xvf $RUNNER_TEMP/artifact.tar -C _site
+        run: |
+          mkdir -p _site  # Ensure _site directory exists
+          tar -xvf $RUNNER_TEMP/artifact.tar -C _site
 
       - name: Deploy to GitHub Pages
         id: deployment
