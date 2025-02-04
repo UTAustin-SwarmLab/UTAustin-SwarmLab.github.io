@@ -9,7 +9,7 @@ avatar: arnabsanyal.jpg
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
 <i class="fa fa-envelope-o"></i> `sanyal@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)]https://drive.google.com/open?id=1qmr7uleFa0IoCncOq6VHd0Pkg9Zh6q0o)<br>
+<i class="fa fa-newspaper-o"></i> [Resume (pdf)](https://drive.google.com/open?id=1qmr7uleFa0IoCncOq6VHd0Pkg9Zh6q0o)<br>
 <i class="fa fa-external-link"></i> [Personal Website](https://arnabsanyal.github.io/)
 
 **Office**<br>
