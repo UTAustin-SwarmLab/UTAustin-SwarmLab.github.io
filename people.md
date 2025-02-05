@@ -63,6 +63,6 @@ permalink: /people/
 | :------------- |:-------------| :-----------|
 |Sharachchandra Bhat| 2021-2023 | Tesla|
 |Pranav Kasibhatla| 2023-2024 |Columbia University|
-
+|Sundar Sripada V. S.| 2022-2023 | UT Austin|
 {% endif %}
 {% endfor %}

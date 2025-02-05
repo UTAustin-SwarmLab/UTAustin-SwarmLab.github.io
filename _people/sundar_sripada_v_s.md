@@ -1,6 +1,6 @@
 ---
 name: Sundar Sripada V. S.
-position: gradstudent
+position: alumni
 avatar: sundar.jpg
 ---
 
