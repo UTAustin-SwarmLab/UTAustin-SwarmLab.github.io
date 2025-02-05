@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle install
+          bundle install --path vendor/bundle
 
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
