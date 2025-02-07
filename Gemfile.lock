@@ -123,6 +123,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   x86_64-darwin-23
+  x86_64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
@@ -133,6 +134,9 @@ DEPENDENCIES
   jekyll-sass-converter
   jekyll-scholar
   webrick
+
+RUBY VERSION
+   ruby 3.2.3p157
 
 BUNDLED WITH
    2.5.5
