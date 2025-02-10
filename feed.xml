@@ -69,7 +69,7 @@ Our future work will explore:&lt;/p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;CSA offers a compelling solution to the challenges of multimodal learning. By leveraging the power of unimodal encoders and using a novel similarity analysis method, CSA achieves competitive results with minimal training data and computational resources. We believe that CSA opens up new possibilities for efficient and robust multimodal machine learning towards binding emerging modalities.&lt;/p&gt;
 </description>
-				<pubDate>Fri, 24 Jan 2025 00:00:00 -0700</pubDate>
+				<pubDate>Fri, 24 Jan 2025 00:00:00 -0600</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2025/01/24/CSA.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2025/01/24/CSA.html</guid>
 			</item>
@@ -177,7 +177,7 @@ Our future work will explore:&lt;/p&gt;
 
 &lt;p&gt;We introduce the ASA policy, offering a robust solution to the Fleet Supervisor Allocation problem. Our policy leverages stochastic submodular maximization to effectively balance human supervision and task performance across diverse environments. Through smarter allocation, ASA improves both fleet efficiency and data collection, laying the groundwork for more scalable autonomous fleets.&lt;/p&gt;
 </description>
-				<pubDate>Thu, 19 Sep 2024 00:00:00 -0600</pubDate>
+				<pubDate>Thu, 19 Sep 2024 00:00:00 -0500</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/09/19/FleetSupervisorAllocation.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/09/19/FleetSupervisorAllocation.html</guid>
 			</item>
@@ -262,7 +262,7 @@ Our future work will explore:&lt;/p&gt;
 &lt;h2 id=&quot;looking-to-try-peernet-out&quot;&gt;Looking to try PEERNet out?&lt;/h2&gt;
 &lt;p&gt;Our code is open-source! You can find it at &lt;a href=&quot;github.com/UTAustin-SwarmLab/PEERNet&quot;&gt;our repo&lt;/a&gt;.&lt;/p&gt;
 </description>
-				<pubDate>Tue, 17 Sep 2024 00:00:00 -0600</pubDate>
+				<pubDate>Tue, 17 Sep 2024 00:00:00 -0500</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/09/17/PeerNet.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/09/17/PeerNet.html</guid>
 			</item>
@@ -423,7 +423,7 @@ Our future work will explore:&lt;/p&gt;
 
 &lt;p&gt;As blockchain infrastructures continue to grow, the need for adaptive control mechanisms like ControlPay will become increasingly critical. By integrating advanced control theory and game-theoretic models, ControlPay provides a comprehensive solution for managing decentralized token economies. We are excited to present our findings at the International Conference on Blockchain (ICB) 2024 and look forward to further discussions on how ControlPay can help shape the future of blockchain economies.&lt;/p&gt;
 </description>
-				<pubDate>Sun, 18 Aug 2024 00:00:00 -0600</pubDate>
+				<pubDate>Sun, 18 Aug 2024 00:00:00 -0500</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/08/18/ControlPay.html</guid>
 			</item>
@@ -516,7 +516,7 @@ Our future work will explore:&lt;/p&gt;
 &lt;p&gt;Our work, “Safe Networked Robotics with Probabilistic Verification”, provides a novel approach to ensure safety for networked control systems. Through multiple simulation and real-world experiments, we demonstrate how our approach can gracefully trade off safety for efficiency while dealing with stochastic communication delays.&lt;/p&gt;
 
 </description>
-				<pubDate>Sun, 07 Jul 2024 00:00:00 -0600</pubDate>
+				<pubDate>Sun, 07 Jul 2024 00:00:00 -0500</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/07/07/SafeNetworkedRobotics.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/07/07/SafeNetworkedRobotics.html</guid>
 			</item>
@@ -576,7 +576,7 @@ Our future work will explore:&lt;/p&gt;
 &lt;p&gt;Our work “Decentralized Data Collection for Robotic Fleet Learning” introduces a novel, theoretically grounded, cooperative data sampling policy for networked robotic fleets, which converges to an Oracle policy upon termination. Additionally, it converges in a single iteration under mild practical assumption, which allows communication efficiency on real-world datasets. Our approach is a first step towards an increasingly timely problem as today’s AV fleets measure terabytes of heterogeneous data in diverse operating contexts.&lt;/p&gt;
 
 </description>
-				<pubDate>Mon, 26 Feb 2024 00:00:00 -0700</pubDate>
+				<pubDate>Mon, 26 Feb 2024 00:00:00 -0600</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html</guid>
 			</item>
@@ -641,7 +641,7 @@ Our future work will explore:&lt;/p&gt;
 
 &lt;p&gt;Our work “Fleet Active Learning: A Submodular Maximization Approach” introduces a framework for enhancing the capabilities of AVs through smarter data collection methods. By adopting the FAL framework, fleets of autonomous vehicles can efficiently gather diverse data essential for training robust ML models, enabling the development of more robust and better-performing autonomous vehicles.&lt;/p&gt;
 </description>
-				<pubDate>Sun, 25 Feb 2024 00:00:00 -0700</pubDate>
+				<pubDate>Sun, 25 Feb 2024 00:00:00 -0600</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/02/25/FleetActiveLearning.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/25/FleetActiveLearning.html</guid>
 			</item>
@@ -685,7 +685,7 @@ The above examples come from the ALFRED dataset.&lt;/p&gt;
 
 &lt;p&gt;In conclusion, this study not only provides a pragmatic solution to a pressing challenge in robotics but also lays the groundwork for future innovations. By bridging theoretical analysis with empirical evidence, it underscores the transformative potential of online learning algorithms in model selection, setting a new benchmark for efficiency, cost-effectiveness, and adaptability in robotic applications.&lt;/p&gt;
 </description>
-				<pubDate>Sat, 17 Feb 2024 00:00:00 -0700</pubDate>
+				<pubDate>Sat, 17 Feb 2024 00:00:00 -0600</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2024/02/17/OnlineModelSelection.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2024/02/17/OnlineModelSelection.html</guid>
 			</item>
@@ -754,7 +754,7 @@ The above examples come from the ALFRED dataset.&lt;/p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Our paper, titled “Task-aware Distributed Source Coding under Dynamic Bandwidth,” introduces NDPCA as a revolutionary solution to the challenges of data compression and communication in multi-sensor networks. By prioritizing the transmission of task-relevant features from multiple data sources and adapting to varying bandwidth conditions, NDPCA provides an efficient and flexible framework for optimizing data transmission. The significance of this work lies in its potential to enhance communication efficiency and improve task performance across a wide range of applications, from Internet of things devices to large-scale sensor networks.&lt;/p&gt;
 </description>
-				<pubDate>Tue, 28 Nov 2023 00:00:00 -0700</pubDate>
+				<pubDate>Tue, 28 Nov 2023 00:00:00 -0600</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2023/11/28/TaskAwareDSC.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/11/28/TaskAwareDSC.html</guid>
 			</item>
@@ -803,7 +803,7 @@ The above examples come from the ALFRED dataset.&lt;/p&gt;
 &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;Our paper “Differentially Private Timeseries Forecasts for Networked Control” introduces an innovative approach to address the accuracy-privacy trade-off in forecasting models. By allocating economic incentives to forecasting models, control costs can be significantly reduced while maintaining acceptable privacy levels. This research opens new avenues for improving decision-making in networked control systems while safeguarding sensitive data. As the field progresses, we can expect further advancements in privacy-preserving techniques and incentive allocation mechanisms, ultimately benefiting both accuracy and privacy in various domains.&lt;/p&gt;
 </description>
-				<pubDate>Sun, 28 May 2023 00:00:00 -0600</pubDate>
+				<pubDate>Sun, 28 May 2023 00:00:00 -0500</pubDate>
 				<link>https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</link>
 				<guid isPermaLink="true">https://utaustin-swarmlab.github.io/2023/05/28/Differentially-Private-Timeseries-Forecasts-for-Networked-Control.html</guid>
 			</item>
