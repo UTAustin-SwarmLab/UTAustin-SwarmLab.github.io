@@ -35,16 +35,11 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload artifact (v2)
+        uses: actions/upload-artifact@v2
         with:
           name: github-pages
           path: ./_site
-      - name: Dummy upload to fetch upload-artifact@v3
-        uses: actions/upload-artifact@v3
-        with:
-          name: dummy-artifact
-          path: README.md
 
   deploy:
     needs: build
