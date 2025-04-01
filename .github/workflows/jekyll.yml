@@ -40,6 +40,11 @@ jobs:
         with:
           name: github-pages
           path: ./_site
+      - name: Dummy upload to fetch upload-artifact@v3
+        uses: actions/upload-artifact@v3
+        with:
+          name: dummy-artifact
+          path: README.md
 
   deploy:
     needs: build
