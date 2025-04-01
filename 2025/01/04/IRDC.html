@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exploiting Distribution Constraints for Scalable and Efficient Image Retrieval</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="https://utaustin-swarmlab.github.io/css/zoom.css" rel="stylesheet">
+  <script src="https://utaustin-swarmlab.github.io/js/zoom.js"></script>
+  <script src="https://utaustin-swarmlab.github.io/js/transition.js"></script>
+
+  <link rel="stylesheet" href="/style.css">
+  <!-- favicon -->
+  <!-- <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/favicon.ico"> -->
+  <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/images/logo/swarm-lab-landing-image.png">
+  <!-- <link rel="apple-touch-icon-precomposed" href="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-144.png"> -->
+
+  <!-- Add favourite fonts here -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <!-- open graph -->
+
+  
+  
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utaustin-swarmlab.github.io/2025/01/04/IRDC.html">
+  <meta property="og:title" content="Exploiting Distribution Constraints for Scalable and Efficient Image Retrieval">
+  <meta property="og:site_name" content="Swarm Lab at UT Austin">
+  <meta property="og:description" content="ICLR 2025 paper"/>
+  <meta property="og:image" content="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+
+</head>
+
+<script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//kordinglab.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+<body id="page-top" style="padding-top: 7em;">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class='navbar-brand page-scroll' href='/'>
+              <span style="font-family: 'Source Sans Pro', sans-serif; font-weight:600; color: #FFFFFF;">Swarm Lab</span>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                      
+                      <li><a class='name' href="/" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">HOME</a></li>
+                      
+                      <li><a class='name' href="/about" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">ABOUT</a></li>
+                      
+                      <li><a class='name' href="/publications" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PUBLICATIONS</a></li>
+                      
+                      <li><a class='name' href="/people" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PEOPLE</a></li>
+                      
+                      <li><a class='name' href="/lab_pictures" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">LAB PICTURES</a></li>
+                      
+                      <li><a class='name' href="/blog" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">BLOG</a></li>
+                      
+                    </ul>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+</nav>
+
+  <div class="container content post">
+  <h3><strong>Exploiting Distribution Constraints for Scalable and Efficient Image Retrieval</strong><br/>
+  <small>posted on January 4, 2025</small></h3>
+  <hr>
+  <p><em>By Mohammad Omama</em></p>
+
+<h1 id="exploiting-distribution-constraints-for-scalable-and-efficient-image-retrieval">Exploiting Distribution Constraints for Scalable and Efficient Image Retrieval</h1>
+
+<blockquote>
+  <p>Proceedings of the International Conference on Learning Representations (ICLR)</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">TLDR:</code> Image Retrieval with Foundation Models: Better, Faster, Distribution-Aware!</p>
+
+<p><a href="https://arxiv.org/abs/2410.07022">ArXiv</a></p>
+
+<p><a href="https://mohdomama.github.io/IRDC-Project-Website/">Project Website</a></p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>Image retrieval is pivotal in many real-world applications, from visual place recognition in robotics to personalized recommendations in e-commerce. However, current state-of-the-art (SOTA) image retrieval methods face two significant problems:</p>
+
+<ol>
+  <li>
+    <p><strong>Scalability Issue</strong>: State-of-the-art (SOTA) image retrieval methods train large models separately for each dataset. This is <strong>not scalable</strong>.</p>
+  </li>
+  <li>
+    <p><strong>Efficiency Issue</strong>: SOTA image retrieval methods use large embeddings, and since retrieval speed is directly proportional to embedding size, this is <strong>not efficient</strong>.</p>
+  </li>
+</ol>
+
+<p>Our research specifically targets these challenges with two crucial questions:</p>
+<ul>
+  <li><strong>Q1 (Scalability)</strong>: Can we enhance the performance of universal off-the-shelf models in an entirely unsupervised way?</li>
+  <li><strong>Q2 (Efficiency)</strong>: Is it possible to design an effective unsupervised dimensionality reduction method that preserves the similarity structure and can adaptively perform well at varying embedding sizes?</li>
+</ul>
+
+<h2 id="contributions">Contributions</h2>
+
+<p>To tackle the scalability and efficiency challenges, our work introduces the follwoing novel ideas:</p>
+
+<ul>
+  <li>
+    <p><strong>Autoencoders with Strong Variance Constraints (AE-SVC)</strong>: Addressing scalability, AE-SVC significantly improves off-the-shelf foundation model embeddings through three rigorously enforced constraints: orthogonality, mean-centering, and unit variance in the latent space. We both empirically demonstrate and mathematically validate that these constraints adjust the distribution of cosine similarity, making embeddings more discriminative.</p>
+  </li>
+  <li>
+    <p><strong>Single Shot Similarity Space Distillation ((SS)<sub>2</sub> D)</strong>: To tackle efficiency, (SS)<sub>2</sub> D provides dimensionality reduction that preserves similarity structures
+and further allows embeddings to adaptively scale without retraining. This enables smaller segments of the embedding to retain high retrieval performance, significantly speeding up retrieval.</p>
+  </li>
+</ul>
+
+<h2 id="methodology">Methodology</h2>
+
+<p>Our proposed approach follows a two-step pipeline:</p>
+
+<ol>
+  <li><strong>AE-SVC</strong> first trains an autoencoder with the constraints mentioned to enhance the embeddings from foundation models.</li>
+  <li>The improved embeddings from AE-SVC are then distilled using <strong>(SS)<sub>2</sub>D</strong>, producing embeddings that are both efficient and adaptive at various sizes.</li>
+</ol>
+
+<p>The training process ensures that the resulting embeddings, even at smaller sizes, preserve similarity relationships, making them highly effective for retrieval tasks.</p>
+
+<p><img src="/images/post/IRDC_pipeline.png" alt="Methodology Pipeline" /></p>
+
+<h2 id="impact-on-cosine-similarity-distribution">Impact on Cosine Similarity Distribution</h2>
+
+<p>Our AE-SVC method profoundly impacts cosine similarity distributions, significantly reducing their variance. 
+Lower variance in similarity distributions correlates with improved discriminative power as we mathematically prove in our paper.
+Our method shows remarkable benefits, particularly for general-purpose foundation models like DINO, compared to already optimized dataset-specific models such as Cosplace.</p>
+
+<p><img src="/images/post/IRDC_theory.png" alt="Cosine Similarity Distribution" /></p>
+
+<h2 id="results">Results</h2>
+
+<p>Our experimental validation demonstrates:</p>
+
+<ul>
+  <li><strong>AE-SVC</strong> consistently surpasses baseline PCA methods across multiple datasets, offering an average of 15.5% improvement in retrieval performance.</li>
+  <li><strong>(SS)<sub>2</sub>D</strong>, building upon AE-SVC, achieves up to a 10% further improvement at smaller embedding sizes, demonstrating superior performance compared to traditional dimensionality reduction methods like VAE and approaches the theoretical upper bound set by SSD.</li>
+</ul>
+
+<p>This advancement represents a significant step towards more practical, scalable, and efficient image retrieval solutions, enhancing both speed and accuracy.</p>
+
+<p><img src="/images/post/IRDC_results.png" alt="Retrieval Performance Results" /></p>
+
+
+  <ul class="share-buttons">
+  <a style="color:#3b5998;" href="https://www.facebook.com/sharer/sharer.php?u=https://utaustin-swarmlab.github.io/2025/01/04/IRDC.html" title="Share on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+  <a style="color:#0084b4;" href="https://twitter.com/intent/tweet?text=https://utaustin-swarmlab.github.io/2025/01/04/IRDC.html" title="Share on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+</ul>
+
+  <!-- <div id="disqus_thread"></div> -->
+</div>
+
+
+  <script id="dsq-count-scr" src="//kordinglab.disqus.com/count.js" async></script>
+  <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-34145995-1");
+    pageTracker._trackPageview();
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34145995-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-34145995-1');
+  </script>
+
+</body>
+
+</html>

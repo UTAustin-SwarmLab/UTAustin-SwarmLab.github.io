@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decentralized Data Collection for Robotic Fleet Learning: A Game-Theoretic Approach</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <link href="https://utaustin-swarmlab.github.io/css/zoom.css" rel="stylesheet">
+  <script src="https://utaustin-swarmlab.github.io/js/zoom.js"></script>
+  <script src="https://utaustin-swarmlab.github.io/js/transition.js"></script>
+
+  <link rel="stylesheet" href="/style.css">
+  <!-- favicon -->
+  <!-- <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/favicon.ico"> -->
+  <link rel="shortcut icon" href="https://utaustin-swarmlab.github.io/images/logo/swarm-lab-landing-image.png">
+  <!-- <link rel="apple-touch-icon-precomposed" href="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://utaustin-swarmlab.github.io/images/logo/logo-icon-144.png"> -->
+
+  <!-- Add favourite fonts here -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <!-- open graph -->
+
+  
+  
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html">
+  <meta property="og:title" content="Decentralized Data Collection for Robotic Fleet Learning: A Game-Theoretic Approach">
+  <meta property="og:site_name" content="Swarm Lab at UT Austin">
+  <meta property="og:description" content="CoRL 2022 paper"/>
+  <meta property="og:image" content="https://utaustin-swarmlab.github.io/images/logo/logo_square.jpg">
+
+</head>
+
+<script>
+  /**
+  * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+  */
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//kordinglab.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+    powered by Disqus.</a></noscript>
+
+<body id="page-top" style="padding-top: 7em;">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class='navbar-brand page-scroll' href='/'>
+              <span style="font-family: 'Source Sans Pro', sans-serif; font-weight:600; color: #FFFFFF;">Swarm Lab</span>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                      
+                      <li><a class='name' href="/" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">HOME</a></li>
+                      
+                      <li><a class='name' href="/about" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">ABOUT</a></li>
+                      
+                      <li><a class='name' href="/publications" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PUBLICATIONS</a></li>
+                      
+                      <li><a class='name' href="/people" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">PEOPLE</a></li>
+                      
+                      <li><a class='name' href="/lab_pictures" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">LAB PICTURES</a></li>
+                      
+                      <li><a class='name' href="/blog" style="font-family: 'Source Sans Pro', sans-serif; color: #FFFFFF; font-weight: 500;">BLOG</a></li>
+                      
+                    </ul>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+</nav>
+
+  <div class="container content post">
+  <h3><strong>Decentralized Data Collection for Robotic Fleet Learning: A Game-Theoretic Approach</strong><br/>
+  <small>posted on February 26, 2024</small></h3>
+  <hr>
+  <p><em>By Oguzhan A.</em></p>
+
+<h1 id="robotic-fleet-data-collection-through-game-theory">Robotic Fleet Data Collection Through Game Theory</h1>
+
+<p><a href="https://proceedings.mlr.press/v205/akcin23a.html">Link to paper</a></p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>In the rapidly evolving landscape of autonomous vehicles (AVs) and robotics, the efficient collection and utilization of data are crucial. Traditional data collection methods often lead to redundancy and inefficient use of bandwidth and storage. To deal with these challenges, we propose a strategic game between robots to sample data points to optimize data sampling, aiming to minimize the gap between current and target data distributions. This game-theoretic solution reaches a Nash equilibrium with only one message passing between AVs, offering an optimal strategy for data collection across robotic fleets.</p>
+
+<h3 id="the-challenge">The Challenge</h3>
+
+<p>AVs traditionally operate in isolation, prioritizing data collection based on individual, often greedy strategies. This isolation can lead to resource wastage and inefficiency. Coordination among AVs is essential to ensure the selection of the most valuable data points, avoiding redundancy and optimizing the collective data collection effort.</p>
+
+<figure style="text-align: center;">
+    <img src="/images/post/data_games_toy_example.jpg" alt="Toy Example" width="50%" height="auto" style="margin: auto; display: block;" />
+   <figcaption>A motivating toy example with 2 robots and 2 classes</figcaption>
+   <p></p>
+</figure>
+
+<p>In the figure above, we show a toy example of why data collection needs to be coordinated. Here there are two robots observing data with only 2 classes. The axes represent the number of data points for each class. Our goal is to reach a target distribution (blue cross) where each class has 120 data points, represented by (120,120). The robots start at (0,0) with no data points in the cloud. The possible combinations that can be uploaded from robots 1 and 2 are shown as the shaded feasible action spaces (yellow and purple). This shaded region is determined by the robot’s local data distribution and vision model accuracy. <strong><em>Greedy</em></strong> (black) individually calculates the projection of the target distribution onto each robot’s feasible action space, but the sum of actions may not be optimal leading to a high error (red). However, <strong><em>Oracle</em></strong> accounts for the two robots’ action spaces and this minimizes the error between the target dataset and the sum of actions (grey).</p>
+
+<h2 id="a-game-theoretic-solution">A Game-Theoretic Solution</h2>
+
+<p>We frame the data collection problem as a <em>potential game</em> between networked AVs. Then, we show that this game reaches Nash equilibria based on the best-iterated response policy after only one message passings between the AVs. This equilibrium represents the collective optimization of data collection strategies, ensuring an optimal solution for the entire fleet.</p>
+
+<h3 id="how-interactive-policy-works">How Interactive Policy Works</h3>
+
+<figure>
+    <img src="/images/post/data_games_framework.png" alt="Game-Theoretic Data Collection" />
+   <figcaption>Game-Theoretic Data Collection</figcaption>
+   <p></p>
+</figure>
+
+<p>Each step in our cooperative algorithm is numbered in blue. First, each AV <em>i</em> observes a sequence of images in round <em>r</em> of data collection (<em>step 1</em>). Then, it classifies each image with a local vision model (<em>step 2</em>). Then it samples a limited set of images according to its action policy which governs what distribution of data points to upload. Crucially, the action to what data points to upload is chosen cooperatively with other AVs using a distributed optimization problem (<em>step 3</em>). Next, each AV transmits its local cache of data points to the cloud (<em>step 4</em>). The current cloud dataset is updated with the newly uploaded data points (<em>step 5</em>). The combined cloud dataset can be used to periodically retrain new model parameters (<em>step 6</em>), which are then downloaded by the AVs (<em>step 7</em>). All AVs share a goal of minimizing the distance between the collected cloud dataset and the target dataset.</p>
+
+<h2 id="experimental-results">Experimental Results</h2>
+
+<p>We show that our <strong><em>Interactive</em></strong> approach is able to achieve superior performance to the traditional distributed approach and achieves the same performance as an optimal <strong><em>Oracle</em></strong> policy. Our <strong><em>Interactive</em></strong> approach achieves performance improvements by up to 21% in classification accuracy compared to the standard benchmarks.</p>
+
+<figure>
+    <img src="/images/post/data_games_results.png" alt="Experimental Results" />
+   <figcaption>Experimental Results</figcaption>
+   <p></p>
+</figure>
+
+<p>In the figure above, each row represents a different dataset. <em>Column 1:</em> As expected by our theory, <strong><em>Interactive</em></strong> minimizes the L2-norm distance (optimization objective, y-axis) better than <strong><em>Greedy</em></strong> and matches the omniscient <strong><em>Oracle</em></strong>. <em>Column 2:</em> Clearly, <strong><em>Interactive</em></strong>  achieves a much more balanced distribution of classes (target distribution is uniform) than benchmarks. <em>Column 3:</em> Since <strong><em>Interactive</em></strong> achieves a more balanced dataset, this experimentally translates to a higher DNN accuracy (statistically significant) on a held-out test dataset.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Our work “Decentralized Data Collection for Robotic Fleet Learning” introduces a novel, theoretically grounded, cooperative data sampling policy for networked robotic fleets, which converges to an Oracle policy upon termination. Additionally, it converges in a single iteration under mild practical assumption, which allows communication efficiency on real-world datasets. Our approach is a first step towards an increasingly timely problem as today’s AV fleets measure terabytes of heterogeneous data in diverse operating contexts.</p>
+
+
+  <ul class="share-buttons">
+  <a style="color:#3b5998;" href="https://www.facebook.com/sharer/sharer.php?u=https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html" title="Share on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+  <a style="color:#0084b4;" href="https://twitter.com/intent/tweet?text=https://utaustin-swarmlab.github.io/2024/02/26/DecentralizedDataCollection.html" title="Share on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+</ul>
+
+  <!-- <div id="disqus_thread"></div> -->
+</div>
+
+
+  <script id="dsq-count-scr" src="//kordinglab.disqus.com/count.js" async></script>
+  <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-34145995-1");
+    pageTracker._trackPageview();
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34145995-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-34145995-1');
+  </script>
+
+</body>
+
+</html>
