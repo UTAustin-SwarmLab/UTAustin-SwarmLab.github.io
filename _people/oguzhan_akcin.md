@@ -1,6 +1,6 @@
 ---
 name: Oguzhan Akcin
-position: gradstudent
+position: alumni
 avatar: oguzhan_akcin.jpg
 ---
 

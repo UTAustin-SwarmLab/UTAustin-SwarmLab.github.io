@@ -1,9 +1,12 @@
-- date: 2025-24-01
+- date: 2025-08-01
   details: >-
-    Po-han's and Omama's papers <a href="https://openreview.net/forum?id=6Mg7pjG7Sw"> CSA: Data-efficient Mapping of Unimodal Features to Multimodal Features </a> and <a href="https://openreview.net/forum?id=d0tlL0ZWlu"> Exploiting Distribution Constraints for Scalable and Efficient Image Retrieval </a> were accepted to ICLR 2025!
-- date: 2024-19-12
+    Oguzhan B.'s paper <a href="https://openreview.net/forum?id=M1e2PEMLp2"> Fair Resource Allocation for Fleet Intelligence </a> was accepted to GLOBECOM 2025!
+- date: 2025-08-01
   details: >-
-    Philip's papers <a href="https://arxiv.org/abs/2410.18242"> Human-Agent Coordination in Games under Incomplete Information via Multi-Step Intent </a> was accepted to AAMAS 2025!
-- date: 2024-19-09
+    Oguzhan A.'s paper <a href="https://openreview.net/forum?id=M1e2PEMLp2"> Distributed Upload and Active Labeling for Resource-Constrained Fleet Learning </a> was accepted to CoRL 2025!
+- date: 2025-07-15
   details: >-
-    Philip's and Oguzhan A.'s' papers <a href="https://philipzrh.com/lane/"> Accelerating Visual Sparse-Reward Learning with Latent Nearest-Demonstration-Guided Exploration </a> and <a href="https://openreview.net/forum?id=9dsBQhoqVr"> Fleet Supervisor Allocation: A Submodular Maximization Approach</a> were accepted to CoRL 2024.
+    Oguzhan B.'s paper <a href="https://arxiv.org/abs/2506.22789"> Information-Theoretic Speech Representation Learning for Fair and Privacy-Aware Audio Processing </a> was accepted to INTERSPEECH 2025!
+- date: 2025-07-15
+  details: >-
+    Oguzhan B.'s paper <a href="https://arxiv.org/abs/2506.22783"> Redefining Deepfake Realism with Language-Driven Segmental Manipulation and Adaptive Bilevel Detection </a> was accepted to INTERSPEECH 2025!
