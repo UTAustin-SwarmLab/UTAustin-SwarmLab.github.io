@@ -85,4 +85,4 @@ We compare our method to common baselines and standard fair allocation methods:
 
 
 ## Impact
-Fair-Synergy treats fairness as physics, not philosophy. Fairness means no single agent experiences an increase in its accuracy while reducing the other's accuracy more. As accuracy is concave, the right thing is to spend cloud resources where marginal gains are steepest and to do so optimize jointly over multiple substitutable resources. A fair allocation is the most efficient allocation because concavity makes “equalize marginal gains” optimal.
+Fair-Synergy treats fairness as physics, not philosophy. Fairness means no single agent experiences an increase in its accuracy while reducing the other's accuracy more. As accuracy is concave, the right thing is to spend cloud resources where marginal gains are steepest and to do so optimize jointly over multiple substitutable resources. A fair allocation is the most efficient allocation because concavity makes "equalize marginal gains" optimal.
