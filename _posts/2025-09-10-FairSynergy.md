@@ -68,15 +68,10 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 We compare our method to common baselines and standard fair allocation methods:
 
 - **Fair-Synergy (Ours)** allocates compute (and labels) to equalize next-unit accuracy gains per agent using fitted concave utilities.
-
 - **Random Allocation** splits the available compute (and labels) at random among agents.
-
 - **Uniform Allocation** gives every agent the same share of compute (and labels), ignoring local differences.
-
 - **Classical NUM** optimizes a uniform log utility (identical response curves), so allocation follows equalized marginal gains without task-specific reweighting and agent heterogeneity.
-
 - **Dominant Resource Fairness (DRF)** equalizes each agent’s dominant resource share, targeting max–min fairness across resources.
-
 - **Leximin** prioritizes the worst-off first, maximizing the minimum utility, then the next, and so on. It is a stricted form of fairness compared to other methods.
 
 <figure style="text-align: center;">
