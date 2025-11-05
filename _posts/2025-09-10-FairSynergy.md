@@ -4,7 +4,7 @@ description: GLOBECOM 2025 paper
 categories: blog
 ---
 
-*By Oguzhan Baser*
+*By Oguzhan B.*
 
 # FairSynergy: Fair Resource Allocation for Fleet Intelligence
 
