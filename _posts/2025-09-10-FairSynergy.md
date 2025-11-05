@@ -42,7 +42,7 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 </figure>
 
 <figure style="text-align: center;">
-    <img src="{{site.baseurl}}/images/post/FS_result_concaveinference.png" alt="Concave Inference" height="auto" style="margin: auto; display: block;">
+    <img src="{{site.baseurl}}/images/post/FS_concaveinference.png" alt="Concave Inference" height="auto" style="margin: auto; display: block;">
    <figcaption>The Law of Diminishing Marginal Returns: Inference</figcaption>
    <p></p>
 </figure>
