@@ -16,7 +16,7 @@ categories: blog
 [Code](https://github.com/UTAustin-SwarmLab/Fair-Synergy)
 
 ## Motivation
-Intelligent fleets involving machine learning (ML) deployed drones, autonomous cars, or phones rarely look uniform. Some fleet agents have much better on-board compute or memory, while others face harder inputs such as hard-to-parse images and complex prompts. While cloud assists fleets by allocating its limited resources, it is not really trivial how to allocate for optimal collective performance across the heterogeneous agents. If we split cloud resources evenly, we waste the budget on saturated parts of the accuracy-vs-resource curve while starving steep ones. We ask:
+Intelligent fleets involving machine learning (ML) deployed drones, autonomous cars, or phones rarely look uniform. Some fleet agents have much better on-board compute or memory, while others face harder inputs, such as hard-to-parse images and complex prompts. While cloud assists fleets by allocating its limited resources, it is not really trivial how to allocate for optimal collective performance across the heterogeneous agents. If we split cloud resources evenly, we waste the budget on saturated parts of the accuracy-vs-resource curve while starving steep ones. We ask:
 
 - **Q1 (Fairness):** Where does the next unit of resource raise accuracy the most?
 - **Q2 (Multivariate Utility):** How can we substitute multiple types of ML resources available?
@@ -33,7 +33,7 @@ Intelligent fleets involving machine learning (ML) deployed drones, autonomous c
 We introduce FairSynergy, a novel framework to allocate cloud resources fairly across the intelligent heterogeneous agents.
 - **Diminishing Marginal Returns:** We empirically show that learning and inference curves across vision and language models consistently have the same concave pattern: accuracy improves with more resources (e.g., model size, data, compute) but with diminishing returns.
 - **Fair Allocation in ML:** With a concave objective, Network Utility Maximization (NUM) is the natural fit. It mathematically implies the condition turns into an intuitive policy: allocate so each agent’s next unit of resource yields the same marginal accuracy gain. 
-- **Cobb-Douglas:** Like capital and labor in production, compute/model capacity and labeling/data curation both drive accuracy, each with diminishing returns and substitution. We form a multivariate utility captures this to co-allocate the resources. (Figs. 5–6)
+- **Cobb-Douglas:** Like capital and labor in production, compute/model capacity and labeling/data curation both drive accuracy, each with diminishing returns and substitution. We form a multivariate utility capturing this to co-allocate the resources. (Figs. 5–6)
 
 <figure style="text-align: center;">
     <img src="{{site.baseurl}}/images/post/FS_concavetraining.png" alt="Concave Training" height="auto" style="margin: auto; display: block;">
@@ -49,10 +49,10 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 
 ## FairSynergy Framework
 
-- **Inference Setting (RTI)- Univariate Case (Compute):** At short intervals, the framwork estimates each agent’s next-unit accuracy gain from extra cloud compute. Give the next unit to the highest gain, repeat until gains are roughly equalized—then reshuffle as conditions change. This hits the fairness/efficiency sweet spot without heavy tuning.
+- **Inference Setting (RTI)- Univariate Case (Compute):** At short intervals, the framework estimates each agent’s next-unit accuracy gain from extra cloud compute. Give the next unit to the highest gain, repeat until gains are roughly equalized—then reshuffle as conditions change. This hits the fairness/efficiency sweet spot without heavy tuning.
 
 
-- **Learning Setting (DL) - Bivariate Case (Compute + Labeling Effort):**  The framework uses the same “next-unit” idea with a quick two-step loop: hold labels fixed and split compute by the one resource rule; then hold compute fixed and split labeling time by the same rule. A few rounds settle to a stable co-allocation so compute-hungry agents get cycles and data-hungry agents get labels.
+- **Learning Setting (DL) - Bivariate Case (Compute + Labeling Effort):**  The framework uses the same “next-unit” idea with a quick two-step loop: hold labels fixed and split compute by the one-resource rule; then hold compute fixed and split labeling time by the same rule. A few rounds settle to a stable co-allocation, so compute-hungry agents get cycles and data-hungry agents get labels.
 
 - **Handling Heterogeneity:** Harder tasks show larger early gains, so the allocator leans into them first and naturally rebalances as gains even out. The result is proportional fairness and fleet-level accuracy that scales with more agents and changing workloads—no math knobs to tune. 
 
@@ -97,4 +97,4 @@ We compare our method to common baselines and standard fair allocation methods:
 
 
 ## Impact
-Fair-Synergy treats fairness as physics, not philosophy. Fairness means, no single agent experiences an increase in its accuracy while reducing the other's accuracy more. As accuracy is concave, the right thing is to spend cloud resources where marginal gains are steepest and to do so optimize jointly over multiple substitutable resources. A fair allocation is the most efficient allocation because concavity makes “equalize marginal gains” optimal.
+Fair-Synergy treats fairness as physics, not philosophy. Fairness means no single agent experiences an increase in its accuracy while reducing the other's accuracy more. As accuracy is concave, the right thing is to spend cloud resources where marginal gains are steepest and to do so optimize jointly over multiple substitutable resources. A fair allocation is the most efficient allocation because concavity makes “equalize marginal gains” optimal.
