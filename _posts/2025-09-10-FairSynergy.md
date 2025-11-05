@@ -48,12 +48,8 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 </figure>
 
 ## FairSynergy Framework
-
-- **Inference Setting (RTI)- Univariate Case (Compute):** At short intervals, the framework estimates each agent’s next-unit accuracy gain from extra cloud compute. Give the next unit to the highest gain, repeat until gains are roughly equalized—then reshuffle as conditions change. This hits the fairness/efficiency sweet spot without heavy tuning.
-
-
-- **Learning Setting (DL) - Bivariate Case (Compute + Labeling Effort):**  The framework uses the same “next-unit” idea with a quick two-step loop: hold labels fixed and split compute by the one-resource rule; then hold compute fixed and split labeling time by the same rule. A few rounds settle to a stable co-allocation, so compute-hungry agents get cycles and data-hungry agents get labels.
-
+- **Inference Setting (RTI) Univariate Case (Compute):** At short intervals, the framework estimates each agent’s next-unit accuracy gain from extra cloud compute. Give the next unit to the highest gain, repeat until gains are roughly equalized—then reshuffle as conditions change. This hits the fairness/efficiency sweet spot without heavy tuning.
+- **Learning Setting (DL) Bivariate Case (Compute + Labeling Effort):**  The framework uses the same “next-unit” idea with a quick two-step loop: hold labels fixed and split compute by the one-resource rule; then hold compute fixed and split labeling time by the same rule. A few rounds settle to a stable co-allocation, so compute-hungry agents get cycles and data-hungry agents get labels.
 - **Handling Heterogeneity:** Harder tasks show larger early gains, so the allocator leans into them first and naturally rebalances as gains even out. The result is proportional fairness and fleet-level accuracy that scales with more agents and changing workloads—no math knobs to tune. 
 
 <figure style="text-align: center;">
@@ -63,10 +59,7 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 </figure>
 
 ## Results
-
-
 We compare our method to common baselines and standard fair allocation methods:
-
 - **Fair-Synergy (Ours)** allocates compute (and labels) to equalize next-unit accuracy gains per agent using fitted concave utilities.
 - **Random Allocation** splits the available compute (and labels) at random among agents.
 - **Uniform Allocation** gives every agent the same share of compute (and labels), ignoring local differences.
