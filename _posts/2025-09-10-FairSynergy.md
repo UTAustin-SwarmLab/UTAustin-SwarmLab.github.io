@@ -36,13 +36,13 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 - **Cobb-Douglas:** Like capital and labor in production, compute/model capacity and labeling/data curation both drive accuracy, each with diminishing returns and substitution. We form a multivariate utility captures this to co-allocate the resources. (Figs. 5–6)
 
 <figure style="text-align: center;">
-    <img src="{{site.baseurl}}/images/post/FS_concavetraining.png" alt="Results Boxplot" height="auto" style="margin: auto; display: block;">
+    <img src="{{site.baseurl}}/images/post/FS_concavetraining.png" alt="Concave Training" height="auto" style="margin: auto; display: block;">
    <figcaption>The Law of Diminishing Marginal Returns: Training</figcaption>
    <p></p>
 </figure>
 
 <figure style="text-align: center;">
-    <img src="{{site.baseurl}}/images/post/FS_result_concaveinference.png" alt="Results Boxplot" height="auto" style="margin: auto; display: block;">
+    <img src="{{site.baseurl}}/images/post/FS_result_concaveinference.png" alt="Concave Inference" height="auto" style="margin: auto; display: block;">
    <figcaption>The Law of Diminishing Marginal Returns: Inference</figcaption>
    <p></p>
 </figure>
@@ -57,7 +57,7 @@ We introduce FairSynergy, a novel framework to allocate cloud resources fairly a
 - **Handling Heterogeneity:** Harder tasks show larger early gains, so the allocator leans into them first and naturally rebalances as gains even out. The result is proportional fairness and fleet-level accuracy that scales with more agents and changing workloads—no math knobs to tune. 
 
 <figure style="text-align: center;">
-    <img src="{{site.baseurl}}/images/post/FS_result_concaveinference.png" alt="Results Boxplot" height="auto" style="margin: auto; display: block;">
+    <img src="{{site.baseurl}}/images/post/FS_cobbdouglas.png" alt="Multivariate Objective" height="auto" style="margin: auto; display: block;">
    <figcaption>**Extending Multivariate ML Utility**: Cobb-Douglas Production Function For a Given Capital and Labor</figcaption>
    <p></p>
 </figure>
