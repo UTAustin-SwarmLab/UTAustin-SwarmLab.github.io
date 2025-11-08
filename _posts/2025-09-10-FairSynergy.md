@@ -6,6 +6,11 @@ categories: blog
 
 *By Oguzhan B.*
 
+<video controls width="300" height="50">
+  <source src="{{site.baseurl}}/images/post/fairsynergy_podcast.mp3" type="audio/mpeg">
+  Your browser does not support the video tag.
+</video>
+
 # FairSynergy: Fair Resource Allocation for Fleet Intelligence
 
 2025 IEEE Global Communications Conference (GLOBECOM 2025)
