@@ -6,16 +6,16 @@ categories: blog
 
 *By Oguzhan B.*
 
-<video controls width="300" height="50">
-  <source src="{{site.baseurl}}/images/post/fairsynergy_podcast.mp3" type="audio/mpeg">
-  Your browser does not support the video tag.
-</video>
-
 # FairSynergy: Fair Resource Allocation for Fleet Intelligence
 
 2025 IEEE Global Communications Conference (GLOBECOM 2025)
 
 **TLDR:** Give or substitute each extra unit of compute or memory to the agent that benefits most to lift fleet accuracy by up to +25% in inference and +11% in training, with even bigger gains as fleets grow!
+
+<video controls width="300" height="50">
+  <source src="{{site.baseurl}}/images/post/fairsynergy_podcast.mp3" type="audio/mpeg">
+  Your browser does not support the video tag.
+</video>
 
 [arXiv](https://arxiv.org/abs/2509.03353) |
 [Code](https://github.com/UTAustin-SwarmLab/Fair-Synergy)
