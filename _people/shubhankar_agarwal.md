@@ -1,6 +1,6 @@
 ---
 name: Shubhankar (Somi) Agarwal
-position: gradstudent
+position: alumni
 avatar: somi.jpeg
 ---
 

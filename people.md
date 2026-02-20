@@ -62,6 +62,7 @@ permalink: /people/
 | Name | Time at SwarmLab | Where they went |
 | :------------- |:-------------| :-----------|
 | Oguzhan Akcin | 2021-2025 | Meta |
+| Shubhankar (Somi) Agarwal | 2021-2025 | Synthefy |
 |Sharachchandra Bhat| 2021-2023 | Tesla|
 |Pranav Kasibhatla| 2023-2024 |Columbia University|
 |Sundar Sripada V. S.| 2022-2023 | UT Austin|

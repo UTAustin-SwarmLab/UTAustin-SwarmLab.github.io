@@ -1,6 +1,6 @@
 ---
 name: Sahil Shah
-position: undergrad
+position: gradstudent
 avatar: sahil.jpg
 ---
 
