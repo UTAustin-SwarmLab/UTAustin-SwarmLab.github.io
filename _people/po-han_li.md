@@ -1,6 +1,6 @@
 ---
 name: Po-han Li
-position: gradstudent
+position: alumni
 avatar: po-han.jpg
 ---
 

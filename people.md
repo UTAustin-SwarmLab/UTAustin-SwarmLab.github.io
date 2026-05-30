@@ -61,6 +61,7 @@ permalink: /people/
 
 | Name | Time at SwarmLab | Where they went |
 | :------------- |:-------------| :-----------|
+| Po-han Li | 2021-2026 | Meta |
 | Oguzhan Akcin | 2021-2025 | Meta |
 | Shubhankar (Somi) Agarwal | 2021-2025 | Synthefy |
 |Sharachchandra Bhat| 2021-2023 | Tesla|
