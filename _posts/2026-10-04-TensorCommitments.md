@@ -4,7 +4,7 @@ description: NeurIPS 2026 paper
 categories: blog
 ---
 
-*By Oguzhan Baser and the TensorCommitments team*
+*By Oguzhan Baser*
 
 # A receipt for a cloud LLM run
 
@@ -14,7 +14,14 @@ Accepted to the 40th Conference on Neural Information Processing Systems (NeurIP
 
 **TL;DR:** TensorCommitments lets a lightweight client check selected hidden states from a remote LLM run using compact cryptographic commitments. On LLaMA 2-13B, the paper reports 98.6 ms of post-inference prover time and 12 ms of verifier time, with no verifier GPU.
 
-[Read the paper](https://arxiv.org/abs/2602.12630) | [Explore the code](https://github.com/NeurIPS26TC/TensorCommitment)
+<video controls width="300" height="50">
+  <source src="{{site.baseurl}}/images/post/tensorcommitments_podcast.mp3" type="audio/mpeg">
+  Your browser does not support the video tag.
+</video>
+
+[arXiv](https://arxiv.org/abs/2602.12630) |
+[Code](https://github.com/NeurIPS26TC/TensorCommitment)
+
 
 ## The question behind the answer
 
@@ -55,5 +62,3 @@ These numbers belong to the reported models, hardware, attacks, and selection bu
 Remote inference will be easier to trust when a client can ask for evidence, rather than accepting only a fluent answer. TensorCommitments offers one route toward that goal: proofs tied to model tensors, a tree that binds an interaction, and verification costs small enough for a client without a GPU.
 
 The limits matter too. The design needs a trusted setup, the prover needs GPU access to the activations, and the paper does not claim full zero knowledge. Its robustness is bounded by the layers and checks a verifier can afford. Those constraints point directly to the next research questions: stronger coverage, more distributed trust, and privacy guarantees that remain practical at LLM scale.
-
-[Paper](https://arxiv.org/abs/2602.12630) | [Code](https://github.com/NeurIPS26TC/TensorCommitment)
