@@ -1,0 +1,1 @@
+Figures cropped from Baser et al., TensorCommitments: A Lightweight Verifiable Inference for Language Models, arXiv:2602.12630 (v2). Source: https://arxiv.org/abs/2602.12630. The four PNGs correspond to paper Fig. 2, Fig. 5, Fig. 7, and Table 1.
