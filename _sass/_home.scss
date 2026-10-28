@@ -23,6 +23,11 @@
     line-height: 0.98;
     letter-spacing: var(--tracking-display);
   }
+  /* Key visual (figure 59) in place of the text title; its "Swarm Lab" name is part of the image */
+  .hero__title--figure {
+    line-height: 0;
+    img { display: block; width: 100%; max-width: 26rem; height: auto; }
+  }
   .hero__lede {
     max-width: 30rem;
     margin: 0 0 var(--space-m);
