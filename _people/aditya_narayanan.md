@@ -2,6 +2,7 @@
 name: Aditya Narayanan
 title: Aditya Narayanan
 position: alumni
+avatar: aditya_narayanan.jpg
 degree: undergrad
 start_year: 2021
 end_year: 2025
