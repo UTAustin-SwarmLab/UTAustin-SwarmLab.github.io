@@ -7,7 +7,7 @@ lede: We build learning, reasoning, and verification for fleets of robots and AI
 {%- comment -%}
   Data: _data/themes.yml (order, text, representative keys) + `themes` field in the bib (first slug = primary).
   Lab era = year >= 2021, "Before Swarm Lab" = year < 2021, `other` = Earlier & other work.
-  Entry markup comes from _layouts/bib.html; the compact "representative" cards use an inline template (-T).
+  Entry markup comes from _layouts/bib.html. `representative` keys must be lab-era papers whose primary theme is this theme.
 {%- endcomment -%}
 <div class="research">
   <nav class="research-index" aria-label="Research themes">
@@ -58,22 +58,20 @@ lede: We build learning, reasoning, and verification for fleets of robots and AI
         <p class="theme-section__blurb">{{ t.blurb }}</p>
       </header>
 
-      {%- if t.representative %}
-      <h3 class="theme-section__label">Representative papers</h3>
-      <div class="reps">
-        {%- for k in t.representative %}
-        {% bibliography --group_by none -T <a class="rep" href="{{ entry.url | default: entry.arxiv | default: entry.pdf | default: entry.project }}"><span class="rep__meta"><span class="rep__venue">{{ entry.venue_short }}</span><span class="rep__award">{{ entry.award }}</span></span><span class="rep__title">{{ entry.title }}</span></a> --query @*[key={{ k }}] %}
-        {%- endfor %}
-      </div>
-      {%- endif %}
-
-      <h3 class="theme-section__label">All papers since 2021 <span class="theme-section__count">{{ n }} {% if n == 1 %}paper{% else %}papers{% endif %}</span></h3>
-      {% bibliography --group_by none --max 6 --query @*[themes^={{ t.slug }}, year>=2021] %}
-      {%- if n > 6 %}
-      {%- assign rest = n | minus: 6 %}
+      {%- comment -%} Selected = the theme's `representative` keys (most relevant, top venues); the rest of the lab-era papers are collapsed. {%- endcomment -%}
+      {%- assign sel = "" %}{%- assign excl = "" %}
+      {%- for k in t.representative %}
+        {%- unless forloop.first %}{% assign sel = sel | append: " || " %}{% endunless %}
+        {%- assign sel = sel | append: "key=" | append: k %}
+        {%- assign excl = excl | append: ", key!=" | append: k %}
+      {%- endfor %}
+      <h3 class="theme-section__label">Selected papers <span class="theme-section__count">{{ n }} {% if n == 1 %}paper{% else %}papers{% endif %} since 2021</span></h3>
+      {% bibliography --group_by none --query @*[{{ sel }}] %}
+      {%- assign rest = n | minus: t.representative.size %}
+      {%- if rest > 0 %}
       <details class="more">
         <summary class="more__summary"><span class="more__closed">Show {{ rest }} more</span><span class="more__open">Show fewer</span></summary>
-        {% bibliography --group_by none --offset 6 --query @*[themes^={{ t.slug }}, year>=2021] %}
+        {% bibliography --group_by none --query @*[themes^={{ t.slug }}, year>=2021{{ excl }}] %}
       </details>
       {%- endif %}
     </section>

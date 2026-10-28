@@ -251,12 +251,12 @@ The Research page is driven by two things: `_data/themes.yml` (the five themes, 
   headline: Formal and cryptographic guarantees for deployed models.   # one line, also on Home
   blurb: >-                        # the paragraph under the title
     Deployed models face adversaries, ...
-  representative: [baser2026tensorcommitments, agarwal2022synthesizing, baser2025phonemefake]   # bib keys, 3 shown as cards
+  representative: [baser2026tensorcommitments, cheng2022task, agarwal2022synthesizing]   # 3 bib keys shown as "Selected papers"; the rest are collapsed
 ```
 
 - Papers from **2021 on** are listed under the **primary** (first) theme.
 - Papers before 2021 go into the "Before Swarm Lab" block, grouped by theme; `themes={other}` goes into "Earlier & other work".
-- `representative` takes bib keys that must exist in `references.bib`.
+- `representative` takes bib keys that must exist in `references.bib`. Pick the most relevant papers from the strongest venues, from 2021 on, whose **primary** theme is this theme (otherwise the "Show N more" count is off).
 - Slugs must match exactly. Adding a sixth theme is a design decision: also check `research.md`, where each theme has its own small illustration, and ask first.
 
 ## Write a blog post
@@ -323,7 +323,7 @@ Never push straight to a branch other than `source`; there is no separate `maste
 
 **Something broke?** Open the failed run in the Actions tab and read the "Build with Jekyll" log. Typical causes: a duplicate BibTeX key, an unbalanced `{` in a bib entry, bad YAML in `news.yml` or a front matter block (check indentation and quotes), or a post without a `YYYY-MM-DD-` prefix.
 
-**Help:** text Po-han in the Swarm Lab Slack or email pohanli@utexas.edu; if that does not work, ping Sundar.
+**Help:** message Oguzhan Baser in the Swarm Lab Slack or email oguzhanbaser@utexas.edu.
 
 ## Credits
 

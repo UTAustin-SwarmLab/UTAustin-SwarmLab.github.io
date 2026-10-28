@@ -8,7 +8,7 @@
     We develop game-theoretic, submodular, and multi-agent learning methods that decide how robots
     plan together, which data each robot collects and shares, and where human supervision goes,
     so the whole swarm improves as one.
-  representative: [akcin2025dual, bhatt2025uncap, akcin2023fleet]
+  representative: [bhatt2025uncap, akcin2025dual, li2023taskaware]
 - slug: edge
   name: Edge–Cloud Systems for Embodied AI
   headline: Communication-efficient perception and inference across networks.
@@ -17,7 +17,7 @@
     learning with communication through task-aware compression, offloading, adaptive model
     selection, and resource allocation, together with representations that make robot perception
     efficient at the edge.
-  representative: [li2023taskaware, baser2025fairsynergy, Omama2024exploiting]
+  representative: [Omama2024exploiting, qiu2022ml, nakanoya2021co]
 - slug: neurosymbolic
   name: Neuro-Symbolic Video Understanding
   headline: Grounding foundation models in temporal logic.
@@ -33,7 +33,7 @@
     Deployed models face adversaries, privacy leakage, deepfakes, and untrusted compute providers.
     We build verifiable LLM inference, privacy-aware representations, deepfake defenses, and robust
     controllers under adversarial conditions.
-  representative: [baser2026tensorcommitments, agarwal2022synthesizing, baser2025phonemefake]
+  representative: [baser2026tensorcommitments, cheng2022task, agarwal2022synthesizing]
 - slug: timeseries
   name: Time-Series Generation & Forecasting
   headline: Conditional, constrained generation of temporal data.
@@ -41,4 +41,4 @@
     Physical systems are described by time series. We build conditional and constrained
     time-series generators and forecasts that are robust, private, and evaluated by the decisions
     they support.
-  representative: [narasimhan2024time, agarwal2023, li2022differentially]
+  representative: [narasimhan2024time, narasimhan2024cps, agarwal2023]
