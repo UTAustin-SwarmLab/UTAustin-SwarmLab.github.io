@@ -1,16 +1,19 @@
 ---
 name: Pranav Kasibhatla
+title: Pranav Kasibhatla
 position: alumni
 avatar: pranav.jpg
+degree: undergrad
+start_year: 2023
+end_year: 2024
+placement: Columbia University
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _Bachelor's Student, Physics (Computational Physics), UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `pkash47@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
-<!-- <i class="fa fa-external-link"></i> [Personal Website](https://spsharan.com/) -->
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `pkash47@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://spsharan.com/) -->
 
 **Office**<br>
 AHG 2.204, 2501 Wichita St,<br>

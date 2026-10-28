@@ -1,0 +1,509 @@
+// _people.scss — People page, person/alumni cards, profile layout (Track C).
+// Tokens (--surface, --border, --accent-*, --step-*, --space-*, --radius-*, ...) come from _tokens.scss.
+// Utilities (.pill, .pill--accent, .eyebrow, .btn, .container, .section-header) come from Track A.
+
+.people-section {
+  // each section is a size container so the grids can switch columns by their own width
+  container: people / inline-size;
+  margin-block-start: var(--space-xl);
+
+  .section-header {
+    display: block;
+    margin-block-end: var(--space-m);
+
+    .eyebrow { margin: 0 0 var(--space-3xs); }
+    h2 { margin: 0; }
+  }
+}
+
+.person, .alumni-card, .profile, .pi-card {
+  .tnum { font-variant-numeric: tabular-nums; }
+}
+
+// ---- initials placeholder (no external images) --------------------------------------------
+.initials {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-tint);
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  letter-spacing: var(--tracking-display);
+  user-select: none;
+}
+
+// ---- icon-only link row (cards) ----------------------------------------------------------------
+.person__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative; // sits above the stretched card link
+  z-index: 1;
+
+  a {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    border-radius: var(--radius-s);
+    color: var(--text-muted);
+    transition: color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      color: var(--accent-strong);
+      background: var(--accent-tint);
+    }
+    &:focus-visible {
+      outline: var(--focus);
+      outline-offset: var(--focus-offset);
+    }
+  }
+
+  .icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}
+
+// ---- badges ------------------------------------------------------------------------------------
+.person__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .pill {
+    display: inline-block;
+    white-space: normal; // long fellowship names wrap instead of overflowing
+    border-radius: var(--radius-s);
+    font-family: var(--font-sans);
+    line-height: var(--lh-snug);
+    font-size: var(--step--1);
+  }
+}
+
+// ---- PI feature card -----------------------------------------------------------------------------
+.pi-card {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: var(--space-l);
+  align-items: center;
+  padding: var(--space-s);
+  background: var(--surface);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-1);
+
+  .pi-card__media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-m);
+    background: var(--surface-2);
+  }
+
+  .eyebrow { margin: 0 0 var(--space-3xs); }
+
+  .pi-card__name {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: var(--step-4);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-display);
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent-text); }
+  }
+
+  .pi-card__role {
+    margin: var(--space-2xs) 0 0;
+    color: var(--text-2);
+    font-size: var(--step-1);
+    line-height: var(--lh-snug);
+  }
+
+  .pi-card__interests {
+    margin: var(--space-2xs) 0 0;
+    max-width: 52ch;
+    color: var(--text-muted);
+  }
+
+  .person__links { margin-block: var(--space-s) 0; }
+  .person__links + p { margin: var(--space-xs) 0 0; }
+
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+    gap: var(--space-s);
+    .pi-card__media img { max-width: 12rem; }
+  }
+}
+
+// ---- grids ---------------------------------------------------------------------------------------
+// 1 / 2 / 3 / 4 columns by the container width (not the viewport)
+.people-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-s);
+}
+@container people (min-width: 28rem) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
+@container people (min-width: 40rem) { .people-grid { grid-template-columns: repeat(3, 1fr); } }
+@container people (min-width: 60rem) { .people-grid { grid-template-columns: repeat(4, 1fr); } }
+
+// ---- person card -----------------------------------------------------------------------------------
+.person {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-2xs);
+  background: var(--surface);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-m);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+
+  .person__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-s);
+    background: var(--surface-2);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+  }
+
+  .person__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: 0 var(--space-2xs) var(--space-2xs);
+  }
+
+  .person__name {
+    margin: 0;
+    font-size: var(--step-1);
+    font-weight: var(--weight-semibold);
+    line-height: var(--lh-snug);
+
+    a { color: inherit; text-decoration: none; }
+    // stretched link: the whole card opens the profile
+    a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-m);
+    }
+    a:focus-visible { outline: none; }
+    a:focus-visible::after {
+      outline: var(--focus);
+      outline-offset: var(--focus-offset);
+    }
+  }
+
+  .person__role {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  .person__interests {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    color: var(--text-2);
+    font-size: var(--step--1);
+    line-height: var(--lh-snug);
+  }
+
+  .person__badges { margin-block-start: auto; padding-block-start: var(--space-3xs); }
+  .person__links { margin-block-start: var(--space-3xs); margin-inline-start: -0.4rem; }
+  .person__badges + .person__links { margin-block-start: 0; }
+}
+
+// narrow container (phones): row cards so 8 students do not mean 8 screens of portraits
+@container people (max-width: 27.99rem) {
+  .person {
+    flex-direction: row;
+    align-items: flex-start;
+
+    .person__media {
+      flex: 0 0 6rem;
+    }
+    .person__body { padding: var(--space-3xs) var(--space-2xs) var(--space-2xs) 0; }
+  }
+}
+
+// ---- alumni ------------------------------------------------------------------------------------------
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-s);
+}
+
+.alumni-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-xs);
+  background: var(--surface);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-m);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-2);
+  }
+
+  .alumni-card__media {
+    flex: 0 0 4rem;
+    height: 5rem;
+    overflow: hidden;
+    border-radius: var(--radius-s);
+    background: var(--surface-2);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+    .initials { font-size: var(--step-1); }
+  }
+
+  .alumni-card__body { min-width: 0; }
+
+  .alumni-card__name {
+    margin: 0;
+    font-size: var(--step-0);
+    font-weight: var(--weight-semibold);
+    line-height: var(--lh-snug);
+
+    a { color: inherit; text-decoration: none; }
+    a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-m);
+    }
+    a:focus-visible { outline: none; }
+    a:focus-visible::after {
+      outline: var(--focus);
+      outline-offset: var(--focus-offset);
+    }
+  }
+
+  .alumni-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-2xs);
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+
+    span + span::before {
+      content: "\00b7";
+      margin-inline-end: var(--space-2xs);
+    }
+  }
+
+  .alumni-card__placement {
+    margin: var(--space-3xs) 0 0;
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+
+    > span:first-child { color: var(--accent-text); }
+
+    a {
+      position: relative; // above the stretched name link
+      z-index: 1;
+      color: var(--accent-text);
+      text-underline-offset: 0.2em;
+
+      &:hover { color: var(--accent-strong); }
+    }
+  }
+}
+
+// ---- lab life strip -------------------------------------------------------------------------------------
+.people-life {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: var(--space-l);
+  align-items: center;
+  padding: var(--space-l);
+  background: var(--surface-2);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-l);
+
+  .eyebrow { margin: 0 0 var(--space-3xs); }
+  h2 { margin: 0 0 var(--space-2xs); }
+  p { color: var(--text-2); }
+  p:last-child { margin-bottom: 0; }
+
+  .people-life__strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-m);
+    }
+  }
+
+  @media (max-width: 48rem) {
+    grid-template-columns: 1fr;
+    padding: var(--space-m);
+  }
+}
+
+// ---- profile page -----------------------------------------------------------------------------------------
+.profile {
+  padding-block: var(--space-l) var(--space-2xl);
+
+  .profile__back {
+    margin: 0 0 var(--space-m);
+    font-size: var(--step--1);
+
+    a { color: var(--text-muted); text-decoration: none; }
+    a:hover { color: var(--accent-text); }
+  }
+
+  .profile__header {
+    display: grid;
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    gap: var(--space-l);
+    align-items: start;
+
+    @media (max-width: 40rem) {
+      grid-template-columns: 1fr;
+      gap: var(--space-m);
+    }
+  }
+
+  .profile__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    background: var(--surface-2);
+    box-shadow: var(--shadow-2);
+
+    @media (max-width: 40rem) { max-width: 12rem; }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+    }
+    .initials { font-size: var(--step-5); }
+  }
+
+  .profile__intro { padding-block-start: var(--space-2xs); }
+  .eyebrow { margin: 0 0 var(--space-3xs); }
+
+  .profile__name {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: var(--step-4);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .profile__role,
+  .profile__years {
+    margin: var(--space-2xs) 0 0;
+    color: var(--text-muted);
+  }
+  .profile__role { color: var(--text-2); font-size: var(--step-1); }
+  .profile__years a { color: var(--accent-text); text-underline-offset: 0.2em; }
+
+  .profile__interests {
+    margin: var(--space-xs) 0 0;
+    max-width: 52ch;
+    color: var(--text-2);
+  }
+
+  .person__badges { margin-block-start: var(--space-s); }
+
+  .person__links {
+    gap: var(--space-2xs);
+    margin-block-start: var(--space-m);
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      min-height: 2rem;
+      min-width: 0;
+      padding: 0.35rem 0.75rem;
+      font-size: var(--step--1);
+      color: var(--text);
+
+      &:hover { color: var(--accent-strong); background: var(--accent-tint); }
+    }
+    .icon { width: 1rem; height: 1rem; }
+  }
+
+  .profile__body {
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-l);
+    border-top: var(--border-w) solid var(--border);
+
+    // bios still contain small inline icons (mail, resume, website) from the old template
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-inline-end: 0.25em;
+      vertical-align: -0.125em;
+      color: var(--text-muted);
+    }
+    .sc {
+      font-variant: small-caps;
+      font-size: inherit;
+      font-weight: var(--weight-semibold);
+    }
+    // keep the contact block compact; bio paragraphs keep the normal measure
+    ul { padding-inline-start: 1.1em; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person, .alumni-card, .person__links a { transition: none; }
+  .person:hover { transform: none; }
+}

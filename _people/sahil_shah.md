@@ -1,16 +1,16 @@
 ---
 name: Sahil Shah
+title: Sahil Shah
 position: gradstudent
 avatar: sahil.jpg
+interests: Edge AI for swarm robotics
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _Bachelor's Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `ss96869@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
-<!-- <i class="fa fa-external-link"></i> [Personal Website](https://spsharan.com/) -->
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `ss96869@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://spsharan.com/) -->
 
 **Office**<br>
 AHG 2.204, 2501 Wichita St,<br>

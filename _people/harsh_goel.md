@@ -1,16 +1,24 @@
 ---
 name: Harsh Goel
+title: Harsh Goel
 position: gradstudent
 avatar: harsh_goel.jpg
+degree: phd
+start_year: 2023
+interests: Multi-agent systems, embodied AI and reinforcement learning
+website: https://harshg99.github.io/hgmain/
+github: https://github.com/harshg99
+linkedin: https://www.linkedin.com/in/harshgoel57199
+fellowships:
+  - name: Cockrell School of Engineering fellowship
+    year: 2023
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `harshg99@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/your_resume_filename.pdf)<br> -->
-<i class="fa fa-external-link"></i> [Personal Website](https://harshg99.github.io/hgmain/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `harshg99@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/your_resume_filename.pdf)<br> -->
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://harshg99.github.io/hgmain/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>

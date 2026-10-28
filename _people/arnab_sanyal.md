@@ -1,16 +1,22 @@
 ---
 name: Arnab Sanyal
+title: Arnab Sanyal
 position: gradstudent
 avatar: arnabsanyal.jpg
+degree: phd
+start_year: 2023
+interests: Energy-efficient, robust ML inference for generative AI on edge devices (quantization, computer arithmetic, accelerators)
+website: https://arnabsanyal.com/
+scholar: https://scholar.google.com/citations?user=D9ebkwoAAAAJ
+github: https://github.com/arnabsanyal
+linkedin: https://www.linkedin.com/in/arnabsanyal17/
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `sanyal@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)](https://drive.google.com/open?id=1qmr7uleFa0IoCncOq6VHd0Pkg9Zh6q0o)<br>
-<i class="fa fa-external-link"></i> [Personal Website](https://arnabsanyal.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sanyal@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](https://drive.google.com/open?id=1qmr7uleFa0IoCncOq6VHd0Pkg9Zh6q0o)<br>
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://arnabsanyal.github.io/)
 
 **Office**<br>
 EER 4.836, 2501 Speedway,<br>

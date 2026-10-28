@@ -1,15 +1,20 @@
 ---
 name: Oguzhan Baser
+title: Oguzhan Baser
 position: gradstudent
 avatar: oguzhan_b.png
+degree: phd
+start_year: 2022
+interests: Distributed optimization, network intelligence, verifiable/private ML, blockchain, security
+website: http://oguzhan-baser.github.io/
+github: https://github.com/oguzhan-baser
+linkedin: https://www.linkedin.com/in/baseroguzhan/
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `oguzhanbaser at utexas.edu`<br>
-<i class="fa fa-external-link"></i> [Personal Website](http://oguzhan-baser.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `oguzhanbaser at utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](http://oguzhan-baser.github.io/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>

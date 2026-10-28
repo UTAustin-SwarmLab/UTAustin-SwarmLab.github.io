@@ -1,16 +1,21 @@
 ---
 name: Shubhankar (Somi) Agarwal
+title: Shubhankar (Somi) Agarwal
 position: alumni
 avatar: somi.jpeg
+degree: phd
+start_year: 2021
+end_year: 2025
+website: https://sagarwal-atg.github.io/
+placement: Synthefy
+placement_url: https://www.synthefy.com/about
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `somi.agarwal@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/oguzhan_b_resume.pdf)<br> -->
-<i class="fa fa-external-link"></i> [Personal Website](https://sagarwal-atg.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `somi.agarwal@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/oguzhan_b_resume.pdf)<br> -->
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://sagarwal-atg.github.io/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>

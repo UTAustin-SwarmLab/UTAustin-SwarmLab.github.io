@@ -1,16 +1,20 @@
 ---
 name: S. P. Sharan
+title: S. P. Sharan
 position: gradstudent
 avatar: sharan.jpg
+degree: phd
+start_year: 2022
+interests: Neuro-symbolic video understanding, computer vision, reinforcement learning
+website: https://spsharan.com/
+github: https://github.com/Syzygianinfern0
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `spsharan@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
-<i class="fa fa-external-link"></i> [Personal Website](https://spsharan.com/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `spsharan@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://spsharan.com/)
 
 **Office**<br>
 EER 3.???, 2501 Wichita St,<br>

@@ -1,16 +1,20 @@
 ---
 name: Sundar Sripada V. S.
+title: Sundar Sripada V. S.
 position: alumni
 avatar: sundar.jpg
+degree: ms
+start_year: 2022
+end_year: 2023
+website: https://ss26.github.io/
+placement: UT Austin
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `sundarsripadavs@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)](/documents/sundar_resume.pdf)<br>
-<i class="fa fa-external-link"></i> [Personal Website](https://ss26.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sundarsripadavs@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/sundar_resume.pdf)<br>
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://ss26.github.io/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>

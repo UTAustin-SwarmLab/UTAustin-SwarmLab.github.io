@@ -1,8 +1,69 @@
 ---
 layout: default
 ---
-<div class="container content page">
-  <h3 class="page-title">{{ page.name }}</h3>
-  <span style="display: block; margin-bottom: 1em"></span>
-  {{ content }}
+{%- assign stem = page.avatar | split: "." | first -%}
+{%- case page.degree -%}
+  {%- when "phd" -%}{%- assign degree_label = "PhD" -%}
+  {%- when "ms" -%}{%- assign degree_label = "MS" -%}
+  {%- when "undergrad" -%}{%- assign degree_label = "Undergrad" -%}
+  {%- when "postdoc" -%}{%- assign degree_label = "Postdoc" -%}
+  {%- when "visiting" -%}{%- assign degree_label = "Visiting" -%}
+  {%- else -%}{%- assign degree_label = "" -%}
+{%- endcase -%}
+{%- assign names = page.name | split: " " -%}
+{%- assign first_initial = names.first | slice: 0 -%}
+{%- assign last_initial = names.last | slice: 0 -%}
+<div class="container profile">
+  <p class="profile__back"><a href="{{ site.baseurl }}/people/"><span aria-hidden="true">&larr;</span> People</a></p>
+
+  <header class="profile__header">
+    <div class="profile__media">
+      {%- if page.avatar %}
+      <img src="{{ site.baseurl }}/images/people/web/{{ stem }}.webp" width="480" height="600" decoding="async" alt="Portrait of {{ page.name }}">
+      {%- else %}
+      <span class="initials" aria-hidden="true">{{ first_initial | append: last_initial | upcase }}</span>
+      {%- endif %}
+    </div>
+    <div class="profile__intro">
+      <p class="eyebrow">
+        {%- if page.position == "alumni" %}Alumni{% elsif page.position == "pi" %}Principal investigator{% elsif degree_label != "" %}{{ degree_label }}{% if page.position == "gradstudent" or page.position == "undergrad" %} student{% endif %}{% else %}Swarm Lab{% endif -%}
+      </p>
+      <h1 class="profile__name">{{ page.name }}</h1>
+      {%- if page.role %}<p class="profile__role">{{ page.role }}, UT Austin</p>{% endif %}
+      {%- if page.start_year %}
+      <p class="profile__years tnum">
+        {%- if page.end_year %}At the lab {{ page.start_year }}&ndash;{{ page.end_year }}{% else %}At the lab since {{ page.start_year }}{% endif -%}
+        {%- if page.placement %} <span aria-hidden="true">&middot;</span> <span aria-hidden="true">&rarr;</span><span class="visually-hidden">now at</span> {% if page.placement_url %}<a href="{{ page.placement_url }}" rel="noopener">{{ page.placement }}</a>{% else %}{{ page.placement }}{% endif %}{% endif -%}
+      </p>
+      {%- elsif page.placement %}
+      <p class="profile__years"><span aria-hidden="true">&rarr;</span><span class="visually-hidden">Now at</span> {{ page.placement }}</p>
+      {%- endif %}
+      {%- if page.interests %}<p class="profile__interests">{{ page.interests }}</p>{% endif %}
+
+      {%- if page.fellowships or page.internships %}
+      <ul class="person__badges" aria-label="Fellowships and internships">
+        {%- for f in page.fellowships %}
+        <li class="pill pill--accent">{{ f.name }}{% if f.year %} <span class="tnum">{{ f.year }}</span>{% endif %}</li>
+        {%- endfor %}
+        {%- for i in page.internships %}
+        <li class="pill">{{ i.company }} intern{% if i.year %} <span class="tnum">{{ i.year }}</span>{% endif %}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+
+      {%- if page.website or page.scholar or page.github or page.linkedin or page.email %}
+      <ul class="person__links">
+        {%- if page.website %}<li><a class="btn btn--secondary" href="{{ page.website }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg> Website</a></li>{% endif %}
+        {%- if page.scholar %}<li><a class="btn btn--secondary" href="{{ page.scholar }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg> Scholar</a></li>{% endif %}
+        {%- if page.github %}<li><a class="btn btn--secondary" href="{{ page.github }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a></li>{% endif %}
+        {%- if page.linkedin %}<li><a class="btn btn--secondary" href="{{ page.linkedin }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a></li>{% endif %}
+        {%- if page.email %}<li><a class="btn btn--secondary" href="mailto:{{ page.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Email</a></li>{% endif %}
+      </ul>
+      {%- endif %}
+    </div>
+  </header>
+
+  <div class="profile__body prose">
+    {{ content }}
+  </div>
 </div>

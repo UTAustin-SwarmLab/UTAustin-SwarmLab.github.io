@@ -1,16 +1,20 @@
 ---
 name: Oguzhan Akcin
+title: Oguzhan Akcin
 position: alumni
 avatar: oguzhan_akcin.jpg
+degree: phd
+start_year: 2021
+end_year: 2025
+website: http://oguzhanakcin.github.io/
+placement: Meta
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `oguzhanakcin@utexas.edu`<br>
-<i class="fa fa-newspaper-o"></i> [Resume (pdf)](https://oguzhanakcin.github.io/assets/pdf/Oguzhan_Akcin_Resume.pdf)<br>
-<i class="fa fa-external-link"></i> [Personal Website](http://oguzhanakcin.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `oguzhanakcin@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](https://oguzhanakcin.github.io/assets/pdf/Oguzhan_Akcin_Resume.pdf)<br>
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](http://oguzhanakcin.github.io/)
 
 
 **Office**<br>

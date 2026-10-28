@@ -1,15 +1,19 @@
 ---
 name: Sharachchandra Bhat
+title: Sharachchandra Bhat
 position: alumni
 avatar: sharachchandra.png
+degree: ms
+start_year: 2021
+end_year: 2023
+website: https://sharachchandra.github.io/
+placement: Tesla
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<i class="fa fa-envelope-o"></i> `sharachchandra@utexas.edu`<br>
-<i class="fa fa-external-link"></i> [Personal Website](https://sharachchandra.github.io/)
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sharachchandra@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://sharachchandra.github.io/)
 
 **Office**<br>
 Anna Hiss Gym 2.204, 2501 Wichita St,<br>

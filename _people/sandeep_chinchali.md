@@ -1,17 +1,20 @@
 ---
 name: Sandeep Chinchali
+title: Sandeep Chinchali
 position: pi
 avatar: SandeepChinchali.png
+role: Assistant Professor, Electrical and Computer Engineering
+interests: Swarm robotics, edge computing, wireless networking, and energy-efficient deep learning
+email: sandeepc@utexas.edu
+scholar: https://scholar.google.com/citations?user=262ASa4AAAAJ
 ---
-
-<img width="300" src="{{site.baseurl}}/images/people/{{page.avatar}}" data-action="zoom">
 
 - _Assistant Professor, Electrical and Computer Engineering, UT Austin_<br>
 - _Fellow of the Jack Kilby/Texas Instruments Endowed Faculty Fellowship in Computer Engineering_<br>
 - _Core Faculty, Texas Robotics_<br>
 
-<i class="fa fa-envelope-o"></i> `sandeepc@utexas.edu`<br>
-<!-- <i class="fa fa-newspaper-o"></i> [CV (pdf)](/documents/dfk_cv.pdf) -->
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sandeepc@utexas.edu`<br>
+<!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [CV (pdf)](/documents/dfk_cv.pdf) -->
 
 **Office**<br>
 EER 6.870, 2501 Speedway<br>
