@@ -344,3 +344,12 @@
   text-wrap: balance;
 }
 .not-found__links { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: var(--space-m) 0 0; padding: 0; list-style: none; }
+
+/* ---------- Print (posts and pages): content only, black on white, external URLs spelled out ---------- */
+@media print {
+  body { background: #fff; color: #000; }
+  .site-header, .skip, .site-footer, .share, .post-nav, .swarm, .ticker, .home-life__actions { display: none !important; }
+  .post-body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
+  .post-body pre, .post-body img, .post-body figure, .post-body table { break-inside: avoid; }
+  .post-body img { max-width: 100%; height: auto; }
+}

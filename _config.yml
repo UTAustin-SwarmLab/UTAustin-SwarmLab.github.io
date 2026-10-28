@@ -39,6 +39,10 @@ exclude:
   - js/transition.js
   - js/zoom.js
   - css/zoom.css
+  - README.md
+  - Rakefile
+  - scripts
+  - LICENSE
 
 # Sass
 sass:
@@ -88,7 +92,7 @@ scholar:
   order: ascending
   group_by: year
   group_order: descending
-  bibliography_group_tag: h3
+  bibliography_group_tag: h2
   bibliography_list_tag: ul
   bibliography_item_tag: li
   bibliography_list_attributes:

@@ -115,9 +115,11 @@ lede: We build learning, reasoning, and verification for fleets of robots and AI
   var links = [].slice.call(document.querySelectorAll('.research-index__link'));
   var map = {};
   links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var first = links.length ? links[0].getAttribute('href').slice(1) : '';
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
+      /* scrolled back above the first section: nothing is current */
+      if (!e.isIntersecting) { if (e.boundingClientRect.top > 0 && e.target.id === first) links.forEach(function (a) { a.removeAttribute('aria-current'); }); return; }
       links.forEach(function (a) { a.removeAttribute('aria-current'); });
       var a = map[e.target.id];
       if (a) {

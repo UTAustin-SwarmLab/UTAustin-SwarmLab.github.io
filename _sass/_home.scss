@@ -14,6 +14,7 @@
     .hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-2xl); }
   }
 
+  .hero__copy { min-width: 0; }
   .hero__title {
     margin: 0 0 var(--space-s);
     font-family: var(--font-serif);
@@ -39,7 +40,7 @@
     font-size: var(--step--1);
     color: var(--text-muted);
   }
-  .hero__meta a { color: var(--text-2); }
+  .hero__meta a { padding-block: 0.15rem; color: var(--text-2); }  /* >= 24px touch target */
   .hero__meta a:hover { color: var(--accent-text); }
 
   /* NEW pill (newest news item with `featured: true`) */
@@ -248,6 +249,10 @@
   }
   .pubs-selected h3, .pubs-selected > h2 { display: none; }
   .pubs-selected ul, .pubs-selected ol { list-style: none; margin: 0; padding: 0; }
+  /* jekyll-scholar emits a duplicate class attribute here, so .pub-list never applies: space the entries explicitly. */
+  .pubs-selected ul > li { padding: var(--space-s) 0; border-bottom: var(--border-w) solid var(--border); }
+  .pubs-selected ul > li:first-child { padding-top: 0; }
+  .pubs-selected ul > li:last-child { border-bottom: 0; }
 
   /* ---------- Lab life ticker ---------- */
   .section--band { background: var(--surface-2); border-block: var(--border-w) solid var(--border); }

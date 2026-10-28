@@ -36,7 +36,7 @@ lede: Papers from the Swarm Lab and from Sandeep's earlier work. Filter by resea
   var chips = [].slice.call(bar.querySelectorAll('.chip'));
   var count = bar.querySelector('.pubs-count');
   var empty = root.querySelector('.pubs-empty');
-  var groups = [].slice.call(root.querySelectorAll('h3.bibliography')).map(function (h) {
+  var groups = [].slice.call(root.querySelectorAll('h2.bibliography')).map(function (h) {
     return { head: h, list: h.nextElementSibling, label: h.textContent.trim() };
   });
   var theme = '', query = '';

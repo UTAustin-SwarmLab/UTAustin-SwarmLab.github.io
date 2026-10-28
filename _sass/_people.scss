@@ -493,6 +493,9 @@
       vertical-align: -0.125em;
       color: var(--text-muted);
     }
+    // kramdown emits a line-leading <svg> as its own block and wraps the text after it in a <p>; pull that <p> back onto the icon's line
+    > .icon + p { display: inline; }
+    > .icon + p + p { margin-block-start: var(--space-s); }
     .sc {
       font-variant: small-caps;
       font-size: inherit;
