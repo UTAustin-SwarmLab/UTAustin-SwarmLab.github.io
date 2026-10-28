@@ -1,9 +1,12 @@
 {%- comment -%}
-  Date-column news list. Params: limit (optional, number of items).
+  Date-column news list. Params: limit (optional, number of items), items (optional array of news items,
+  e.g. one year-group from news.md; default is the whole list).
   Source: site.data.news_all (bib + news.yml merged by _plugins/bib_news.rb), falling back to site.data.news.
-  Optional item fields: type (shown as a mono label), featured (see index.html NEW pill).
+  Optional item fields: type (shown as a mono label except for 'paper'/'news'; also data-type for the /news/ filter), featured (see index.html NEW pill).
 {%- endcomment -%}
-{%- if site.data.news_all -%}
+{%- if include.items -%}
+  {%- assign news_items = include.items -%}
+{%- elsif site.data.news_all -%}
   {%- assign news_items = site.data.news_all -%}
 {%- else -%}
   {%- assign news_items = site.data.news | sort: 'date' | reverse -%}
@@ -14,11 +17,11 @@
   {%- for item in news_items limit: news_limit %}
   {%- assign item_s = item.date | date: '%s' | plus: 0 -%}
   {%- assign age_days = now_s | minus: item_s | divided_by: 86400 %}
-  <li class="news-item">
+  <li class="news-item{% if item.type == 'award' %} news-item--award{% endif %}" data-type="{{ item.type | default: 'news' }}">
     <time class="news-date" datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %Y' }}</time>
     <div class="news-body">
       {{ item.details }}
-      {%- if item.type and item.type != 'news' %} <span class="news-type">{{ item.type }}</span>{% endif -%}
+      {%- if item.type and item.type != 'news' and item.type != 'paper' %} <span class="news-type news-type--{{ item.type }}">{{ item.type }}</span>{% endif -%}
       {%- if age_days < 30 %} <span class="news-new" title="Posted in the last 30 days"><span class="visually-hidden">New</span></span>{% endif -%}
     </div>
   </li>

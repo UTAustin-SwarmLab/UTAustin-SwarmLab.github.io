@@ -1,28 +1,55 @@
+- date: 2026-07-20
+  type: award
+  featured: true
+  pill: "NSF CAREER award"
+  details: >-
+    Sandeep Chinchali received the <a href="https://www.nsf.gov/awardsearch/show-award?AWD_ID=2542143">NSF CAREER award</a> for "CAREER: Foundations of Cloud Robotics &ndash; Where Neural Networks Meet Physical Networks". Read the <a href="https://ece.utexas.edu/news/four-texas-ece-faculty-receive-nsf-career-awards-2026">UT ECE announcement</a>.
+- date: 2025-10-24
+  type: award
+  details: >-
+    Mohammad Omama received the <a href="https://ece.utexas.edu/news/four-texas-ece-students-awarded-amazon-ai-phd-fellowships">Amazon AI PhD Fellowship</a>, one of 15 UT Austin recipients!
 - date: 2026-10-04
+  type: paper
+  key: baser2026tensorcommitments
   details: >-
     Oguzhan B.'s paper <a href="https://arxiv.org/abs/2602.12630">TensorCommitments: A Lightweight Verifiable Inference for Language Models</a> was accepted to NeurIPS 2026! <a href="/2026/10/04/TensorCommitments.html">Read the blog post</a> and <a href="https://github.com/NeurIPS26TC/TensorCommitment">explore the code</a>.
 - date: 2026-10-01
+  type: paper
+  key: gedik2026attentionvig
   details: >-
     Oguzhan B.'s paper <a href="https://arxiv.org/abs/2509.25570">AttentionViG: Cross-Attention-Based Dynamic Neighbor Aggregation in Vision GNNs</a> was accepted to the Fifth Learning on Graphs Conference (LoG 2026)! <a href="/2026/10/01/AttentionViG.html">Read the blog post</a>.
 - date: 2026-05-21
+  type: defense
   details: >-
     Po-han passed his PhD defense.
 - date: 2026-05-28
+  type: paper
+  key: bhatt2025uncap
   details: >-
     Po-han's paper <a href="https://uncap-project.github.io/1"> UNCAP: Uncertainty-Guided Neurosymbolic Planning Using Natural Language Communication for Cooperative Autonomous Vehicles </a> was nominated for the best paper award at AAMAS 2026!
 - date: 2025-11-07
+  type: paper
+  key: shah2025neus
   details: >-
     Sahil Shah's paper <a href="https://arxiv.org/abs/2509.18041"> NeuS-QA: Grounding Long-Form Video Understanding in Temporal Logic and Neuro-Symbolic Reasoning </a> was accepted to AAAI 2026!
 - date: 2025-10-10
+  type: paper
+  key: narasimhan2024cps
   details: >-
     Sai Shankar's paper <a href="https://arxiv.org/abs/2410.12652"> Constrained Posterior Sampling: Time Series Generation with Hard Constraints </a> was accepted to NeurIPS 2025!
 - date: 2025-09-21
+  type: paper
+  key: chen2025vibevideototextinformationbottleneck
   details: >-
     Po-han's paper <a href="https://openreview.net/forum?id=C35FCYZBXp"> VIBE: Annotation-Free Video-to-Text Information Bottleneck Evaluation for TL;DR </a> was accepted to NeurIPS 2025!
 - date: 2025-08-01
+  type: paper
+  key: baser2025fairsynergy
   details: >-
     Oguzhan B.'s paper <a href="https://openreview.net/forum?id=M1e2PEMLp2"> Fair Resource Allocation for Fleet Intelligence </a> was accepted to GLOBECOM 2025!
 - date: 2025-08-01
+  type: paper
+  key: akcin2025dual
   details: >-
     Oguzhan A.'s paper <a href="https://openreview.net/forum?id=M1e2PEMLp2"> Distributed Upload and Active Labeling for Resource-Constrained Fleet Learning </a> was accepted to CoRL 2025!
 

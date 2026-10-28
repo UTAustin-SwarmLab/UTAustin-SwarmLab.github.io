@@ -1,1 +1,59 @@
 // _news.scss — owned by its track (see agent/SPEC.md §5). Uses tokens from _tokens.scss.
+// Unlayered, so it overrides the default .news-* rules that _home.scss keeps in @layer home.
+// Used by news_list.html on the home page and on /news/.
+
+.news-item[hidden], .news-year[hidden], .news-filter[hidden], .news-empty[hidden] { display: none; }
+
+/* Awards stand out from papers: tinted row, accent rule, accent label. */
+.news-item--award {
+  padding-inline: var(--space-s);
+  margin-inline: calc(var(--space-s) * -1);
+  background: var(--accent-tint);
+  border-radius: var(--radius-s);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.news-item--award + .news-item { border-top-color: transparent; }
+.news-item--award .news-date { color: var(--accent-strong); }
+.news-type--award {
+  border-color: var(--accent);
+  background: var(--surface);
+  color: var(--accent-strong);
+  font-weight: var(--weight-semibold);
+}
+@media (max-width: 30rem) {
+  .news-item--award { padding-inline: var(--space-xs); margin-inline: calc(var(--space-xs) * -1); }
+}
+
+/* ---------- /news/ archive ---------- */
+.news-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-l);
+}
+.news-filter__count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.chip[aria-pressed="true"] .news-filter__count { color: inherit; }
+
+.news-year { margin-bottom: var(--space-xl); }
+.news-year__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.news-year__count {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.news-empty { color: var(--text-muted); }
