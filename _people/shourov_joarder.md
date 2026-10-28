@@ -6,6 +6,7 @@ avatar: shourov_joarder.jpg
 degree: phd
 start_year: 2026
 interests: LLMs and multimodal models, reinforcement learning
+scholar: https://scholar.google.com/citations?user=wQsEs6YAAAAJ
 linkedin: https://www.linkedin.com/in/shourovj/
 ---
 

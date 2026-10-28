@@ -7,6 +7,7 @@ degree: phd
 start_year: 2022
 interests: Neuro-symbolic video understanding, computer vision, reinforcement learning
 website: https://spsharan.com/
+scholar: https://scholar.google.com/citations?user=1NtGcNIAAAAJ
 github: https://github.com/Syzygianinfern0
 internships:
   - company: Uber

@@ -154,6 +154,12 @@
   grid-template-columns: 1fr;
   gap: var(--space-s);
 }
+// Students section: PhD / MS / undergrad rows, separated by a hairline instead of a heading
+.people-grid + .people-grid {
+  margin-top: var(--space-m);
+  padding-top: var(--space-m);
+  border-top: var(--border-w) solid var(--border);
+}
 @container people (min-width: 28rem) { .people-grid { grid-template-columns: repeat(2, 1fr); } }
 @container people (min-width: 40rem) { .people-grid { grid-template-columns: repeat(3, 1fr); } }
 @container people (min-width: 60rem) { .people-grid { grid-template-columns: repeat(4, 1fr); } }

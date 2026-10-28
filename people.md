@@ -33,25 +33,24 @@ permalink: /people/
 </section>
 {%- endfor -%}
 
-{%- comment -%} Current members; the first sections are filled by position and degree {%- endcomment -%}
+{%- comment -%} Current members. "Students" is one section with one row each for PhD, MS and undergrad (no sub-headings: each card already names the level) {%- endcomment -%}
 {%- assign grads = everyone | where: "position", "gradstudent" -%}
 {%- assign phds = grads | where: "degree", "phd" -%}
 {%- assign other_grads = grads | where_exp: "p", "p.degree != 'phd'" -%}
 {%- assign ugrads = everyone | where: "position", "undergrad" -%}
-{%- assign students = other_grads | concat: ugrads -%}
+{%- assign students = phds | concat: other_grads | concat: ugrads -%}
 {%- assign postdocs = everyone | where: "position", "postdoc" -%}
 {%- assign staff = everyone | where: "position", "researchstaff" -%}
 {%- assign visiting = everyone | where: "position", "visiting" -%}
 {%- assign honorary = everyone | where: "position", "others" -%}
 
-{%- capture sections -%}postdocs|Postdoctoral fellows;phds|PhD students;students|Students;staff|Research staff;visiting|Visiting scholars;honorary|Honorary members{%- endcapture -%}
+{%- capture sections -%}postdocs|Postdoctoral fellows;students|Students;staff|Research staff;visiting|Visiting scholars;honorary|Honorary members{%- endcapture -%}
 {%- assign section_list = sections | split: ";" -%}
 {%- for s in section_list -%}
   {%- assign key = s | split: "|" | first -%}
   {%- assign heading = s | split: "|" | last -%}
   {%- case key -%}
     {%- when "postdocs" -%}{%- assign group = postdocs -%}
-    {%- when "phds" -%}{%- assign group = phds -%}
     {%- when "students" -%}{%- assign group = students -%}
     {%- when "staff" -%}{%- assign group = staff -%}
     {%- when "visiting" -%}{%- assign group = visiting -%}
@@ -63,11 +62,18 @@ permalink: /people/
     <p class="eyebrow">Current</p>
     <h2 id="sec-{{ key }}">{{ heading }}</h2>
   </div>
+  {%- if key == "students" %}
+  {%- assign rows = "" | split: "" | push: phds | push: other_grads | push: ugrads %}
+  {%- else %}
+  {%- assign rows = "" | split: "" | push: group %}
+  {%- endif %}
+  {%- for row in rows %}{% if row.size > 0 %}
   <div class="people-grid">
-    {%- for person in group %}
+    {%- for person in row %}
     {% include person_card.html p=person %}
     {%- endfor %}
   </div>
+  {%- endif %}{% endfor %}
 </section>
   {%- endif -%}
 {%- endfor -%}

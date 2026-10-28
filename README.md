@@ -230,7 +230,7 @@ industry:
 | Field | Values and effect |
 |---|---|
 | `position` | Which section of /people/: `pi`, `postdoc`, `gradstudent`, `undergrad`, `researchstaff`, `visiting`, `others` (honorary members), `alumni`. |
-| `degree` | `phd`, `ms`, `undergrad`, `postdoc`, `visiting`. Gives the label ("PhD student") and the split: `gradstudent` + `phd` goes under "PhD students"; other grad students and undergrads go under "Students". |
+| `degree` | `phd`, `ms`, `undergrad`, `postdoc`, `visiting`. Gives the label ("PhD student") and the row: current students share one "Students" section, with PhD students in the first row, MS (other `gradstudent`s) in the second and undergrads in the third. |
 | `avatar` | File name in `images/people/`. No avatar shows an initials tile. |
 | `start_year`, `end_year` | Shown as "since 2023" for current members, "2021-2025" for alumni (one year if they match). |
 | `interests` | One line, shown on the card. |

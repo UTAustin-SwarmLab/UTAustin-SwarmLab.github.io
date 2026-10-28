@@ -7,6 +7,7 @@ degree: phd
 start_year: 2023
 interests: Multi-agent systems, embodied AI and reinforcement learning
 website: https://harshg99.github.io/hgmain/
+scholar: https://scholar.google.com/citations?user=6kKhD_4AAAAJ
 github: https://github.com/harshg99
 linkedin: https://www.linkedin.com/in/harshgoel57199
 fellowships:

@@ -7,6 +7,7 @@ degree: phd
 start_year: 2022
 interests: Distributed optimization, network intelligence, verifiable/private ML, blockchain, security
 website: http://oguzhan-baser.github.io/
+scholar: https://scholar.google.com/citations?user=1OPPcRjpXnEC
 github: https://github.com/oguzhan-baser
 linkedin: https://www.linkedin.com/in/baseroguzhan/
 internships:
