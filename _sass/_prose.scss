@@ -1,0 +1,167 @@
+// _prose.scss — long-form content: blog posts, About, album pages. Also keeps legacy markup working
+// (.column/.row photo albums, <figure>, rouge code, tables, MathJax display).
+// Scope: .prose (opt-in, e.g. `prose: true` page front matter) and .content (legacy post/album wrappers). Layered, so components override.
+
+@layer prose {
+  :where(.prose, .content) {
+    h1, h2, h3, h4, h5, h6 { margin-top: 1.8em; margin-bottom: 0.5em; }
+    > :first-child { margin-top: 0; }
+    h2 + h3, h3 + h4 { margin-top: 1em; }
+
+    p, ul, ol, dl, blockquote, pre, table, figure { margin-top: 0; margin-bottom: 1.1em; }
+    ul:not([class]), ol:not([class]) { padding-left: 1.4em; }
+    ul:not([class]) { list-style: disc; }
+    ol:not([class]) { list-style: decimal; }
+    li { margin-bottom: 0.3em; }
+    li > ul:not([class]), li > ol:not([class]) { margin-top: 0.3em; margin-bottom: 0.3em; }
+    li::marker { color: var(--text-faint); }
+    dt { font-weight: var(--weight-semibold); }
+    dd { margin: 0 0 0.5em; }
+
+    p a, li a, dd a, td a, figcaption a, blockquote a {
+      text-decoration: underline;
+      text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    }
+    p a:hover, li a:hover, dd a:hover, td a:hover, figcaption a:hover { text-decoration-color: currentColor; }
+
+    blockquote {
+      padding: 0.1em 0 0.1em 1.25em;
+      border-left: 3px solid var(--accent-tint-2);
+      color: var(--text-2);
+    }
+    blockquote > :last-child { margin-bottom: 0; }
+
+    img { display: block; margin: 1.25em 0 0.5em; border-radius: var(--radius-s); }
+    a > img { margin-top: 0.5em; }
+    figure { max-width: 100%; }
+    figure img { margin-inline: auto; }
+    figcaption {
+      margin-top: 0.4em;
+      padding: 0;
+      background: none;
+      font-family: var(--font-sans);
+      font-size: var(--step--1);
+      font-weight: var(--weight-regular);
+      line-height: 1.45;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    video, audio, iframe { display: block; max-width: 100%; margin: 1.25em 0; border-radius: var(--radius-s); }
+    center, .prose center { display: block; text-align: center; }
+
+    hr { margin-block: 2em; }
+    abbr[title] { text-decoration: underline dotted; text-underline-offset: 0.2em; cursor: help; }
+    sub, sup { line-height: 0; }
+
+    /* Tables */
+    table {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      overflow-x: auto;
+      border-collapse: collapse;
+      font-size: var(--step--1);
+      font-variant-numeric: tabular-nums;
+    }
+    th, td { padding: 0.5em 0.8em; border-bottom: var(--border-w) solid var(--border); text-align: left; vertical-align: top; }
+    th { font-weight: var(--weight-semibold); background: var(--surface-2); border-bottom-color: var(--border-strong); white-space: nowrap; }
+    tbody tr:hover td { background: var(--surface-2); }
+
+    /* Legacy photo albums: <div class="column"><div class="row"><a><img></a><i>caption</i></div></div> */
+    .column { width: min(100%, 44rem); padding: 0; }
+    .row { margin-bottom: 2em; }
+    .row::after { content: ""; display: table; clear: both; }
+    .row > i, .row > em {
+      display: block;
+      margin-top: 0.4em;
+      font-size: var(--step--1);
+      font-style: normal;
+      color: var(--text-muted);
+    }
+    .row > a { display: block; }
+    .row img { width: 100%; max-width: 600px; margin: 0; }
+    .link-in-caption { color: var(--link); }
+
+    /* Math (MathJax 3): long equations scroll instead of overflowing the page */
+    mjx-container[display="true"] { display: block; max-width: 100%; margin: 1.1em 0; overflow-x: auto; overflow-y: hidden; }
+    mjx-container { max-width: 100%; }
+  }
+
+
+  /* Legacy wrappers (_layouts/post.html, albums.html): constrain to the reading measure. */
+  .container.content {
+    width: min(100% - 2 * var(--gutter), var(--container-prose));
+    padding-block: var(--space-xl) var(--space-section);
+  }
+  .content h1 { font-size: var(--step-3); }
+  .content.post > h3:first-child {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: var(--step-3);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-display);
+  }
+  .content.post > h3:first-child strong { font-weight: inherit; }
+  .content.post > h3:first-child small {
+    display: block;
+    margin-top: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+  .content.post > hr:first-of-type { margin-top: var(--space-m); }
+
+  /* Inline and block code */
+  code, kbd, samp, pre { font-family: var(--font-mono); font-feature-settings: "calt" 1; }
+  :not(pre) > code {
+    padding: 0.12em 0.35em;
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius-xs);
+    background: var(--surface-2);
+    font-size: 0.88em;
+    color: var(--text);
+    overflow-wrap: anywhere;
+  }
+  pre {
+    margin: 0 0 1.1em;
+    padding: var(--space-s) var(--space-m);
+    overflow-x: auto;
+    border: var(--border-w) solid var(--border);
+    border-radius: var(--radius-s);
+    background: var(--surface-2);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    tab-size: 2;
+  }
+  pre code { padding: 0; border: 0; background: none; font-size: inherit; }
+  .highlight { margin-bottom: 1.1em; }
+  .highlight pre { margin-bottom: 0; }
+
+  /* Rouge: light theme with the accent for keywords */
+  .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs, .highlight .cp, .highlight .cd { color: var(--text-muted); font-style: italic; }
+  .highlight .k, .highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .ow { color: var(--accent-strong); font-weight: var(--weight-medium); }
+  .highlight .kt, .highlight .nc, .highlight .no, .highlight .bp, .highlight .nb { color: var(--info); }
+  .highlight .nf, .highlight .nd, .highlight .nl, .highlight .ne { color: var(--text); font-weight: var(--weight-semibold); }
+  .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s1, .highlight .s2, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss { color: var(--success); }
+  .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .mo, .highlight .il { color: var(--info); }
+  .highlight .o, .highlight .p { color: var(--text-2); }
+  .highlight .na, .highlight .nt, .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: var(--accent-text); }
+  .highlight .err, .highlight .gr, .highlight .gt { color: oklch(50% 0.17 25); }
+  .highlight .gd { background: oklch(94% 0.04 25); }
+  .highlight .gi { background: oklch(94% 0.05 150); }
+  .highlight .gp, .highlight .go, .highlight .gh, .highlight .gu { color: var(--text-muted); }
+  .highlight .ge { font-style: italic; }
+  .highlight .gs { font-weight: var(--weight-bold); }
+  .highlight .hll { background: var(--accent-tint); }
+  .highlight .w { color: var(--text-faint); }
+  .gist .gist-file { font-family: var(--font-mono) !important; }
+
+  /* Small legacy helpers still emitted by older pages */
+  .nobull { list-style: none; }
+  .sc { font-variant: small-caps; }
+  .lead { font-size: var(--step-1); }
+  .list-post-title { margin: 0 0 var(--space-3xs); }
+  .list-post-title a { color: var(--text); }
+  .list-detail { color: var(--text-2); }
+}

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Date-column news list. Params: limit (optional, number of items).
+  Source: site.data.news_all (bib + news.yml merged by _plugins/bib_news.rb), falling back to site.data.news.
+  Optional item fields: type (shown as a mono label), featured (see index.html NEW pill).
+{%- endcomment -%}
+{%- if site.data.news_all -%}
+  {%- assign news_items = site.data.news_all -%}
+{%- else -%}
+  {%- assign news_items = site.data.news | sort: 'date' | reverse -%}
+{%- endif -%}
+{%- assign news_limit = include.limit | default: 1000 -%}
+{%- assign now_s = 'now' | date: '%s' | plus: 0 -%}
+<ol class="news-list">
+  {%- for item in news_items limit: news_limit %}
+  {%- assign item_s = item.date | date: '%s' | plus: 0 -%}
+  {%- assign age_days = now_s | minus: item_s | divided_by: 86400 %}
+  <li class="news-item">
+    <time class="news-date" datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %Y' }}</time>
+    <div class="news-body">
+      {{ item.details }}
+      {%- if item.type and item.type != 'news' %} <span class="news-type">{{ item.type }}</span>{% endif -%}
+      {%- if age_days < 30 %} <span class="news-new" title="Posted in the last 30 days"><span class="visually-hidden">New</span></span>{% endif -%}
+    </div>
+  </li>
+  {%- endfor %}
+</ol>

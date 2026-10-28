@@ -1,0 +1,59 @@
+// _footer.scss — quiet footer on --surface-2 with a top hairline.
+
+@layer footer {
+  .site-footer {
+    margin-top: auto;
+    padding-block: var(--space-xl) var(--space-l);
+    background: var(--surface-2);
+    border-top: var(--border-w) solid var(--border);
+    color: var(--text-2);
+    font-size: var(--step--1);
+  }
+  .site-footer a { color: var(--text-2); }
+  .site-footer a:hover { color: var(--accent-text); }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: var(--space-l) var(--space-m);
+  }
+  .site-footer__brand { grid-column: span 1; }
+  @media (min-width: 48rem) {
+    .site-footer__grid { grid-template-columns: 1.5fr 1fr 1fr 1.4fr; }
+  }
+
+  .site-footer__name {
+    margin: 0 0 var(--space-xs);
+    font-size: 1.0625rem;
+    font-weight: var(--weight-semibold);
+    color: var(--text);
+  }
+  .site-footer__name span { font-family: var(--font-serif); font-weight: var(--weight-regular); font-size: 1.25rem; color: var(--text-2); }
+  .site-footer__affil { margin: 0; line-height: 1.8; }
+
+  .site-footer__h {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .site-footer__address { font-style: normal; line-height: 1.7; }
+
+  .site-footer__links { display: grid; gap: 0.25rem; }
+  .site-footer__links a { display: inline-flex; align-items: center; gap: 0.5em; min-height: 1.75rem; }
+
+  .site-footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-m);
+    border-top: var(--border-w) solid var(--border);
+    color: var(--text-muted);
+  }
+  .site-footer__base p { margin: 0; max-width: 46rem; }
+}

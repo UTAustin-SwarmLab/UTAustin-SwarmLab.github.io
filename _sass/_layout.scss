@@ -1,0 +1,168 @@
+// _layout.scss — containers, rhythm and the shared utility/component classes other tracks reuse.
+
+@layer layout {
+  .container {
+    width: min(100% - 2 * var(--gutter), var(--container));
+    margin-inline: auto;
+  }
+  .container--wide { width: min(100% - 2 * var(--gutter), var(--container-wide)); }
+  .prose { max-width: var(--container-prose); }
+
+  .skip {
+    position: fixed;
+    top: var(--space-2xs);
+    left: var(--space-2xs);
+    z-index: 100;
+    padding: var(--space-2xs) var(--space-s);
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: var(--radius-s);
+    font-weight: var(--weight-medium);
+    transform: translateY(-200%);
+  }
+  .skip:focus-visible { transform: none; outline-color: var(--text); color: var(--on-accent); }
+
+  .section { padding-block: var(--space-section); }
+  .section--tight { padding-block: calc(var(--space-section) * 0.6); }
+
+  .section-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+  .section-header > div { min-width: 0; }
+  .section-header h2 { margin: 0; }
+  .section-link {
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+    color: var(--text-2);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    min-height: 1.5rem;
+  }
+  .section-link:hover { color: var(--accent-text); text-decoration: none; }
+  .section-link .icon { transition: transform var(--dur-fast) var(--ease-out); }
+  .section-link:hover .icon { transform: translateX(3px); }
+
+  .eyebrow {
+    margin: 0 0 var(--space-2xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    color: var(--accent-text);
+    line-height: 1.4;
+  }
+
+  /* Page header used by _layouts/page.html */
+  .page-header { padding-block: var(--space-xl) var(--space-m); }
+  .page-title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: var(--step-4);
+    letter-spacing: var(--tracking-display);
+    line-height: var(--lh-tight);
+  }
+  .page-lede {
+    max-width: 40rem;
+    margin: var(--space-xs) 0 0;
+    font-size: var(--step-1);
+    line-height: var(--lh-snug);
+    color: var(--text-2);
+  }
+  .page-body { padding-bottom: var(--space-section); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.95rem;
+    border: var(--border-w) solid transparent;
+    border-radius: var(--radius-s);
+    font-size: var(--step-0);
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .btn:hover { text-decoration: none; }
+  .btn--primary { background: var(--accent); color: var(--on-accent); }
+  .btn--primary:hover { background: var(--accent-strong); color: var(--on-accent); }
+  .btn--secondary { background: var(--surface); border-color: var(--border-strong); color: var(--text); }
+  .btn--secondary:hover { border-color: var(--text-faint); background: var(--surface-2); color: var(--text); }
+  .btn--ghost { color: var(--text-2); }
+  .btn--ghost:hover { background: var(--surface-2); color: var(--text); }
+
+  /* Badges */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.1rem 0.55rem;
+    border: var(--border-w) solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+    line-height: 1.5;
+    color: var(--text-2);
+    background: transparent;
+    white-space: nowrap;
+  }
+  .pill--accent {
+    background: var(--accent-tint);
+    border-color: var(--accent-tint-2);
+    color: var(--accent-strong);
+  }
+
+  /* Filter toggle */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    min-height: 2rem;
+    padding: 0.25rem 0.8rem;
+    border: var(--border-w) solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: var(--step--1);
+    font-weight: var(--weight-medium);
+    line-height: 1.2;
+    transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+  .chip:hover { border-color: var(--text-faint); color: var(--text); }
+  .chip[aria-pressed="true"] {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+
+  .grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-m);
+  }
+
+  /* One-time reveal. Content is only hidden after the first scroll (see js/site.js), so nothing is lost without JS. */
+  [data-reveal] {
+    transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  }
+  [data-reveal].is-hidden {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+  }
+}

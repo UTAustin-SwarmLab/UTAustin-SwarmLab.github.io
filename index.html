@@ -1,82 +1,167 @@
 ---
 layout: default
+body_class: home
+# Lab-life ticker. src is under images/lab_pictures/ (WebP copies from scripts/optimize_images.py); w/h = pixel size (prevents layout shift).
+ticker:
+  - { src: web/corl2022/DSC03166.webp, w: 1600, h: 1067, alt: "Sandeep, Shubhankar and Po-han in Devonport, Auckland", cap: "CoRL 2022, Auckland" }
+  - { src: web/rss2022/IMG_0909.webp, w: 1600, h: 1200, alt: "Sai, Oguzhan and Philip attending RSS", cap: "RSS 2022, New York" }
+  - { src: web/corl2022/DSC03189.webp, w: 1600, h: 1067, alt: "Sandeep and David Fridovich-Keil in Devonport", cap: "CoRL 2022, Auckland" }
+  - { src: web/rss2022/IMG_0828.webp, w: 1600, h: 1200, alt: "Sharachchandra, Sai, Oguzhan and Philip in Times Square", cap: "RSS 2022, Times Square" }
+  - { src: web/corl2022/DSC03157.webp, w: 1600, h: 1067, alt: "David Fridovich-Keil, Shubhankar and Po-han in Devonport", cap: "CoRL 2022, Auckland" }
+  - { src: web/corl2022/CoRL2022-10152-1024x682.webp, w: 1024, h: 682, alt: "Shubhankar presenting his work at CoRL 2022", cap: "CoRL 2022, Auckland" }
+sponsors:
+  - { src: cisco.png, name: Cisco }
+  - { src: darpa.png, name: DARPA }
+  - { src: NSF.png, name: National Science Foundation }
+  - { src: ONR.png, name: Office of Naval Research }
+  - { src: intel.png, name: Intel }
+  - { src: LM.png, name: Lockheed Martin }
+  - { src: hri.png, name: Honda Research Institute US }
+  - { src: good_systems.png, name: UT Good Systems }
+  - { src: viavi.png, name: Viavi }
 ---
+{%- if site.data.news_all -%}{%- assign news_items = site.data.news_all -%}{%- else -%}{%- assign news_items = site.data.news | sort: 'date' | reverse -%}{%- endif -%}
+{%- assign new_item = news_items | where: 'featured', true | first -%}
 
-<div class='container'>
-    <header class="masthead text-center">
-      <!-- <h3> Welcome to Swarm Lab at UT Austin</h3> -->
-      <img class='img-responsive center-block' src="/images/logo/swarm-lab-landing-image.png" width="100%" height="80%" />
-      
-      <p>
-          <text_home style="font-weight: 400;">Department of Electrical and Computer Engineering</text_home><br>
-          <a href="https://robotics.utexas.edu/" style="font-size: 24px"> Texas Robotics</a> | <a href="https://wncg.org/" style="font-size: 24px">Wireless Networking and Communications Group (WNCG)</a><br>
-          <text_home style="font-weight: 400;">The University of Texas at Austin</text_home>
-
-        <span style="display: block; margin-bottom: 1em"></span>
-
-      <a href="https://github.com/UTAustin-SwarmLab" style="font-size: 24px"><i class="fa fa-github"></i> Swarm Lab</a>&nbsp;&nbsp;&nbsp;
-      <a href="mailto:sandeepc@utexeas.edu" style="font-size: 24px"><i class="fa fa-envelope-o"></i> sandeepc@utexas.edu</a>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      {%- if new_item %}
+      <a class="new-pill" href="/news/">
+        <span class="new-pill__tag"><span class="new-pill__dot" aria-hidden="true"></span>New</span>
+        <span class="new-pill__text">{{ new_item.pill | default: new_item.details | strip_html | normalize_whitespace | truncate: 64 }}</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+      {%- endif %}
+      <p class="eyebrow">UT Austin · Robotics &amp; ML</p>
+      <h1 class="hero__title" id="hero-title">Swarm Lab</h1>
+      <p class="hero__lede">We build learning, reasoning, and verification for fleets of robots and AI&nbsp;agents.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="/research/">Research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn--secondary" href="/publications/">Publications</a>
+        <a class="btn btn--secondary" href="/join/">Join</a>
+      </div>
+      <p class="hero__meta">
+        <a href="https://www.ece.utexas.edu">Electrical &amp; Computer Engineering</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://robotics.utexas.edu/">Texas Robotics</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://wncg.org/">WNCG</a>
       </p>
+    </div>
 
-      <div class="w3-container" style="   background: #f0f8ff; padding: 25px; border-radius:10px; border: 1px solid #5d8aa8">
-        <div style="text-align:left">
-          <h2> Recent News </h2>
-          <u>Happenings of the last four months. Updated {{ 'now' | date: "%m/%d/%y" }}.</u>
-          <span style="display: block; margin-bottom: 1em"></span>
-          <div class="news">
-              {% capture now %}{{'now' | date: "%s" | minus: 10368000}}{% endcapture %}
-              <ul style="list-style-position:outside;padding:20px" >
-                {% for new in site.data.news %}
-                  {% capture date %}{{new.date | date: '%s' | plus: 0}}{% endcapture %}
-                  {% if date > now %}
-                    <li>
-                      <span>
-                        {{ new.details }}
-                      </span>
-                    </li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-          </div>
-        </div >
+    <div class="hero__visual swarm" data-swarm>
+      <img class="swarm__poster" src="/images/hero-swarm-poster.svg" alt="" width="800" height="640" fetchpriority="low">
+      <canvas aria-hidden="true"></canvas>
+      <button class="swarm__toggle" type="button" data-swarm-toggle aria-pressed="false">
+        <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+        <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+        <span class="label">Pause</span><span class="visually-hidden"> animation</span>
+      </button>
+      <p class="swarm__caption" aria-hidden="true"><span>boids</span> · gray agents follow orange leaders</p>
+    </div>
+  </div>
+</section>
+
+<section class="section home-themes" aria-labelledby="themes-title">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div>
+        <p class="eyebrow">Research</p>
+        <h2 id="themes-title">What we work on</h2>
       </div>
+      <a class="section-link" href="/research/">All research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <div class="home-themes__grid">
+      {%- for theme in site.data.themes %}
+      <article class="theme-card{% if theme.slug == 'swarm' %} theme-card--lead{% endif %}" data-reveal>
+        <p class="eyebrow">Theme {{ forloop.index | prepend: '0' }}</p>
+        <h3 class="theme-card__title"><a href="/research/#{{ theme.slug }}">{{ theme.name }}</a></h3>
+        <p class="theme-card__text">{{ theme.headline }}</p>
+        <span class="theme-card__go" aria-hidden="true">Explore <svg class="icon"><use href="#i-arrow-right"/></svg></span>
+        {%- if theme.slug == 'swarm' %}
+        <svg class="theme-card__art" viewBox="0 0 240 160" aria-hidden="true" focusable="false">
+          <g stroke="currentColor" stroke-width="1" opacity=".35"><path d="M30 120 70 60M70 60 130 80M70 60 110 20M130 80 110 20M130 80 170 130M30 120 130 80M170 130 215 70M130 80 215 70M110 20 190 35M190 35 215 70"/></g>
+          <g fill="currentColor" opacity=".55"><circle cx="30" cy="120" r="4"/><circle cx="130" cy="80" r="4"/><circle cx="170" cy="130" r="4"/><circle cx="215" cy="70" r="4"/><circle cx="110" cy="20" r="4"/><circle cx="190" cy="35" r="4"/></g>
+          <circle cx="70" cy="60" r="7" fill="var(--accent)"/><circle cx="70" cy="60" r="14" fill="none" stroke="var(--accent)" opacity=".3"/>
+        </svg>
+        {%- endif %}
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
 
-      <span style="display: block; margin-bottom: 1em"></span>
-
-        <div class="section-title" style="padding-top: 25px">
-          <h1>Sponsors</h1></div>
-
-      <div class="trend-entry d-flex">
-          <div class="justify-content-md-center">
-            <img src="/images/logo/logos.png" alt="Logos" style="width:100%">
-          </div>
+<section class="section home-split" aria-labelledby="news-title">
+  <div class="container home-split__grid">
+    <div class="home-split__news" data-reveal>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Latest</p>
+          <h2 id="news-title">News</h2>
+        </div>
+        <a class="section-link" href="/news/">All news <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
+      {% include news_list.html limit=6 %}
+    </div>
 
-      <!-- <span style="display: block; margin-bottom: 5em"><img src="/images/logo/cisco.png" width="100" alt="My Image" /></span> -->
-      <!-- <div style="text-align: center;"><img src="/images/logo/cisco.png" width="100" alt="My Image" /></div> -->
-      <!-- <span style="display: block; margin-bottom: 5em"></span> -->
-      <!-- <span style="display: block; margin-right: 5em"><img src="/images/logo/darpa.png" width="100" alt="My Image" /></span> -->
-      <!-- <div style="text-align: center;"><img src="/images/logo/darpa.png" width="100" alt="My Image" /></div> -->
-      <!-- <div style="text-align: center;"><img src="/images/logo/good_systems.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/hri.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/intel.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/LM.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/NSF.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/ONR.png" width="100" alt="My Image" /></div>
-      <div style="text-align: center;"><img src="/images/logo/viavi.png" width="100" alt="My Image" /></div> -->
-    
-    </header>
-
-
-
-
-  </body>
-
-
-      <!-- <div style="text-align:center">
-        <h3 style="color: #000000"> Our Sponsors </h3>
+    <div class="home-split__pubs" data-reveal>
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Selected</p>
+          <h2>Publications</h2>
+        </div>
+        <a class="section-link" href="/publications/">All publications <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
-      <span>  
-      <img class='img-responsive center-block' src="/images/logo/intel.png" width="10%" height="50%" />
-    </span> -->
-</div>
+      <div class="pubs-selected">
+        {% bibliography --query @*[selected=true] %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--band home-life" aria-labelledby="life-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Lab life</p>
+        <h2 id="life-title">Out in the field</h2>
+      </div>
+      <div class="home-life__actions">
+        <button class="chip ticker-toggle" type="button" data-ticker-toggle aria-controls="ticker" aria-pressed="false">
+          <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+          <span class="label">Pause</span>
+        </button>
+        <a class="section-link" href="/lab_pictures/">All photos <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="ticker" id="ticker" role="group" aria-label="Photos from conferences and field trips">
+    <ul class="ticker__track">
+      {%- for round in (1..2) %}
+      {%- for p in page.ticker %}
+      <li class="ticker__item"{% if round == 2 %} aria-hidden="true"{% endif %}>
+        <figure>
+          <img src="/images/lab_pictures/{{ p.src }}" alt="{% if round == 2 %}{% else %}{{ p.alt }}{% endif %}" width="{{ p.w }}" height="{{ p.h }}" loading="lazy" decoding="async">
+          <figcaption>{{ p.cap }}</figcaption>
+        </figure>
+      </li>
+      {%- endfor %}
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section home-sponsors" aria-labelledby="sponsors-title">
+  <div class="container">
+    <p class="eyebrow home-sponsors__title" id="sponsors-title">Supported by</p>
+    <ul class="home-sponsors__row">
+      {%- for s in page.sponsors %}
+      <li><img src="/images/logo/{{ s.src }}" alt="{{ s.name }}" loading="lazy" decoding="async"></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<script src="/js/swarm.js" defer></script>

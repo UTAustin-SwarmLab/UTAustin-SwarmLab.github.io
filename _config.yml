@@ -18,20 +18,18 @@ highlighter:        rouge
 
 # Navigation
 nav:
-  - name:           "HOME"
-    href:           "/"
-  - name:           "ABOUT"
-    href:           "/about"
-  - name:           "PUBLICATIONS"
-    href:           "/publications"
-  - name:           "PEOPLE"
-    href:           "/people"
-  - name:           "LAB PICTURES"
-    href:           "/lab_pictures"
-  - name:           "BLOG"
-    href:           "/blog"
-#  - name:           "resources"
-#    href:           "/resources" be careful of indentation!
+  - name:           "Research"
+    href:           "/research/"
+  - name:           "Publications"
+    href:           "/publications/"
+  - name:           "People"
+    href:           "/people/"
+  - name:           "News"
+    href:           "/news/"
+  - name:           "Blog"
+    href:           "/blog/"
+  - name:           "Join"
+    href:           "/join/"
 
 # Sass
 sass:
@@ -83,7 +81,11 @@ scholar:
   group_order: descending
   bibliography_group_tag: h3
   bibliography_list_tag: ul
-  bibliography_item_tag: nobull
+  bibliography_item_tag: li
+  bibliography_list_attributes:
+    class: pub-list
+  # fields that only drive the site (see site_kb §4.1); hidden from the BibTeX shown to readers
+  bibtex_skip_fields: [abstract, month_numeric, themes, news, news_text, selected, award, venue_short, code, project, website, video, thumbnail]
 
   source: ./_bibliography
   bibliography: references.bib

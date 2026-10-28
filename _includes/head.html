@@ -1,0 +1,65 @@
+{%- assign is_home = false -%}{%- if page.url == '/' -%}{%- assign is_home = true -%}{%- endif -%}
+{%- capture page_title -%}{%- if is_home or page.title == nil or page.title == '' -%}{{ site.title }}{%- else -%}{{ page.title | strip_html | strip }} · {{ site.name }}{%- endif -%}{%- endcapture -%}
+{%- capture page_desc -%}{%- if page.description -%}{{ page.description }}{%- elsif is_home -%}We build learning, reasoning and verification for fleets of robots and AI agents. The Swarm Lab at the University of Texas at Austin.{%- else -%}{{ site.description }}{%- endif -%}{%- endcapture -%}
+{%- assign canonical = page.url | replace: 'index.html', '' | absolute_url -%}
+{%- assign og_image = '/images/logo/og.png' | absolute_url -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page_title }}</title>
+<meta name="description" content="{{ page_desc | strip_html | normalize_whitespace | escape | truncate: 200 }}">
+<meta name="theme-color" content="#FAFAF9">
+<link rel="canonical" href="{{ canonical }}">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:description" content="{{ page_desc | strip_html | normalize_whitespace | escape | truncate: 200 }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | escape }}">
+<meta name="twitter:description" content="{{ page_desc | strip_html | normalize_whitespace | escape | truncate: 200 }}">
+<meta name="twitter:image" content="{{ og_image }}">
+
+<link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<script>document.documentElement.classList.add('js');if(!('popover' in HTMLElement.prototype))document.documentElement.classList.add('no-popover');</script>
+<script src="/js/site.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchOrganization",
+  "name": "Swarm Lab",
+  "alternateName": "UT Austin Swarm Lab",
+  "url": "{{ site.url }}/",
+  "logo": "{{ og_image }}",
+  "email": "sandeepc@utexas.edu",
+  "description": "Research lab at the University of Texas at Austin working on learning, reasoning and verification for fleets of robots and AI agents.",
+  "parentOrganization": {
+    "@type": "CollegeOrUniversity",
+    "name": "Department of Electrical and Computer Engineering, The University of Texas at Austin",
+    "url": "https://www.ece.utexas.edu"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Anna Hiss Gym 2.204, 2501 Wichita St",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78712",
+    "addressCountry": "US"
+  },
+  "sameAs": ["https://github.com/UTAustin-SwarmLab", "https://scholar.google.com/citations?user=262ASa4AAAAJ"]
+}
+</script>
+{%- if page.math or page.layout == 'post' %}
+<script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true,tags:'ams'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+{%- endif %}

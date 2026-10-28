@@ -1,0 +1,44 @@
+# Research themes (display order). `slug` matches the `themes` field in _bibliography/references.bib.
+# The first slug in a paper's `themes` field is its primary theme. See README "Research themes".
+- slug: swarm
+  name: Swarm Coordination & Fleet Learning
+  headline: From cooperative planning to collective data collection.
+  blurb: >-
+    Fleets of robots and vehicles generate more data than they can upload, label, or supervise.
+    We develop game-theoretic, submodular, and multi-agent learning methods that decide how robots
+    plan together, which data each robot collects and shares, and where human supervision goes,
+    so the whole swarm improves as one.
+  representative: [akcin2025dual, bhatt2025uncap, akcin2023fleet]
+- slug: edge
+  name: Edge–Cloud Systems for Embodied AI
+  headline: Communication-efficient perception and inference across networks.
+  blurb: >-
+    Embodied agents share limited bandwidth, compute, and power with the cloud. We co-design
+    learning with communication through task-aware compression, offloading, adaptive model
+    selection, and resource allocation, together with representations that make robot perception
+    efficient at the edge.
+  representative: [li2023taskaware, baser2025fairsynergy, Omama2024exploiting]
+- slug: neurosymbolic
+  name: Neuro-Symbolic Video Understanding
+  headline: Grounding foundation models in temporal logic.
+  blurb: >-
+    Foundation models can describe a video but cannot guarantee they understood it. We ground
+    long-form video understanding, text-to-video evaluation, and video summarization in temporal
+    logic and formal verification.
+  representative: [Choi_2024_ECCV, sharan2025neuro, shah2025neus]
+- slug: trust
+  name: Trustworthy & Verifiable ML
+  headline: Formal and cryptographic guarantees for deployed models.
+  blurb: >-
+    Deployed models face adversaries, privacy leakage, deepfakes, and untrusted compute providers.
+    We build verifiable LLM inference, privacy-aware representations, deepfake defenses, and robust
+    controllers under adversarial conditions.
+  representative: [baser2026tensorcommitments, agarwal2022synthesizing, baser2025phonemefake]
+- slug: timeseries
+  name: Time-Series Generation & Forecasting
+  headline: Conditional, constrained generation of temporal data.
+  blurb: >-
+    Physical systems are described by time series. We build conditional and constrained
+    time-series generators and forecasts that are robust, private, and evaluated by the decisions
+    they support.
+  representative: [narasimhan2024time, agarwal2023, li2022differentially]

@@ -1,0 +1,146 @@
+// _tokens.scss — design tokens (agent/knowledgebase/frontend_trends_2026.md §6) + self-hosted fonts.
+// Plain CSS custom properties; color math is done in CSS (color-mix), never with Sass darken()/lighten().
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+}
+// Metric-matched fallback so swapping Inter in causes ~no layout shift.
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+@layer tokens {
+  :root {
+    color-scheme: light;
+
+    /* Surfaces: warm stone neutrals */
+    --bg:            oklch(98.5% 0.002 85);
+    --surface:       oklch(100% 0 0);
+    --surface-2:     oklch(96.7% 0.003 85);
+    --surface-sunk:  oklch(94.5% 0.004 70);
+
+    /* Borders */
+    --border:        oklch(92.3% 0.003 49);
+    --border-strong: oklch(86.9% 0.004 56);
+
+    /* Text */
+    --text:          oklch(21.6% 0.006 56);
+    --text-2:        oklch(44.4% 0.010 74);
+    --text-muted:    oklch(51.1% 0.011 62);
+    --text-faint:    oklch(71.6% 0.009 56);   /* decorative only, never text */
+
+    /* Accent: UT burnt orange */
+    --accent:        oklch(57.8% 0.155 49.2); /* #BF5700 fills, rules, focus, large text */
+    --accent-text:   oklch(52.6% 0.140 49.4); /* #A84C00 small text and links */
+    --accent-strong: oklch(47.1% 0.123 51.0); /* #8F4200 hover, badge text */
+    --accent-tint:   oklch(95.7% 0.019 57);
+    --accent-tint-2: oklch(91.1% 0.039 60);
+    --on-accent:     oklch(100% 0 0);
+
+    /* Logo green: decorative only (canvas edges, "new" dot), never text */
+    --signal:        oklch(60% 0.15 150);
+
+    --focus-ring:    var(--accent);
+    --selection:     var(--accent-tint-2);
+    --link:          var(--accent-text);
+    --link-hover:    var(--accent-strong);
+
+    --success:       oklch(52% 0.11 155);
+    --info:          oklch(50% 0.09 245);
+
+    /* Type */
+    --font-sans:  "Inter", "Inter Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+    --font-mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --step--1: clamp(0.833rem, 0.81rem + 0.10vw, 0.875rem);
+    --step-0:  clamp(1rem,     0.98rem + 0.10vw, 1.0625rem);
+    --step-1:  clamp(1.2rem,   1.15rem + 0.25vw, 1.333rem);
+    --step-2:  clamp(1.44rem,  1.33rem + 0.50vw, 1.777rem);
+    --step-3:  clamp(1.728rem, 1.53rem + 0.90vw, 2.369rem);
+    --step-4:  clamp(2.074rem, 1.72rem + 1.60vw, 3.157rem);
+    --step-5:  clamp(2.488rem, 1.90rem + 2.60vw, 4.209rem);
+
+    --lh-tight: 1.1;  --lh-snug: 1.3;  --lh-body: 1.6;
+    --tracking-display: -0.02em;  --tracking-caps: 0.06em;
+    --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
+    --measure: 68ch;
+
+    /* Space */
+    --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem; --space-s: 1rem;
+    --space-m: 1.5rem;    --space-l: 2rem;     --space-xl: 3rem;    --space-2xl: 4rem;
+    --space-3xl: 6rem;
+    --space-section: clamp(3rem, 2rem + 4vw, 6rem);
+    --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+
+    --container: 72rem;
+    --container-wide: 80rem;
+    --container-prose: 44rem;
+    --header-h: 3.75rem;
+
+    /* Radii */
+    --radius-xs: 4px; --radius-s: 8px; --radius-m: 12px; --radius-l: 20px; --radius-pill: 999px;
+
+    /* Shadows */
+    --shadow-1: 0 1px 2px oklch(21.6% 0.006 56 / 0.06);
+    --shadow-2: 0 1px 2px oklch(21.6% 0.006 56 / 0.05), 0 4px 12px oklch(21.6% 0.006 56 / 0.06);
+    --shadow-3: 0 2px 4px oklch(21.6% 0.006 56 / 0.05), 0 12px 32px oklch(21.6% 0.006 56 / 0.08);
+
+    --border-w: 1px;
+    --focus: 2px solid var(--focus-ring);
+    --focus-offset: 2px;
+
+    /* Motion */
+    --dur-instant: 100ms;
+    --dur-fast:    150ms;
+    --dur-base:    220ms;
+    --dur-slow:    320ms;
+    --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in:     cubic-bezier(0.55, 0, 1, 0.45);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --reveal-distance: 10px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root { --dur-instant: 0ms; --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; --reveal-distance: 0px; }
+  }
+}
