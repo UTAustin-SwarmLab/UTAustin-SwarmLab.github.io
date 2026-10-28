@@ -2,6 +2,7 @@
 name: Shourov Joarder
 title: Shourov Joarder
 position: gradstudent
+avatar: shourov_joarder.jpg
 degree: phd
 start_year: 2026
 interests: LLMs and multimodal models, reinforcement learning

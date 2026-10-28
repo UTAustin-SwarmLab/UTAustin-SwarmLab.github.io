@@ -2,6 +2,7 @@
 name: Hemanth Ram
 title: Hemanth Ram
 position: gradstudent
+avatar: hemanth_ram.jpg
 degree: ms
 start_year: 2025
 interests: Multimodal time-series forecasting, combining LLMs with time-series foundation models

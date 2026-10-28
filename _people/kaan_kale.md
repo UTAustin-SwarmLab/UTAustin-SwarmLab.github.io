@@ -2,6 +2,7 @@
 name: Kaan Kale
 title: Kaan Kale
 position: alumni
+avatar: kaan_kale.jpg
 degree: undergrad
 start_year: 2023
 end_year: 2024

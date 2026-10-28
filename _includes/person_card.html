@@ -32,11 +32,9 @@
   </div>
   <div class="alumni-card__body">
     <h4 class="alumni-card__name"><a href="{{ site.baseurl }}{{ p.url | remove: "index.html" }}">{{ p.name }}</a></h4>
-    {%- if degree_label != "" or p.start_year and p.end_year %}
-    <p class="alumni-card__meta">
-      {%- if degree_label != "" %}<span>{{ degree_label }}</span>{% endif -%}
-      {%- if p.start_year and p.end_year %}<span class="tnum">{{ p.start_year }}{% unless p.start_year == p.end_year %}&ndash;{{ p.end_year }}{% endunless %}</span>{% endif -%}
-    </p>
+    {%- comment -%} No degree label here: the alumni group heading (PhD / MS / Undergraduate) gives it {%- endcomment -%}
+    {%- if p.start_year and p.end_year %}
+    <p class="alumni-card__meta"><span class="tnum">{{ p.start_year }}{% unless p.start_year == p.end_year %}&ndash;{{ p.end_year }}{% endunless %}</span></p>
     {%- endif %}
     {%- if p.placement %}
     <p class="alumni-card__placement"><span aria-hidden="true">&rarr;</span><span class="visually-hidden">Now at</span>

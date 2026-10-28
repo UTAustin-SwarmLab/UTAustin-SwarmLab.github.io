@@ -2,6 +2,7 @@
 name: Ahmet Ege Tanriverdi
 title: Ahmet Ege Tanriverdi
 position: alumni
+avatar: ahmet_ege_tanriverdi.jpg
 degree: undergrad
 start_year: 2024
 end_year: 2025

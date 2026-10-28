@@ -2,6 +2,7 @@
 name: Shourjo Aditya Chaudhuri
 title: Shourjo Aditya Chaudhuri
 position: gradstudent
+avatar: shourjo_chaudhuri.jpg
 degree: ms
 start_year: 2026
 interests: Machine learning

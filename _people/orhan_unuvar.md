@@ -2,6 +2,7 @@
 name: Orhan Unuvar
 title: Orhan Unuvar
 position: alumni
+avatar: orhan_unuvar.jpg
 degree: undergrad
 start_year: 2023
 end_year: 2023

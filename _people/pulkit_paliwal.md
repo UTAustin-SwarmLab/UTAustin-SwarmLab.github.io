@@ -2,6 +2,7 @@
 name: Pulkit Paliwal
 title: Pulkit Paliwal
 position: alumni
+avatar: pulkit_paliwal.jpg
 degree: ms
 start_year: 2024
 end_year: 2026

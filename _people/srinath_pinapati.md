@@ -2,6 +2,7 @@
 name: Srinath Pinapati
 title: Srinath Pinapati
 position: undergrad
+avatar: srinath_pinapati.jpg
 degree: undergrad
 start_year: 2024
 interests: GPU systems, machine learning, reinforcement learning

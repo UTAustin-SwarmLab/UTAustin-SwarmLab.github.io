@@ -2,6 +2,7 @@
 name: Girishkaushik Karthikeyan
 title: Girishkaushik Karthikeyan
 position: gradstudent
+avatar: girishkaushik_karthikeyan.jpg
 degree: ms
 start_year: 2026
 interests: Machine learning, long-video understanding, agentic retrieval pipelines
