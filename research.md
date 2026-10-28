@@ -2,7 +2,7 @@
 title: Research themes
 permalink: /research/
 eyebrow: Research
-lede: We build learning, reasoning, and verification for fleets of robots and AI agents, in five themes. Each paper is listed under its primary theme; the same papers can be filtered by secondary theme on the publications page.
+lede: "We build learning, reasoning, and verification for fleets of robots and AI agents, in five themes: swarm coordination and fleet learning, edge–cloud systems for embodied AI, neuro-symbolic video understanding, trustworthy and verifiable ML, and time-series generation and forecasting."
 ---
 {%- comment -%}
   Data: _data/themes.yml (order, text, representative keys) + `themes` field in the bib (first slug = primary).
