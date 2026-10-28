@@ -1,6 +1,7 @@
 ---
 title: RSS 2022
 name: RSS 2022
+folder: rss2022
 avatar: rss2022/IMG_0909.jpeg
 location: New York City, USA
 ---

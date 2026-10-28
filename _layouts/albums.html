@@ -4,10 +4,24 @@ layout: default
 <div class="container album">
   <header class="page-header">
     <p class="eyebrow"><a href="{{ site.baseurl }}/lab_pictures/"><span aria-hidden="true">&larr;</span> Lab life</a></p>
-    <h1 class="page-title">{{ page.name }}</h1>
+    <h1 class="page-title">{{ page.title | default: page.name }}</h1>
     {%- if page.location %}<p class="page-lede">{{ page.location }}</p>{% endif %}
   </header>
   <div class="album-body">
     {{ content }}
+    {%- comment -%} Photos in images/lab_pictures/<folder>/ that the album text does not list yet (see _plugins/lab_pictures.rb) {%- endcomment -%}
+    {%- assign photos = site.data.lab_photos[page.folder] -%}
+    {%- capture extra -%}
+    {%- for ph in photos -%}
+      {%- assign needle = page.folder | append: "/" | append: ph.stem | append: "." -%}
+      {%- unless content contains needle %}
+      <li><figure><a href="{{ site.baseurl }}/{{ ph.src }}"><img src="{{ site.baseurl }}/{{ ph.web }}" loading="lazy" decoding="async" alt="Photo from {{ page.title | default: page.name }}"></a></figure></li>
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign extra = extra | strip -%}
+    {%- if extra != "" %}
+    <ul class="gallery">{{ extra }}</ul>
+    {%- endif %}
   </div>
 </div>

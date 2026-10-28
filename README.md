@@ -13,7 +13,7 @@ Source of the [Swarm Lab website](https://utaustin-swarmlab.github.io/). Everyth
 | Move someone to Alumni | their `_people/*.md`: `position: alumni`, `end_year`, `placement` | [Add or update a person](#add-or-update-a-person) |
 | Write a blog post about a paper | new file `_posts/YYYY-MM-DD-title.md` | [Write a blog post](#write-a-blog-post) |
 | Change a research theme's text | `_data/themes.yml` | [Research themes](#research-themes) |
-| Add conference or trip photos | `_lab_pictures/<album>.md` + `images/lab_pictures/<album>/` | [Lab life photos](#lab-life-photos) |
+| Add conference or trip photos | upload to `images/lab_pictures/<album>/` (optional captions: `_lab_pictures/<album>.md`) | [Lab life photos](#lab-life-photos) |
 | Fix a typo on About / Join | `about.md` / `join.md` | |
 | Preview my change | `bundle exec jekyll serve` | [Run locally](#run-locally) |
 
@@ -296,18 +296,17 @@ Look at a recent post in `_posts/` for a full example.
 
 ## Lab life photos
 
-Albums live in `_lab_pictures/` and are listed at `/lab_pictures/` (linked from the footer and the People page).
+Albums are listed at `/lab_pictures/` (linked from the footer and the People page). **Each folder in `images/lab_pictures/` is an album, and every photo in it is shown automatically** (`_plugins/lab_pictures.rb`).
 
-1. Put the originals in `images/lab_pictures/<album>/` (for example `images/lab_pictures/corl2022/`).
-2. Create the web copies and commit them too:
-
-   ```bash
-   python3 scripts/optimize_images.py images/lab_pictures --max-width 1600 --target-kb 120
-   ```
-
-   Output goes to `images/lab_pictures/web/<album>/<name>.webp`.
-3. Create `_lab_pictures/<album>.md`. Copy `_lab_pictures/corl_22.md`: the front matter is `title`, `name`, `location` and `avatar` (the cover image, relative to `images/lab_pictures/`), and the body is a list of figures. Each figure shows the `web/...webp` file and links to the original; give every `<img>` its real `width` and `height` and a short `alt`.
-4. Optional, for the Home photo strip: add a line to the `ticker:` list in the front matter of `index.html` (`src` is relative to `images/lab_pictures/`, e.g. `web/corl2022/DSC03166.webp`, plus `w`, `h`, `alt`, `cap`). Sponsor logos are the `sponsors:` list in the same place (files in `images/logo/`).
+1. **Add photos:** upload them to `images/lab_pictures/<album>/` (for example `images/lab_pictures/corl2022/`), on GitHub or locally, and push. That's all. They appear at the end of that album, and the album's photo count updates.
+   - A **new folder** becomes a new album at `/lab_pictures/<folder>/`, titled from the folder name (`neurips_2025` → "Neurips 2025").
+   - Files ending in `-tn` (thumbnails) are skipped.
+   - The deploy workflow creates the small WebP copies (`images/lab_pictures/web/...`). Until a copy exists, the page shows the original. To make them locally as well: `python3 scripts/optimize_images.py images/lab_pictures --max-width 1600 --target-kb 120`.
+2. **Optional: captions, a proper title, location and cover.** Create `_lab_pictures/<album>.md` (copy `_lab_pictures/corl_22.md`):
+   - The front matter is `title`, `name`, `location`, `folder` (the image folder) and `avatar` (the cover, relative to `images/lab_pictures/`).
+   - The body lists captioned figures; each shows the `web/...webp` file and links to the original. Give every `<img>` its real `width` and `height` and a short `alt`.
+   - Photos in the folder that the body does not list are still shown after them, without captions.
+3. Optional, for the Home photo strip: add a line to the `ticker:` list in the front matter of `index.html` (`src` is relative to `images/lab_pictures/`, e.g. `web/corl2022/DSC03166.webp`, plus `w`, `h`, `alt`, `cap`). Sponsor logos are the `sponsors:` list in the same place (files in `images/logo/`).
 
 ## Design system
 

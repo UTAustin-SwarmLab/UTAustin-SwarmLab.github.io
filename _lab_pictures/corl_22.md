@@ -1,6 +1,7 @@
 ---
 title: CoRL 2022
 name: CoRL 2022
+folder: corl2022
 avatar: corl2022/DSC03166-tn.JPG
 location: Auckland, New Zealand
 ---

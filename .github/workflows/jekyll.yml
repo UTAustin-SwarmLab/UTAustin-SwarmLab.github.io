@@ -41,6 +41,16 @@ jobs:
           ruby-version: '3.2.3' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Make web-sized image copies
+        # Uploaded photos need no local step: missing WebP copies are generated here (existing ones are skipped)
+        run: |
+          pip install --quiet pillow
+          python scripts/optimize_images.py images/lab_pictures --max-width 1600 --target-kb 120
+          python scripts/optimize_images.py images/people --max-width 480 --target-kb 80
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
