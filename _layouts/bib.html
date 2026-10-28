@@ -1,15 +1,60 @@
 ---
 ---
-<div class="text-justify">
-    {{reference}}
+{%- comment -%}
+  One publication entry (jekyll-scholar `bibliography_template: bib`).
+  Reads the BibTeX fields in agent/knowledgebase/site_kb.md §4.1: themes, venue_short, award,
+  arxiv, url, pdf, code, project/website, video. Every field is optional.
+{%- endcomment -%}
+{%- assign title = entry.title | remove: '{' | remove: '}' -%}
+{%- assign venue = entry.venue_short | default: entry.journal | default: entry.booktitle | default: entry.school | default: entry.publisher | remove: '{' | remove: '}' -%}
+{%- assign project = entry.project | default: entry.website -%}
 
-    {% if entry.pdf %}
-    <span><a href="{{ entry.pdf }}">pdf</a></span>
-    {% endif %}
-    {% if entry.website %}
-    <span><a href="{{ entry.website }}">website</a></span>
-    {% endif %}
-    {% if entry.video %}
-    <span><a href="{{ entry.video }}">video</a></span>
-    {% endif %}
-</div>
+{%- comment %} arXiv link: explicit `arxiv`, else a `url` that points at arxiv.org {% endcomment -%}
+{%- assign arxiv = entry.arxiv -%}
+{%- if arxiv == nil and entry.url contains 'arxiv.org' %}{% assign arxiv = entry.url %}{% endif -%}
+{%- comment %} PDF: explicit `pdf`, else derived from the arXiv abs link {% endcomment -%}
+{%- assign pdf = entry.pdf -%}
+{%- if pdf == nil and arxiv %}{% assign pdf = arxiv | replace: '/abs/', '/pdf/' %}{% endif -%}
+{%- comment %} Landing page that is not arXiv (OpenReview, publisher, proceedings) {% endcomment -%}
+{%- assign page_url = nil -%}
+{%- if entry.url and entry.url != arxiv %}{% assign page_url = entry.url %}{% endif -%}
+{%- assign title_url = page_url | default: arxiv | default: pdf | default: project -%}
+
+{%- capture authors_html -%}
+  {%- for a in entry.author_array -%}
+    {%- assign full = a.first | append: ' ' | append: a.prefix | append: ' ' | append: a.last | append: ' ' | append: a.suffix | normalize_whitespace | strip -%}
+    {%- assign last_word = a.last | split: ' ' | last | remove: '.' -%}
+    {%- assign initial = a.first | slice: 0 -%}
+    {%- assign lab_key = initial | append: ' ' | append: last_word | downcase -%}
+    {%- if site.data.lab_authors contains lab_key -%}<strong>{{ full }}</strong>{%- else -%}{{ full }}{%- endif -%}
+    {%- unless forloop.last %}, {% endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- capture authors_plain -%}{%- for a in entry.author_array -%}{{ a.first }} {{ a.prefix }} {{ a.last }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+{%- assign themes_list = entry.themes | replace: ',', ' ' | normalize_whitespace -%}
+{%- assign primary_theme = entry.themes | split: ',' | first | strip -%}
+
+<article class="pub" id="{{ key }}" data-year="{{ entry.year }}" data-themes="{{ themes_list }}" data-theme="{{ primary_theme }}" data-search="{{ title | append: ' ' | append: authors_plain | append: ' ' | append: venue | append: ' ' | append: entry.year | normalize_whitespace | downcase | escape }}">
+  <p class="pub-title">{% if title_url %}<a href="{{ title_url }}">{{ title }}</a>{% else %}{{ title }}{% endif %}</p>
+  {%- if authors_html != '' %}
+  <p class="pub-authors">{{ authors_html }}</p>
+  {%- endif %}
+  {%- if venue or entry.award %}
+  <p class="pub-meta">
+    {%- if venue %}<span class="pill pub-venue">{{ venue }}</span>{% endif -%}
+    {%- if entry.award %} <span class="pill pill--accent pub-award"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>{{ entry.award }}</span>{% endif -%}
+  </p>
+  {%- endif %}
+  <div class="pub-links">
+    {%- if pdf %}<a class="pub-link" href="{{ pdf }}"><svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg>PDF</a>{% endif -%}
+    {%- if arxiv %}<a class="pub-link" href="{{ arxiv }}"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>arXiv</a>{% endif -%}
+    {%- if page_url %}<a class="pub-link" href="{{ page_url }}"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>{% if page_url contains 'openreview.net' %}OpenReview{% else %}Page{% endif %}</a>{% endif -%}
+    {%- if entry.code %}<a class="pub-link" href="{{ entry.code }}"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Code</a>{% endif -%}
+    {%- if project %}<a class="pub-link" href="{{ project }}"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Project</a>{% endif -%}
+    {%- if entry.video %}<a class="pub-link" href="{{ entry.video }}"><svg class="icon" aria-hidden="true"><use href="#i-video"/></svg>Video</a>{% endif -%}
+    <details class="pub-bibtex">
+      <summary class="pub-link">BibTeX</summary>
+      <pre><code>{{ entry.bibtex | escape }}</code></pre>
+    </details>
+  </div>
+</article>
