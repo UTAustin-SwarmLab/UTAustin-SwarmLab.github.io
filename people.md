@@ -72,25 +72,44 @@ permalink: /people/
   {%- endif -%}
 {%- endfor -%}
 
-{%- comment -%} Alumni: newest first, then by name {%- endcomment -%}
+{%- comment -%} Alumni: grouped PhD > MS > Undergraduate > other; newest end_year first within a group, then no end_year {%- endcomment -%}
 {%- assign alumni = everyone | where: "position", "alumni" -%}
 {%- if alumni.size > 0 %}
-{%- assign end_years = alumni | map: "end_year" | uniq | sort | reverse %}
+{%- assign alumni_phd = alumni | where: "degree", "phd" -%}
+{%- assign alumni_ms = alumni | where: "degree", "ms" -%}
+{%- assign alumni_ug = alumni | where: "degree", "undergrad" -%}
+{%- assign alumni_other = alumni | where_exp: "p", "p.degree != 'phd' and p.degree != 'ms' and p.degree != 'undergrad'" -%}
+{%- capture alumni_groups -%}phd|PhD;ms|MS;ug|Undergraduate;other|Other{%- endcapture -%}
+{%- assign alumni_group_list = alumni_groups | split: ";" %}
 <section class="people-section" aria-labelledby="sec-alumni" data-reveal>
   <div class="section-header">
     <p class="eyebrow">Alumni</p>
     <h2 id="sec-alumni">Where they went next</h2>
   </div>
+  {%- for g in alumni_group_list %}
+  {%- assign gkey = g | split: "|" | first -%}
+  {%- assign gheading = g | split: "|" | last -%}
+  {%- case gkey -%}
+    {%- when "phd" -%}{%- assign group = alumni_phd -%}
+    {%- when "ms" -%}{%- assign group = alumni_ms -%}
+    {%- when "ug" -%}{%- assign group = alumni_ug -%}
+    {%- when "other" -%}{%- assign group = alumni_other -%}
+  {%- endcase -%}
+  {%- if group.size > 0 %}
+  {%- assign end_years = group | map: "end_year" | uniq | sort | reverse %}
+  <h3 class="alumni-group">{{ gheading }}</h3>
   <div class="alumni-grid">
     {%- for y in end_years %}
-    {%- for a in alumni %}{% if a.end_year == y %}
+    {%- for a in group %}{% if a.end_year == y %}
     {% include person_card.html p=a variant="alumni" %}
     {%- endif %}{% endfor %}
     {%- endfor %}
-    {%- for a in alumni %}{% unless a.end_year %}
+    {%- for a in group %}{% unless a.end_year %}
     {% include person_card.html p=a variant="alumni" %}
     {%- endunless %}{% endfor %}
   </div>
+  {%- endif %}
+  {%- endfor %}
 </section>
 {%- endif %}
 

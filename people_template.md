@@ -16,6 +16,10 @@ fellowships:
 internships:
   - company: 
     year: 
+industry:
+  - company: 
+    role: 
+    years: 
 ---
 
 <!--
@@ -30,7 +34,7 @@ FRONT MATTER (everything except name/position is optional: leave a field out and
                 After adding a photo run:  python3 scripts/optimize_images.py images/people --max-width 480 --target-kb 80
                 The site shows the small WebP copy in images/people/web/, so the original can stay large.
   degree        phd | ms | undergrad | postdoc | visiting. Drives the label "PhD student" and the PhD / Students split.
-  start_year    Year they joined the lab (shown as "since 2023", or "2021-2025" for alumni).
+  start_year    Year they joined the lab (shown as "since 2023", or "2021-2025" for alumni; one year if start and end match).
   end_year      Year they left (alumni only).
   interests     One line of research interests (shown on the card, 2 lines max).
   role          Title line for the PI only (e.g. "Assistant Professor, Electrical and Computer Engineering").
@@ -38,7 +42,9 @@ FRONT MATTER (everything except name/position is optional: leave a field out and
   website, scholar, github, linkedin   Full URLs; each one becomes an icon link on the card and a button on the profile.
   fellowships   List of {name, year}. Shown as orange badges on the card. Year is optional.
   internships   List of {company, year}. Shown as outlined badges ("Amazon intern 2025").
-                Only list internships done during the PhD. Year is optional.
+                Only list internships done during the PhD. Year is optional and can be a range string ("2024-26").
+  industry      List of {company, role, years}. Shown as grey badges with the company name only
+                (e.g. full-time work before or after the degree). role and years are notes for maintainers, not shown.
   placement     Alumni only: where they went next (shown as "-> Meta"). Only list what you have verified.
   placement_url Alumni only: optional link for the placement.
 

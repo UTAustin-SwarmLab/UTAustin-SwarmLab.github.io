@@ -15,6 +15,7 @@ fellowships:
     year: 2025
 internships:
   - company: Amazon
+    year: 2025
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>

@@ -5,9 +5,10 @@ position: alumni
 avatar: sundar.jpg
 degree: ms
 start_year: 2022
-end_year: 2023
+end_year: 2024
 website: https://ss26.github.io/
-placement: UT Austin
+placement: University of Bonn
+linkedin: https://www.linkedin.com/in/sundarsripada26/
 ---
 
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>

@@ -32,7 +32,7 @@ layout: default
       {%- if page.role %}<p class="profile__role">{{ page.role }}, UT Austin</p>{% endif %}
       {%- if page.start_year %}
       <p class="profile__years tnum">
-        {%- if page.end_year %}At the lab {{ page.start_year }}&ndash;{{ page.end_year }}{% else %}At the lab since {{ page.start_year }}{% endif -%}
+        {%- if page.end_year %}At the lab {{ page.start_year }}{% unless page.start_year == page.end_year %}&ndash;{{ page.end_year }}{% endunless %}{% else %}At the lab since {{ page.start_year }}{% endif -%}
         {%- if page.placement %} <span aria-hidden="true">&middot;</span> <span aria-hidden="true">&rarr;</span><span class="visually-hidden">now at</span> {% if page.placement_url %}<a href="{{ page.placement_url }}" rel="noopener">{{ page.placement }}</a>{% else %}{{ page.placement }}{% endif %}{% endif -%}
       </p>
       {%- elsif page.placement %}
@@ -40,13 +40,16 @@ layout: default
       {%- endif %}
       {%- if page.interests %}<p class="profile__interests">{{ page.interests }}</p>{% endif %}
 
-      {%- if page.fellowships or page.internships %}
-      <ul class="person__badges" aria-label="Fellowships and internships">
+      {%- if page.fellowships or page.internships or page.industry %}
+      <ul class="person__badges" aria-label="Fellowships, internships and industry experience">
         {%- for f in page.fellowships %}
         <li class="pill pill--accent">{{ f.name }}{% if f.year %} <span class="tnum">{{ f.year }}</span>{% endif %}</li>
         {%- endfor %}
         {%- for i in page.internships %}
         <li class="pill">{{ i.company }} intern{% if i.year %} <span class="tnum">{{ i.year }}</span>{% endif %}</li>
+        {%- endfor %}
+        {%- for w in page.industry %}
+        <li class="pill pill--industry">{{ w.company }}</li>
         {%- endfor %}
       </ul>
       {%- endif %}

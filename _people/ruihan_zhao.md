@@ -10,6 +10,11 @@ website: https://philipzrh.com/
 scholar: https://scholar.google.com/citations?user=dxco-1UAAAAJ
 github: https://github.com/PhilipZRH
 linkedin: https://www.linkedin.com/in/ruihan-philip-zhao-863924126/
+internships:
+  - company: Samsung Research America
+    year: 2025
+  - company: Apple
+    year: 2026
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>

@@ -126,6 +126,11 @@
     border-color: var(--accent-tint-2);
     color: var(--accent-strong);
   }
+  .pill--industry {
+    background: var(--surface-2);
+    border-color: var(--border);
+    color: var(--text);
+  }
 
   /* Filter toggle */
   .chip {

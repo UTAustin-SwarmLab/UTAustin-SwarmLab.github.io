@@ -31,11 +31,11 @@
     {%- endif -%}
   </div>
   <div class="alumni-card__body">
-    <h3 class="alumni-card__name"><a href="{{ site.baseurl }}{{ p.url | remove: "index.html" }}">{{ p.name }}</a></h3>
+    <h4 class="alumni-card__name"><a href="{{ site.baseurl }}{{ p.url | remove: "index.html" }}">{{ p.name }}</a></h4>
     {%- if degree_label != "" or p.start_year and p.end_year %}
     <p class="alumni-card__meta">
       {%- if degree_label != "" %}<span>{{ degree_label }}</span>{% endif -%}
-      {%- if p.start_year and p.end_year %}<span class="tnum">{{ p.start_year }}&ndash;{{ p.end_year }}</span>{% endif -%}
+      {%- if p.start_year and p.end_year %}<span class="tnum">{{ p.start_year }}{% unless p.start_year == p.end_year %}&ndash;{{ p.end_year }}{% endunless %}</span>{% endif -%}
     </p>
     {%- endif %}
     {%- if p.placement %}
@@ -62,13 +62,16 @@
     {%- if p.interests %}
     <p class="person__interests">{{ p.interests }}</p>
     {%- endif %}
-    {%- if p.fellowships or p.internships %}
-    <ul class="person__badges" aria-label="Fellowships and internships">
+    {%- if p.fellowships or p.internships or p.industry %}
+    <ul class="person__badges" aria-label="Fellowships, internships and industry experience">
       {%- for f in p.fellowships %}
       <li class="pill pill--accent">{{ f.name }}{% if f.year %} <span class="tnum">{{ f.year }}</span>{% endif %}</li>
       {%- endfor %}
       {%- for i in p.internships %}
       <li class="pill">{{ i.company }} intern{% if i.year %} <span class="tnum">{{ i.year }}</span>{% endif %}</li>
+      {%- endfor %}
+      {%- for w in p.industry %}
+      <li class="pill pill--industry">{{ w.company }}</li>
       {%- endfor %}
     </ul>
     {%- endif %}

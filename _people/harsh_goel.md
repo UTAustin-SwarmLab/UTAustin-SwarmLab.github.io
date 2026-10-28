@@ -12,6 +12,11 @@ linkedin: https://www.linkedin.com/in/harshgoel57199
 fellowships:
   - name: Cockrell School of Engineering fellowship
     year: 2023
+internships:
+  - company: NVIDIA
+    year: 2024
+  - company: Google DeepMind
+    year: 2025
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>

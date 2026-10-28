@@ -220,6 +220,10 @@ fellowships:
 internships:
   - company: Example Corp
     year: 2026
+industry:
+  - company: Example Industries
+    role: Software Engineer
+    years: 2020-2023
 ---
 ```
 
@@ -228,18 +232,19 @@ internships:
 | `position` | Which section of /people/: `pi`, `postdoc`, `gradstudent`, `undergrad`, `researchstaff`, `visiting`, `others` (honorary members), `alumni`. |
 | `degree` | `phd`, `ms`, `undergrad`, `postdoc`, `visiting`. Gives the label ("PhD student") and the split: `gradstudent` + `phd` goes under "PhD students"; other grad students and undergrads go under "Students". |
 | `avatar` | File name in `images/people/`. No avatar shows an initials tile. |
-| `start_year`, `end_year` | Shown as "since 2023" for current members, "2021-2025" for alumni. |
+| `start_year`, `end_year` | Shown as "since 2023" for current members, "2021-2025" for alumni (one year if they match). |
 | `interests` | One line, shown on the card. |
 | `website`, `scholar`, `github`, `linkedin` | Full URLs; each becomes an icon on the card and a button on the profile. |
 | `email` | Optional; shows an email icon. Leave it out if you do not want it on the card. |
 | `role` | Title line, used for the PI only. |
 | `fellowships` | List of `name` + optional `year`. Orange badges. |
-| `internships` | List of `company` + optional `year`. Outline badges ("Example Corp intern 2026"). List internships done during the PhD. |
+| `internships` | List of `company` + optional `year`. Outline badges ("Example Corp intern 2026"). List internships done during the PhD. `year` can be a range string ("2024-26"). |
+| `industry` | List of `company`, `role`, `years`. Grey badges showing the company name only; `role` and `years` are for maintainers. For full-time industry experience, not internships. |
 | `placement`, `placement_url` | Alumni only: where they went next, with an optional link. |
 
 ### Moving someone to Alumni
 
-In their file change `position: alumni`, add `end_year: 2026` and `placement: Company or University` (plus `placement_url`, optional). Alumni are listed newest `end_year` first. Only add a placement you have verified.
+In their file change `position: alumni`, add `end_year: 2026` and `placement: Company or University` (plus `placement_url`, optional). Alumni are grouped PhD, MS, Undergraduate (by `degree`), newest `end_year` first within each group. Only add a placement you have verified.
 
 ## Research themes
 

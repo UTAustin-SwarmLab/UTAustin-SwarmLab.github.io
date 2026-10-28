@@ -8,6 +8,9 @@ start_year: 2022
 interests: Neuro-symbolic video understanding, computer vision, reinforcement learning
 website: https://spsharan.com/
 github: https://github.com/Syzygianinfern0
+internships:
+  - company: Uber
+    year: 2026
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>

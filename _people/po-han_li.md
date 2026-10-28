@@ -7,6 +7,7 @@ degree: phd
 start_year: 2021
 end_year: 2026
 website: https://d31003.github.io/
+linkedin: https://www.linkedin.com/in/po-han-li-9760161bb/
 placement: Synthefy
 placement_url: https://www.synthefy.com/about
 ---

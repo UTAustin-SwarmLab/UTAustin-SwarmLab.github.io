@@ -10,6 +10,16 @@ website: https://arnabsanyal.com/
 scholar: https://scholar.google.com/citations?user=D9ebkwoAAAAJ
 github: https://github.com/arnabsanyal
 linkedin: https://www.linkedin.com/in/arnabsanyal17/
+industry:
+  - company: Qualcomm
+    role: Senior Machine Learning Engineer
+    years: "2023–2024"
+  - company: AMD
+    role: Member of Technical Staff - ML Systems Design Engineer
+    years: "2024–2025"
+  - company: Cruise
+    role: Senior ML Compiler Engineer II
+    years: "2025–present"
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>

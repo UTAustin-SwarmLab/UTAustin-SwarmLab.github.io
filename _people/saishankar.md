@@ -9,6 +9,7 @@ interests: Generative models for time series, safe RL and formal verification
 website: https://saishankarn.github.io/
 scholar: https://scholar.google.com/citations?user=y0jHk04AAAAJ
 github: https://github.com/saishankarn
+linkedin: https://www.linkedin.com/in/sai-shankar-narasimhan/
 internships:
   - company: Synthefy
     year: 2025

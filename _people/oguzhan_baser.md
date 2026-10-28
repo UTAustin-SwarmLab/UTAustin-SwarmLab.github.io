@@ -9,6 +9,9 @@ interests: Distributed optimization, network intelligence, verifiable/private ML
 website: http://oguzhan-baser.github.io/
 github: https://github.com/oguzhan-baser
 linkedin: https://www.linkedin.com/in/baseroguzhan/
+internships:
+  - company: Qualcomm
+    year: "2024–26"
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
