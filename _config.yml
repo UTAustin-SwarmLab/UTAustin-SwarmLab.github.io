@@ -31,6 +31,15 @@ nav:
   - name:           "Join"
     href:           "/join/"
 
+# Kept in the repo but not published: the local-only agent workspace (gitignored), the people template and the deprecated Bootstrap-era JS/CSS.
+# Jekyll adds its default excludes (Gemfile, Gemfile.lock, node_modules, vendor/..., .jekyll-cache, ...) on top of this list.
+exclude:
+  - agent
+  - people_template.md
+  - js/transition.js
+  - js/zoom.js
+  - css/zoom.css
+
 # Sass
 sass:
   style:            :compressed

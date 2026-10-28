@@ -1,11 +1,39 @@
 ---
 layout: default
 ---
-<div class="container content post">
-  <h3><strong>{{ page.title }}</strong><br/>
-  <small>posted on {{ page.date | date: '%B %-d, %Y'}}</small></h3>
-  <hr>
-  {{ content }}
-  {% include social-share.html %}
-  <!-- <div id="disqus_thread"></div> -->
-</div>
+{%- assign newer = page.next -%}
+{%- assign older = page.previous -%}
+<article class="post">
+  <header class="post-header">
+    <p class="eyebrow"><a href="{{ site.baseurl }}/blog/">Blog</a></p>
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {%- if page.description and page.description != "" %}<span class="post-meta__sep" aria-hidden="true">&middot;</span><span class="post-meta__desc">{{ page.description }}</span>{% endif %}
+    </p>
+  </header>
+
+  <div class="post-body prose">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {% include social-share.html %}
+    {%- if newer or older %}
+    <nav class="post-nav" aria-label="More posts">
+      {%- if older %}
+      <a class="post-nav__link post-nav__link--older" href="{{ older.url | prepend: site.baseurl }}" rel="prev">
+        <span class="post-nav__label"><span aria-hidden="true">&larr;</span> Older</span>
+        <span class="post-nav__title">{{ older.title }}</span>
+      </a>
+      {%- endif %}
+      {%- if newer %}
+      <a class="post-nav__link post-nav__link--newer" href="{{ newer.url | prepend: site.baseurl }}" rel="next">
+        <span class="post-nav__label">Newer <span aria-hidden="true">&rarr;</span></span>
+        <span class="post-nav__title">{{ newer.title }}</span>
+      </a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
+  </footer>
+</article>

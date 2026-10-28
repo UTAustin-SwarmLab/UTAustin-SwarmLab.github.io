@@ -1,57 +1,30 @@
 ---
-title: blog
+title: Blog
+eyebrow: Blog
+lede: Plain-language write-ups of our papers, by the students who wrote them.
 permalink: /blog/
 ---
 
-<head>
-  <!-- MathJax configuration -->
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-      tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        processEscapes: true,
-      }
-    });
-  </script>
-  <!-- Load MathJax -->
-  <script type="text/javascript" async 
-          src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
-</head>
+{%- assign blog_posts = site.posts | where_exp: "p", "p.categories contains 'blog'" -%}
+{%- assign by_year = blog_posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
 
-# **Blog Posts**
-
-<div class="content list">
-  {% for post in site.posts %}
-    {% if post.categories contains 'blog' %}
-    <div class="list-item">
-      <p class="list-post-title">
-        <a href="{{ post.url | prepend: site.baseurl }}">
-            <div class="row">
-                <!-- <div class="col-sm-4">
-                    <img src="/{% if post.header-img %}{{ post.header-img }}{% else %}{{ site.header-img }}{% endif %}">
-                </div> -->
-                <div class="col-md-12">
-                    <h3 class="post-title">
-                        {{ post.title }}
-                    </h3>
-                    <p class="list-post-title">
-                      Posted on {{ post.date | date: "%B %-d, %Y" }}
-                    </p>
-                    <p class="list-detail" >
-                      {{ post.content | strip_html | truncatewords:30 }}
-                    </p>
-                </div>
-            </div>
-            <hr/>
-        </a>
-      </p>
-    </div>
-    {% endif %}
-  {% endfor %}
+<div class="post-timeline">
+{%- for group in by_year %}
+  <section class="post-year" aria-labelledby="year-{{ group.name }}">
+    <h2 class="post-year__title" id="year-{{ group.name }}">{{ group.name }} <span class="post-year__count">{{ group.items | size }}</span></h2>
+    <ol class="post-list">
+    {%- for post in group.items %}
+      <li class="post-item">
+        <time class="post-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
+        <div class="post-item__body">
+          <h3 class="post-item__title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+          {%- if post.description != "" and post.description %}
+          <p class="post-item__desc">{{ post.description }}</p>
+          {%- endif %}
+        </div>
+      </li>
+    {%- endfor %}
+    </ol>
+  </section>
+{%- endfor %}
 </div>

@@ -1,9 +1,13 @@
 ---
 layout: default
 ---
-<div class="container content page">
-  <h3 class="page-title">{{ page.name }}</h3>
-  <h4 class="page-title">{{ page.location }}</h4>
-  <!-- <span style="display: block; margin-bottom: 1em"></span> -->
-  {{ content }}
+<div class="container album">
+  <header class="page-header">
+    <p class="eyebrow"><a href="{{ site.baseurl }}/lab_pictures/"><span aria-hidden="true">&larr;</span> Lab life</a></p>
+    <h1 class="page-title">{{ page.name }}</h1>
+    {%- if page.location %}<p class="page-lede">{{ page.location }}</p>{% endif %}
+  </header>
+  <div class="album-body">
+    {{ content }}
+  </div>
 </div>

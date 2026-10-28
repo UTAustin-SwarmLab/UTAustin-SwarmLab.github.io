@@ -1,4 +1,29 @@
-<ul class="share-buttons">
-  <a style="color:#3b5998;" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
-  <a style="color:#0084b4;" href="https://twitter.com/intent/tweet?text={{ site.url }}{{ page.url }}" title="Share on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
-</ul>
+{%- assign share_url = page.url | absolute_url | url_encode -%}
+{%- assign share_title = page.title | url_encode -%}
+<div class="share" role="group" aria-label="Share this post">
+  <span class="share__label">Share</span>
+  <a class="share__btn" href="https://twitter.com/intent/tweet?text={{ share_title }}&amp;url={{ share_url }}" target="_blank" rel="noopener noreferrer">
+    <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="visually-hidden">Share on X</span>
+  </a>
+  <a class="share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener noreferrer">
+    <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg><span class="visually-hidden">Share on LinkedIn</span>
+  </a>
+  <button class="share__btn share__copy" type="button" data-url="{{ page.url | absolute_url }}" hidden>
+    <svg class="icon" aria-hidden="true"><use href="#i-link"/></svg><span class="visually-hidden">Copy link</span>
+  </button>
+  <span class="share__status" role="status" aria-live="polite"></span>
+</div>
+<script>
+(function () {
+  var b = document.querySelector('.share__copy');
+  if (!b || !navigator.clipboard) return;
+  b.hidden = false;
+  b.addEventListener('click', function () {
+    var s = document.querySelector('.share__status');
+    navigator.clipboard.writeText(b.dataset.url).then(function () {
+      s.textContent = 'Link copied';
+      setTimeout(function () { s.textContent = ''; }, 2000);
+    });
+  });
+})();
+</script>
