@@ -33,7 +33,7 @@
     white-space: nowrap;
   }
   .wordmark:hover { color: var(--text); text-decoration: none; }
-  .wordmark__mark { width: 1.6rem; height: 1.6rem; flex: none; }
+  .wordmark__mark { width: 2rem; height: 2rem; flex: none; }
   .wordmark__name { font-size: 1.0625rem; font-weight: var(--weight-semibold); letter-spacing: -0.015em; }
   .wordmark__rule { width: 1px; height: 1.25rem; background: var(--border-strong); }
   .wordmark__org { font-family: var(--font-serif); font-size: 1.3rem; line-height: 1; color: var(--text-2); }
