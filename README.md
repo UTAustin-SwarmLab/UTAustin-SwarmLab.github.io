@@ -306,7 +306,7 @@ Albums are listed at `/lab_pictures/` (linked from the footer and the People pag
    - The front matter is `title`, `name`, `location`, `folder` (the image folder) and `avatar` (the cover, relative to `images/lab_pictures/`).
    - The body lists captioned figures; each shows the `web/...webp` file and links to the original. Give every `<img>` its real `width` and `height` and a short `alt`.
    - Photos in the folder that the body does not list are still shown after them, without captions.
-3. Optional, for the Home photo strip: add a line to the `ticker:` list in the front matter of `index.html` (`src` is relative to `images/lab_pictures/`, e.g. `web/corl2022/DSC03166.webp`, plus `w`, `h`, `alt`, `cap`). Sponsor logos are the `sponsors:` list in the same place (files in `images/logo/`).
+3. **Home photo strip:** every album photo appears there automatically, captioned "<album>, <city>". To give a photo its own caption (or a fixed place in the strip), add a line to the `ticker:` list in the front matter of `index.html` (`src` is relative to `images/lab_pictures/`, e.g. `web/corl2022/DSC03166.webp`, plus `w`, `h`, `alt`, `cap`). Sponsor logos are the `sponsors:` list in the same place (files in `images/logo/`).
 
 ## Design system
 

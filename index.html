@@ -1,7 +1,8 @@
 ---
 layout: default
 body_class: home
-# Lab-life ticker. src is under images/lab_pictures/ (WebP copies from scripts/optimize_images.py); w/h = pixel size (prevents layout shift).
+# Lab-life ticker: hand-picked photos with captions. Album photos not listed here are added automatically in front of them
+# (_plugins/lab_pictures.rb). src is under images/lab_pictures/ (WebP copies from scripts/optimize_images.py); w/h = pixel size.
 ticker:
   - { src: web/corl2022/DSC03166.webp, w: 1600, h: 1067, alt: "Sandeep, Shubhankar and Po-han in Devonport, Auckland", cap: "CoRL 2022, Auckland" }
   - { src: web/rss2022/IMG_0909.webp, w: 1600, h: 1200, alt: "Sai, Oguzhan and Philip attending RSS", cap: "RSS 2022, New York" }
@@ -140,7 +141,7 @@ sponsors:
   <div class="ticker" id="ticker" role="group" aria-label="Photos from conferences and field trips">
     <ul class="ticker__track">
       {%- for round in (1..2) %}
-      {%- for p in page.ticker %}
+      {%- for p in site.data.lab_ticker %}{% comment %} = new album photos, then the ticker: list above (_plugins/lab_pictures.rb) {% endcomment %}
       <li class="ticker__item"{% if round == 2 %} aria-hidden="true"{% endif %}>
         <figure>
           <img src="/images/lab_pictures/{{ p.src }}" alt="{% if round == 2 %}{% else %}{{ p.alt }}{% endif %}" width="{{ p.w }}" height="{{ p.h }}" loading="lazy" decoding="async">
