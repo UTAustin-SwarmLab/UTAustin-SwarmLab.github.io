@@ -12,9 +12,10 @@ Source of the [Swarm Lab website](https://utaustin-swarmlab.github.io/). Everyth
 | Add myself to the People page | new file `_people/<first>_<last>.md` + a photo in `images/people/` | [Add or update a person](#add-or-update-a-person) |
 | Move someone to Alumni | their `_people/*.md`: `position: alumni`, `end_year`, `placement` | [Add or update a person](#add-or-update-a-person) |
 | Write a blog post about a paper | new file `_posts/YYYY-MM-DD-title.md` | [Write a blog post](#write-a-blog-post) |
-| Change a research theme's text | `_data/themes.yml` | [Research themes](#research-themes) |
+| Change a research theme's text | `_data/themes.yml` (and the theme list in the `lede:` of `research.md`) | [Research themes](#research-themes) |
 | Add conference or trip photos | upload to `images/lab_pictures/<album>/` (optional captions: `_lab_pictures/<album>.md`) | [Lab life photos](#lab-life-photos) |
 | Fix a typo on About / Join | `about.md` / `join.md` | |
+| Swap the home figure, logo or tab icon | `images/key-visual/`, `images/logo/swarm-lab-mark.svg`, `favicon.svg` | [Brand assets](#brand-assets) |
 | Preview my change | `bundle exec jekyll serve` | [Run locally](#run-locally) |
 
 Not sure? Open a pull request anyway and ask in the Swarm Lab Slack.
@@ -29,14 +30,14 @@ Not sure? Open a pull request anyway and ask in the Swarm Lab Slack.
 6. [Research themes](#research-themes)
 7. [Write a blog post](#write-a-blog-post)
 8. [Lab life photos](#lab-life-photos)
-9. [Design system](#design-system)
-10. [Publish your change](#publish-your-change)
-11. [Credits](#credits)
+9. [Brand assets](#brand-assets)
+10. [Design system](#design-system)
+11. [Publish your change](#publish-your-change)
 
 ## Overview
 
 - **Stack:** [Jekyll](https://jekyllrb.com/) 4.4 with [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar) for the bibliography, Sass for styles, a little vanilla JavaScript. No Node, no Bootstrap, no jQuery.
-- **Deploy:** every push to the `source` branch runs `.github/workflows/jekyll.yml`, which builds the site (Ruby 3.2.3) and publishes it to GitHub Pages. There is nothing to run by hand.
+- **Deploy:** every push to the `source` branch runs `.github/workflows/jekyll.yml`, which makes any missing WebP photo copies, builds the site (Ruby 3.2.3, on `ubuntu-24.04`) and publishes it to GitHub Pages. There is nothing to run by hand.
 - **Single source of truth:** the bibliography feeds the Publications page, the Research page, the Home "Selected publications" list and (optionally) the news. You add a paper once.
 
 | Path | What it is |
@@ -47,11 +48,13 @@ Not sure? Open a pull request anyway and ask in the Swarm Lab Slack.
 | `_people/*.md` | One file per person (collection `people`) |
 | `images/people/` | Original photos; `images/people/web/` holds the generated WebP copies the site shows |
 | `_posts/` | Blog posts; their images are in `images/post/` |
-| `_lab_pictures/` | Photo albums; images in `images/lab_pictures/` |
+| `images/lab_pictures/<album>/` | Lab life photos; each folder is an album (optional captions in `_lab_pictures/<album>.md`) |
 | `index.html`, `research.md`, `publications.md`, `news.md`, `people.md`, `about.md`, `join.md`, `blog.md` | Page templates |
 | `_plugins/bib_news.rb` | Merges bib news and `news.yml` into one list |
+| `_plugins/lab_pictures.rb` | Turns the photo folders into albums and feeds the Home photo strip |
+| `images/key-visual/`, `images/logo/`, `favicon.svg` | Home figure, header mark, tab icon, partner logos ([Brand assets](#brand-assets)) |
 | `_sass/` | Styles; `_tokens.scss` holds colors, fonts, spacing |
-| `scripts/optimize_images.py` | Makes web-sized WebP copies of photos |
+| `scripts/optimize_images.py` | Makes web-sized WebP copies of photos (the deploy runs it too) |
 | `people_template.md` | Template to copy for a new person (not published) |
 
 ## Run locally
@@ -77,7 +80,7 @@ ruby -S bundle install          # inside conda, call bundler as `ruby -S bundle`
 ruby -S bundle exec jekyll serve
 ```
 
-**Photo script only:** `scripts/optimize_images.py` needs Python 3 with Pillow (`python3 -m pip install pillow`). It is not needed to run the site.
+**Photo script only:** `scripts/optimize_images.py` needs Python 3 with Pillow (`python3 -m pip install pillow`). It is not needed to run the site, and the deploy runs it for you; run it locally only to see new photos in a local preview.
 
 ## Add a publication
 
@@ -187,13 +190,13 @@ Awards, talks, defenses, press. Add an item at the top (order in the file does n
 
 1. Copy `people_template.md` to `_people/<first>_<last>.md` (lowercase, underscores; the file name becomes the profile URL `/people/<first>_<last>/`).
 2. Put your photo in `images/people/` (portrait, about 4:5, at least 480 px wide; any size is fine, the script shrinks it) and set `avatar:` to its file name.
-3. Make the web copy and commit it together with the original:
+3. The site shows a small WebP copy, `images/people/web/<name>.webp`. The deploy makes it automatically, so committing the original is enough. To see the photo in a local preview (or to commit the copy yourself), run:
 
    ```bash
    python3 scripts/optimize_images.py images/people --max-width 480 --target-kb 80
    ```
 
-   This writes `images/people/web/<name>.webp`, which is what the site actually shows. Without it your photo will not appear. The script skips files that are already up to date; run `python3 scripts/optimize_images.py --help` for options.
+   The script skips files that are already up to date; run `python3 scripts/optimize_images.py --help` for options.
 4. Fill in the front matter (below). Delete the instruction comment at the top and the bold instruction lines of the template body; keep **Office** if it applies to you. Anything below the front matter is your profile page text (Markdown).
 5. Open a pull request.
 
@@ -263,6 +266,7 @@ The Research page is driven by two things: `_data/themes.yml` (the five themes, 
 - Papers before 2021 go into the "Before Swarm Lab" block, grouped by theme; `themes={other}` goes into "Earlier & other work".
 - `representative` takes bib keys that must exist in `references.bib`. Pick the most relevant papers from the strongest venues, from 2021 on, whose **primary** theme is this theme (otherwise the "Show N more" count is off).
 - Slugs must match exactly. Adding a sixth theme is a design decision: also check `research.md`, where each theme has its own small illustration, and ask first.
+- The intro sentence at the top of the Research page lists the theme names by hand (`lede:` in `research.md`). Update it when you rename, add or remove a theme.
 
 ## Write a blog post
 
@@ -308,6 +312,16 @@ Albums are listed at `/lab_pictures/` (linked from the footer and the People pag
    - Photos in the folder that the body does not list are still shown after them, without captions.
 3. **Home photo strip:** every album photo appears there automatically, captioned "<album>, <city>". To give a photo its own caption (or a fixed place in the strip), add a line to the `ticker:` list in the front matter of `index.html` (`src` is relative to `images/lab_pictures/`, e.g. `web/corl2022/DSC03166.webp`, plus `w`, `h`, `alt`, `cap`). Sponsor logos are the `sponsors:` list in the same place (files in `images/logo/`).
 
+## Brand assets
+
+| What | File | Notes |
+|---|---|---|
+| Home figure (hero) | `images/key-visual/swarm-lab-key-visual-animated.svg` | Animated SVG (CSS only). Visitors with reduced motion get the still copy `swarm-lab-key-visual.svg`; keep the two in sync. Its text is the page's `<h1>` (alt "Swarm Lab"). |
+| Header mark | `images/logo/swarm-lab-mark.svg` | Shown next to "Swarm Lab" in the header. |
+| Browser tab icon | `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Linked in `_includes/head.html`. Regenerate the PNGs if you change the SVG. |
+| Link-preview image | `images/logo/og.png` | 1200×630, used for social and chat previews. |
+| Partner logos | `images/logo/*.png` | Listed in the `sponsors:` front matter of `index.html`. |
+
 ## Design system
 
 - All colors, fonts, spacing and radii are CSS custom properties in `_sass/_tokens.scss`. Use the tokens; do not hard-code colors. Do color math in CSS (`color-mix`), not with Sass `darken()`.
@@ -325,10 +339,8 @@ Albums are listed at `/lab_pictures/` (linked from the footer and the People pag
 
 Never push straight to a branch other than `source`; there is no separate `master` build step and `rake publish` is no longer needed.
 
+Changing `.github/workflows/` needs a GitHub token with the `workflow` scope. If a push is rejected with "refusing to allow an OAuth App to create or update workflow", run `gh auth refresh -h github.com -s workflow` and push again.
+
 **Something broke?** Open the failed run in the Actions tab and read the "Build with Jekyll" log. Typical causes: a duplicate BibTeX key, an unbalanced `{` in a bib entry, bad YAML in `news.yml` or a front matter block (check indentation and quotes), or a post without a `YYYY-MM-DD-` prefix.
 
 **Help:** message Oguzhan Baser in the Swarm Lab Slack or email oguzhanbaser@utexas.edu.
-
-## Credits
-
-The site was originally based on the template used by the [CLeAR Lab](https://clearoboticslab.github.io/) at UT Austin. Thanks!
