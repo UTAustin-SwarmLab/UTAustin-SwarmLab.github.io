@@ -137,6 +137,22 @@
   @media (max-width: 47.999rem) { display: none; }
 }
 
+// The five themes are cards so consecutive themes read as separate units; the archive blocks stay plain.
+.theme-section:not(.theme-section--archive) {
+  padding: var(--space-xl) var(--space-m) var(--space-l);
+  margin-bottom: var(--space-m);
+  background: var(--surface);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-2);
+
+  &:first-child { padding-top: var(--space-xl); border-top: var(--border-w) solid var(--border); }
+  @media (min-width: 48rem) { padding-inline: var(--space-l); }
+
+  .theme-section__art,
+  &:first-child .theme-section__art { top: var(--space-xl); right: var(--space-l); }
+}
+
 .theme-section__head {
   max-inline-size: 42rem;
   margin-bottom: var(--space-m);
