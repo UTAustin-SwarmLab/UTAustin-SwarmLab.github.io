@@ -19,7 +19,7 @@ internships:
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `ruihan.zhao@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> ruihan [dot] zhao [at] utexas [dot] edu<br>
 <!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://philipzrh.com/)
 

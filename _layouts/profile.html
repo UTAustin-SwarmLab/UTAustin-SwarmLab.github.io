@@ -60,7 +60,7 @@ layout: default
         {%- if page.scholar %}<li><a class="btn btn--secondary" href="{{ page.scholar }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg> Scholar</a></li>{% endif %}
         {%- if page.github %}<li><a class="btn btn--secondary" href="{{ page.github }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a></li>{% endif %}
         {%- if page.linkedin %}<li><a class="btn btn--secondary" href="{{ page.linkedin }}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a></li>{% endif %}
-        {%- if page.email %}<li><a class="btn btn--secondary" href="mailto:{{ page.email }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Email</a></li>{% endif %}
+        {%- if page.email %}<li class="person__email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ page.email }}</li>{% endif %}
       </ul>
       {%- endif %}
     </div>

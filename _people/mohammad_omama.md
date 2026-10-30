@@ -20,7 +20,7 @@ internships:
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> mohd.omama@utexas.edu<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> mohd [dot] omama [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/omama_resume.pdf)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://mohdomama.github.io/)
 

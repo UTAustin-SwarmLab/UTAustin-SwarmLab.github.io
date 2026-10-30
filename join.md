@@ -9,16 +9,15 @@ permalink: /join/
   <div class="join__main">
     <section aria-labelledby="join-grad">
       <h2 id="join-grad">Prospective graduate students</h2>
-      <p>Please reach out to <a href="mailto:sandeepc@utexas.edu?subject=Potential%20Graduate%20Student">Sandeep</a> by email to express your interest.</p>
+      <p>Please reach out to Sandeep by email to express your interest.</p>
       <ol class="join__steps">
-        <li><span><strong>Write to Sandeep</strong> at <a href="mailto:sandeepc@utexas.edu?subject=Potential%20Graduate%20Student">sandeepc@utexas.edu</a>.</span></li>
+        <li><span><strong>Write to Sandeep</strong> at sandeepc [at] utexas [dot] edu.</span></li>
         <li><span><strong>Use the subject line</strong> <code>Potential Graduate Student</code>.</span></li>
         <li><span><strong>Attach your CV</strong> and add a brief note about your research interests.</span></li>
       </ol>
       <p>We are looking for students with a strong background in control theory, machine learning, and/or game theory. We are also interested in students with a strong background in robotics, computer vision, and/or wireless communications.</p>
       <p class="join__cta">
-        <a class="btn btn--primary" href="mailto:sandeepc@utexas.edu?subject=Potential%20Graduate%20Student"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email Sandeep</a>
-        <a class="btn btn--secondary" href="/research/">See our research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn--primary" href="/research/">See our research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </p>
     </section>
 
@@ -39,7 +38,7 @@ permalink: /join/
       <dl class="contact-card__list">
         <div>
           <dt>Email</dt>
-          <dd><a href="mailto:sandeepc@utexas.edu">sandeepc@utexas.edu</a></dd>
+          <dd>sandeepc [at] utexas [dot] edu</dd>
         </div>
         <div>
           <dt>Visit</dt>

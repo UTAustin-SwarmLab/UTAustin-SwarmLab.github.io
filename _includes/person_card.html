@@ -73,13 +73,12 @@
       {%- endfor %}
     </ul>
     {%- endif %}
-    {%- if p.website or p.scholar or p.github or p.linkedin or p.email %}
+    {%- if p.website or p.scholar or p.github or p.linkedin %}
     <ul class="person__links">
       {%- if p.website %}<li><a href="{{ p.website }}" rel="noopener" aria-label="{{ p.name }}: website"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></a></li>{% endif %}
       {%- if p.scholar %}<li><a href="{{ p.scholar }}" rel="noopener" aria-label="{{ p.name }}: Google Scholar"><svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>{% endif %}
       {%- if p.github %}<li><a href="{{ p.github }}" rel="noopener" aria-label="{{ p.name }}: GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a></li>{% endif %}
       {%- if p.linkedin %}<li><a href="{{ p.linkedin }}" rel="noopener" aria-label="{{ p.name }}: LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>{% endif %}
-      {%- if p.email %}<li><a href="mailto:{{ p.email }}" aria-label="Email {{ p.name }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>{% endif %}
     </ul>
     {%- endif %}
   </div>

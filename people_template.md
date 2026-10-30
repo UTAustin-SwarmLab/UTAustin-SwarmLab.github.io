@@ -38,7 +38,7 @@ FRONT MATTER (everything except name/position is optional: leave a field out and
   end_year      Year they left (alumni only).
   interests     One line of research interests (shown on the card, 2 lines max).
   role          Title line for the PI only (e.g. "Assistant Professor, Electrical and Computer Engineering").
-  email         Shown as an icon link; the PI only by default.
+  email         Shown as plain text (not a link) on the PI card and profile; write it as "name [at] utexas [dot] edu".
   website, scholar, github, linkedin   Full URLs; each one becomes an icon link on the card and a button on the profile.
   fellowships   List of {name, year}. Shown as orange badges on the card. Year is optional.
   internships   List of {company, year}. Shown as outlined badges ("Amazon intern 2025").
@@ -53,7 +53,7 @@ SOURCING RULE: if a fact is not known or not verified, leave the field out. It s
 
 - _MS Student/PhD Student/Bachelor's, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `<your work email>`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> name [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/your_resume_filename.pdf)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](<link to your website>)
 

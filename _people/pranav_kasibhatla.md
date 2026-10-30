@@ -11,7 +11,7 @@ placement: Columbia University
 
 - _Bachelor's Student, Physics (Computational Physics), UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `pkash47@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> pkash47 [at] utexas [dot] edu<br>
 <!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/fp_resume.pdf)<br> -->
 <!-- <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://spsharan.com/) -->
 

@@ -30,7 +30,7 @@ industry:
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 - _Senior ML Engineer II, Cruise LLC, General Motors_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sanyal@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> sanyal [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](https://drive.google.com/open?id=1qmr7uleFa0IoCncOq6VHd0Pkg9Zh6q0o)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://arnabsanyal.com/)
 

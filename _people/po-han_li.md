@@ -14,7 +14,7 @@ placement_url: https://www.synthefy.com/about
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `pohanli@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> pohanli [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](https://d31003.github.io/data/Po_han_Intern_CV.pdf)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://d31003.github.io/)
 

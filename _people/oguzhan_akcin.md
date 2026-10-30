@@ -12,7 +12,7 @@ placement: Meta
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `oguzhanakcin@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> oguzhanakcin [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](https://oguzhanakcin.github.io/assets/pdf/Oguzhan_Akcin_Resume.pdf)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](http://oguzhanakcin.github.io/)
 

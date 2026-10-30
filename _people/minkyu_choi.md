@@ -21,7 +21,7 @@ industry:
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `minkyu.choi@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> minkyu [dot] choi [at] utexas [dot] edu<br>
 <!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/your_resume_filename.pdf)<br> -->
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://minkyuchoi-07.github.io/about/)
 

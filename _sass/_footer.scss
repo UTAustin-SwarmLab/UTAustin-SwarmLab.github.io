@@ -43,7 +43,7 @@
   .site-footer__address { font-style: normal; line-height: 1.7; }
 
   .site-footer__links { display: grid; gap: 0.25rem; }
-  .site-footer__links a { display: inline-flex; align-items: center; gap: 0.5em; min-height: 1.75rem; }
+  .site-footer__links a, .site-footer__links li > span { display: inline-flex; align-items: center; gap: 0.5em; min-height: 1.75rem; }
 
   .site-footer__base {
     display: flex;

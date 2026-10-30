@@ -26,7 +26,7 @@ permalink: /people/
     <ul class="person__links">
       {%- if pi.scholar %}<li><a href="{{ pi.scholar }}" rel="noopener" aria-label="{{ pi.name }}: Google Scholar"><svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg></a></li>{% endif %}
       {%- if pi.website %}<li><a href="{{ pi.website }}" rel="noopener" aria-label="{{ pi.name }}: website"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></a></li>{% endif %}
-      {%- if pi.email %}<li><a href="mailto:{{ pi.email }}" aria-label="Email {{ pi.name }}"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a></li>{% endif %}
+      {%- if pi.email %}<li class="person__email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ pi.email }}</li>{% endif %}
     </ul>
     <p><a class="btn btn--secondary" href="{{ site.baseurl }}{{ pi.url | remove: "index.html" }}">Full profile <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></p>
   </div>

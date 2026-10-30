@@ -22,7 +22,7 @@ internships:
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `harshg99@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> harshg99 [at] utexas [dot] edu<br>
 <!-- <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/your_resume_filename.pdf)<br> -->
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://harshg99.github.io/hgmain/)
 

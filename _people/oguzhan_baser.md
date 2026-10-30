@@ -17,7 +17,7 @@ internships:
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `oguzhanbaser at utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> oguzhanbaser [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](http://oguzhan-baser.github.io/)
 
 **Office**<br>

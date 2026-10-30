@@ -13,7 +13,7 @@ linkedin: https://www.linkedin.com/in/sundarsripada26/
 
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sundarsripadavs@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> sundarsripadavs [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg> [Resume (pdf)](/documents/sundar_resume.pdf)<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://ss26.github.io/)
 

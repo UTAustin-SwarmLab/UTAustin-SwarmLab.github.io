@@ -12,7 +12,7 @@ placement: Tesla
 
 - _MS Student, Electrical and Computer Engineering, UT Austin_<br>
 
-<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> `sharachchandra@utexas.edu`<br>
+<svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> sharachchandra [at] utexas [dot] edu<br>
 <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg> [Personal Website](https://sharachchandra.github.io/)
 
 **Office**<br>
