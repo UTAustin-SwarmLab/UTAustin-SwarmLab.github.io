@@ -73,51 +73,28 @@ sponsors:
       </div>
       <a class="section-link" href="/research/">All research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     </div>
-    <div class="home-themes__grid">
+    <ul class="home-themes__grid" role="list">
       {%- for theme in site.data.themes %}
-      <article class="theme-card{% if theme.slug == 'swarm' %} theme-card--lead{% endif %}" data-reveal>
-        <p class="eyebrow">Theme {{ forloop.index | prepend: '0' }}</p>
+      <li class="theme-card" data-reveal>
+        <div class="theme-card__frame">{% include theme_art.html slug=theme.slug class="theme-card__art" %}</div>
         <h3 class="theme-card__title"><a href="/research/#{{ theme.slug }}">{{ theme.name }}</a></h3>
         <p class="theme-card__text">{{ theme.headline }}</p>
-        <span class="theme-card__go" aria-hidden="true">Explore <svg class="icon"><use href="#i-arrow-right"/></svg></span>
-        {%- if theme.slug == 'swarm' %}
-        <svg class="theme-card__art" viewBox="0 0 240 160" aria-hidden="true" focusable="false">
-          <g stroke="currentColor" stroke-width="1" opacity=".35"><path d="M30 120 70 60M70 60 130 80M70 60 110 20M130 80 110 20M130 80 170 130M30 120 130 80M170 130 215 70M130 80 215 70M110 20 190 35M190 35 215 70"/></g>
-          <g fill="currentColor" opacity=".55"><circle cx="30" cy="120" r="4"/><circle cx="130" cy="80" r="4"/><circle cx="170" cy="130" r="4"/><circle cx="215" cy="70" r="4"/><circle cx="110" cy="20" r="4"/><circle cx="190" cy="35" r="4"/></g>
-          <circle cx="70" cy="60" r="7" fill="var(--accent)"/><circle cx="70" cy="60" r="14" fill="none" stroke="var(--accent)" opacity=".3"/>
-        </svg>
-        {%- endif %}
-      </article>
+      </li>
       {%- endfor %}
-    </div>
+    </ul>
   </div>
 </section>
 
-<section class="section home-split" aria-labelledby="news-title">
-  <div class="container home-split__grid">
-    <div class="home-split__news" data-reveal>
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Latest</p>
-          <h2 id="news-title">News</h2>
-        </div>
-        <a class="section-link" href="/news/">All news <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+<section class="section home-news" aria-labelledby="news-title">
+  <div class="container" data-reveal>
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Latest</p>
+        <h2 id="news-title">News</h2>
       </div>
-      {% include news_list.html limit=6 %}
+      <a class="section-link" href="/news/">All news <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     </div>
-
-    <div class="home-split__pubs" data-reveal>
-      <div class="section-header">
-        <div>
-          <p class="eyebrow">Selected</p>
-          <h2>Publications</h2>
-        </div>
-        <a class="section-link" href="/publications/">All publications <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-      </div>
-      <div class="pubs-selected">
-        {% bibliography --group_by none --query @*[selected=true] %}
-      </div>
-    </div>
+    {% include news_list.html limit=6 %}
   </div>
 </section>
 

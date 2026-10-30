@@ -142,71 +142,68 @@
   @media (max-width: 29.999rem) { .swarm__caption { display: none; } }
   [aria-pressed="true"] > .icon-pause, [aria-pressed="false"] > .icon-play { display: none; }
 
-  /* ---------- Theme bento ---------- */
-  .home-themes__grid { display: grid; gap: var(--space-s); }
-  @media (min-width: 36rem) {
-    .home-themes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-m); }
-    .theme-card--lead { grid-column: span 2; }
+  /* ---------- Themes: illustration-led tiles (5 across on desktop, rows below) ---------- */
+  .home-themes__grid {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  @media (min-width: 62rem) {
-    .home-themes__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  }
-
   .theme-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 13rem;
-    padding: var(--space-m);
-    border: var(--border-w) solid var(--border);
-    border-radius: var(--radius-l);
-    background: var(--surface);
-    transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out),
-      transform var(--dur-fast) var(--ease-out);
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    column-gap: var(--space-m);
+    align-content: center;
+    padding-block: var(--space-s);
   }
-  .theme-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-2); transform: translateY(-2px); }
-  .theme-card:focus-within { border-color: var(--accent); }
-  .theme-card .eyebrow { color: var(--text-muted); }
+  .theme-card + .theme-card { border-top: var(--border-w) solid var(--border); }
+  .theme-card__frame {
+    grid-row: span 2;
+    align-self: center;
+    padding: var(--space-2xs);
+    border: var(--border-w) solid transparent;
+    border-radius: var(--radius-m);
+    background: var(--surface-2);
+    color: var(--text-faint);
+    transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  }
+  .theme-card__art { display: block; width: 100%; height: auto; }
   .theme-card__title {
-    margin: 0 0 var(--space-2xs);
-    max-width: 18em;
+    align-self: end;
+    margin: 0;
     font-family: var(--font-serif);
     font-weight: var(--weight-regular);
-    font-size: var(--step-2);
-    line-height: 1.12;
+    font-size: var(--step-1);
+    line-height: 1.15;
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
   .theme-card__title a { color: var(--text); text-decoration: none; }
-  .theme-card__title a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+  .theme-card__title a::after { content: ""; position: absolute; inset: 0; }
   .theme-card__title a:focus-visible { outline: none; }
-  .theme-card__text { max-width: 28em; margin: 0 0 var(--space-m); color: var(--text-2); font-size: var(--step-0); }
-  .theme-card__go {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4em;
-    margin-top: auto;
-    font-size: var(--step--1);
-    font-weight: var(--weight-medium);
-    color: var(--accent-text);
-  }
-  .theme-card__go .icon { transition: transform var(--dur-fast) var(--ease-out); }
-  .theme-card:hover .theme-card__go .icon { transform: translateX(3px); }
+  .theme-card__text { align-self: start; margin: var(--space-3xs) 0 0; color: var(--text-muted); font-size: var(--step--1); }
 
-  .theme-card--lead {
-    background: linear-gradient(120deg, var(--surface) 45%, var(--accent-tint) 140%);
-    border-color: var(--accent-tint-2);
+  .theme-card:hover .theme-card__frame { background: var(--accent-tint); }
+  .theme-card:hover .theme-card__title a { color: var(--accent-text); }
+  .theme-card:focus-within .theme-card__frame { background: var(--accent-tint); outline: 2px solid var(--accent); outline-offset: 2px; }
+  .theme-card:focus-within .theme-card__title a { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.15em; }
+
+  @media (min-width: 36rem) {
+    .theme-card { grid-template-columns: 9rem minmax(0, 1fr); column-gap: var(--space-l); }
   }
-  .theme-card--lead .theme-card__title { font-size: var(--step-3); }
-  .theme-card--lead .eyebrow { color: var(--accent-text); }
-  .theme-card__art {
-    position: absolute;
-    right: var(--space-m);
-    bottom: var(--space-m);
-    width: min(42%, 16rem);
-    color: var(--text-faint);
-    pointer-events: none;
+  @media (min-width: 75rem) {
+    .home-themes__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-l); }
+    .theme-card { grid-template-columns: none; align-content: start; padding: 0; }
+    .theme-card + .theme-card { border-top: 0; }
+    .theme-card__frame { grid-row: auto; margin-bottom: var(--space-s); padding: var(--space-s); border-radius: var(--radius-l); }
+    .theme-card__title { min-height: 2.3em; } /* two lines at line-height 1.15, so headlines align */
   }
-  @media (max-width: 35.999rem) { .theme-card__art { display: none; } }
+  @media (max-width: 35.999rem) {
+    .theme-card__text { display: none; }
+    .theme-card__frame { grid-row: auto; }
+    .theme-card__title { align-self: center; }
+  }
 
   /* ---------- News list (shared with /news/) ---------- */
   .news-list { margin: 0; padding: 0; list-style: none; }
@@ -246,18 +243,6 @@
   @media (max-width: 30rem) {
     .news-item { grid-template-columns: 1fr; gap: 0; }
   }
-
-  /* ---------- News + selected publications ---------- */
-  .home-split__grid { display: grid; gap: var(--space-2xl); }
-  @media (min-width: 64rem) {
-    .home-split__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-2xl); }
-  }
-  .pubs-selected h3, .pubs-selected > h2 { display: none; }
-  .pubs-selected ul, .pubs-selected ol { list-style: none; margin: 0; padding: 0; }
-  /* jekyll-scholar emits a duplicate class attribute here, so .pub-list never applies: space the entries explicitly. */
-  .pubs-selected ul > li { padding: var(--space-s) 0; border-bottom: var(--border-w) solid var(--border); }
-  .pubs-selected ul > li:first-child { padding-top: 0; }
-  .pubs-selected ul > li:last-child { border-bottom: 0; }
 
   /* ---------- Lab life ticker ---------- */
   .section--band { background: var(--surface-2); border-block: var(--border-w) solid var(--border); }

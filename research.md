@@ -25,31 +25,7 @@ lede: "We build learning, reasoning, and verification for fleets of robots and A
     {%- capture n_lab %}{% bibliography_count --query @*[themes^={{ t.slug }}, year>=2021] %}{% endcapture %}
     {%- assign n = n_lab | plus: 0 %}
     <section class="theme-section theme-section--{{ t.slug }}" id="{{ t.slug }}" aria-labelledby="{{ t.slug }}-title">
-      <svg class="theme-section__art" viewBox="0 0 240 160" aria-hidden="true" focusable="false">
-        {%- case t.slug %}
-        {%- when 'swarm' %}
-        <g stroke="currentColor" stroke-width="1" opacity=".35"><path d="M30 120 70 60M70 60 130 80M70 60 110 20M130 80 110 20M130 80 170 130M30 120 130 80M170 130 215 70M130 80 215 70M110 20 190 35M190 35 215 70"/></g>
-        <g fill="currentColor" opacity=".55"><circle cx="30" cy="120" r="4"/><circle cx="130" cy="80" r="4"/><circle cx="170" cy="130" r="4"/><circle cx="215" cy="70" r="4"/><circle cx="110" cy="20" r="4"/><circle cx="190" cy="35" r="4"/></g>
-        <circle cx="70" cy="60" r="7" fill="var(--accent)"/><circle cx="70" cy="60" r="14" fill="none" stroke="var(--accent)" opacity=".3"/>
-        {%- when 'edge' %}
-        <g fill="none" stroke="currentColor" stroke-width="1" opacity=".4"><path d="M120 30V70M120 70 60 110M120 70 180 110M120 70V120M60 110 30 140M60 110 90 140M180 110 150 140M180 110 210 140"/></g>
-        <g fill="currentColor" opacity=".55"><circle cx="60" cy="110" r="4"/><circle cx="180" cy="110" r="4"/><circle cx="120" cy="120" r="4"/><circle cx="30" cy="140" r="3"/><circle cx="90" cy="140" r="3"/><circle cx="150" cy="140" r="3"/><circle cx="210" cy="140" r="3"/></g>
-        <rect x="96" y="14" width="48" height="26" rx="13" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="120" cy="70" r="7" fill="var(--accent)"/>
-        {%- when 'neurosymbolic' %}
-        <g fill="none" stroke="currentColor" stroke-width="1" opacity=".4"><rect x="20" y="95" width="50" height="38" rx="4"/><rect x="82" y="95" width="50" height="38" rx="4"/><rect x="144" y="95" width="50" height="38" rx="4"/><path d="M45 95V70M107 95V70M169 95V70M45 70H169M107 70V40"/></g>
-        <g fill="currentColor" opacity=".55"><circle cx="45" cy="70" r="3.5"/><circle cx="107" cy="70" r="3.5"/><circle cx="169" cy="70" r="3.5"/></g>
-        <circle cx="107" cy="34" r="7" fill="var(--accent)"/><circle cx="107" cy="34" r="14" fill="none" stroke="var(--accent)" opacity=".3"/>
-        {%- when 'trust' %}
-        <path d="M120 16 188 40V82C188 114 158 138 120 148 82 138 52 114 52 82V40Z" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".4"/>
-        <path d="M120 36 170 54V82C170 104 148 122 120 130 92 122 70 104 70 82V54Z" fill="none" stroke="currentColor" stroke-width="1" opacity=".25"/>
-        <path d="M98 82 114 98 145 64" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-        {%- when 'timeseries' %}
-        <g stroke="currentColor" stroke-width="1" opacity=".3"><path d="M20 130H220M20 130V20"/></g>
-        <path d="M20 100C40 100 45 60 65 60S85 108 105 108 125 48 145 48 165 92 185 92 205 70 220 70" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".5"/>
-        <path d="M145 48C165 48 165 92 185 92S205 70 220 70" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-dasharray="1 5" stroke-linecap="round"/>
-        <circle cx="145" cy="48" r="5" fill="var(--accent)"/>
-        {%- endcase %}
-      </svg>
+      {% include theme_art.html slug=t.slug class="theme-section__art" %}
 
       <header class="theme-section__head">
         <p class="eyebrow">Theme 0{{ forloop.index }}</p>

@@ -38,7 +38,7 @@ Not sure? Open a pull request anyway and ask in the Swarm Lab Slack.
 
 - **Stack:** [Jekyll](https://jekyllrb.com/) 4.4 with [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar) for the bibliography, Sass for styles, a little vanilla JavaScript. No Node, no Bootstrap, no jQuery.
 - **Deploy:** every push to the `source` branch runs `.github/workflows/jekyll.yml`, which makes any missing WebP photo copies, builds the site (Ruby 3.2.3, on `ubuntu-24.04`) and publishes it to GitHub Pages. There is nothing to run by hand.
-- **Single source of truth:** the bibliography feeds the Publications page, the Research page, the Home "Selected publications" list and (optionally) the news. You add a paper once.
+- **Single source of truth:** the bibliography feeds the Publications page, the Research page and (optionally) the news. You add a paper once.
 
 | Path | What it is |
 |---|---|
@@ -107,7 +107,6 @@ Open `_bibliography/references.bib` and paste your entry **after the first 4 lin
   project={https://your-project-page.example},
   venue_short={NeurIPS 2026},
   themes={trust, edge},
-  selected={true},
   award={Best Paper Nominee},
   news={2026-10-04}
 }
@@ -121,7 +120,7 @@ All of these are optional and are hidden from the BibTeX that readers can copy. 
 |---|---|
 | `themes` | Comma-separated theme slugs, **primary theme first** (table below). The Research page lists the paper under its primary theme only; the Publications filter uses all of them. Always set it, or the paper will not show on the Research page. |
 | `venue_short` | Short venue badge, e.g. `NeurIPS 2026`. Without it the badge falls back to `journal`, `booktitle`, `school` or `publisher`. |
-| `selected` | `{true}` puts the paper in Home "Selected publications". Use sparingly. |
+| `selected` | Currently unused (the Home page no longer lists selected publications); kept for a possible future "selected" list. |
 | `award` | Orange award badge, e.g. `{Best Paper Nominee}`. |
 | `arxiv` | arXiv abstract link. If missing but `url` points to arxiv.org, `url` is used. The PDF link is derived from it (`/abs/` becomes `/pdf/`). |
 | `pdf` | Direct PDF link (overrides the derived one). |
@@ -238,7 +237,7 @@ industry:
 | `start_year`, `end_year` | Shown as "since 2023" for current members, "2021-2025" for alumni (one year if they match). |
 | `interests` | One line, shown on the card. |
 | `website`, `scholar`, `github`, `linkedin` | Full URLs; each becomes an icon on the card and a button on the profile. |
-| `email` | Optional; shows an email icon. Leave it out if you do not want it on the card. |
+| `email` | Optional. Write it as `name [at] utexas [dot] edu`; it is shown as plain text (never a link) on the PI card and the profile page, not on student cards. Never write a raw `name@domain` address or a `mailto:` link anywhere on the site: scrapers harvest those. Leave it out if you do not want it shown. |
 | `role` | Title line, used for the PI only. |
 | `fellowships` | List of `name` + optional `year`. Orange badges. |
 | `internships` | List of `company` + optional `year`. Outline badges ("Example Corp intern 2026"). List internships done during the PhD. `year` can be a range string ("2024-26"). |
@@ -343,4 +342,4 @@ Changing `.github/workflows/` needs a GitHub token with the `workflow` scope. If
 
 **Something broke?** Open the failed run in the Actions tab and read the "Build with Jekyll" log. Typical causes: a duplicate BibTeX key, an unbalanced `{` in a bib entry, bad YAML in `news.yml` or a front matter block (check indentation and quotes), or a post without a `YYYY-MM-DD-` prefix.
 
-**Help:** message Oguzhan Baser in the Swarm Lab Slack or email oguzhanbaser@utexas.edu.
+**Help:** message Oguzhan Baser in the Swarm Lab Slack or email oguzhanbaser [at] utexas [dot] edu.
