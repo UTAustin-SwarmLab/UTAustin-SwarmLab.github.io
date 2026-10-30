@@ -17,9 +17,6 @@ industry:
   - company: Lockheed Martin
     role: Staff AI Research Engineer
     years: "2021–present"
-  - company: Synthefy
-    role: VP of Engineering
-    years: "2026–present"
 ---
 
 - _PhD Student, Electrical and Computer Engineering, UT Austin_<br>
