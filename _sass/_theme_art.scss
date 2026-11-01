@@ -1,0 +1,83 @@
+// _theme_art.scss — motion for the theme illustrations (_includes/theme_art.html), on Home and /research/.
+// Same vocabulary as the animated home figure: one 5 s loop per theme, travelling packets, nodes lighting up,
+// pulse rings. Overlays (.ta) stay invisible unless motion is allowed, so reduced motion shows the still art.
+
+$loop: 5s;
+
+// A dash runs the length of a path (pathLength="100") between two points of the loop.
+@mixin packet($name, $from, $to) {
+  @keyframes #{$name} {
+    0%, #{$from} { opacity: 0; stroke-dashoffset: 14; }
+    #{$from + 1%} { opacity: 1; }
+    #{$to - 1%} { opacity: 1; }
+    #{$to}, 100% { opacity: 0; stroke-dashoffset: -100; }
+  }
+}
+// A node lights up briefly.
+@mixin flash($name, $at, $peak: 1) {
+  @keyframes #{$name} {
+    0%, #{$at} { opacity: 0; }
+    #{$at + 3%} { opacity: $peak; }
+    #{$at + 14%}, 100% { opacity: 0; }
+  }
+}
+// A ring expands and fades.
+@mixin pulse($name, $at, $scale: 1.9) {
+  @keyframes #{$name} {
+    0%, #{$at} { opacity: 0; transform: scale(1); }
+    #{$at + 1.2%} { opacity: 0.8; transform: scale(1.04); }
+    #{$at + 12%} { opacity: 0; transform: scale($scale); }
+    100% { opacity: 0; transform: scale(1); }
+  }
+}
+
+.ta { opacity: 0; }
+
+// Swarm: the leader pulses, then messages hop to its neighbours and on to theirs.
+@include pulse(ta-sw-ring, 0%);
+@include packet(ta-sw-p1, 4%, 26%);
+@include flash(ta-sw-n1, 24%);
+@include packet(ta-sw-p2, 32%, 54%);
+@include flash(ta-sw-n2, 52%);
+// Edge–cloud: the cloud sends down through the hub to the devices, then one device reports back up.
+@include packet(ta-ed-p0, 0%, 12%);
+@include pulse(ta-ed-ring, 11%);
+@include packet(ta-ed-p1, 14%, 30%);
+@include flash(ta-ed-n1, 28%);
+@include packet(ta-ed-p2, 32%, 46%);
+@include flash(ta-ed-n2, 44%);
+@include packet(ta-ed-up, 58%, 86%);
+@include flash(ta-ed-cloud, 84%, 0.9);
+// Neuro-symbolic: frames are read left to right, evidence climbs the logic tree, the verdict pulses.
+@include flash(ta-ns-f1, 0%);
+@include flash(ta-ns-f2, 7%);
+@include flash(ta-ns-f3, 14%);
+@include packet(ta-ns-p, 24%, 46%);
+@include pulse(ta-ns-ring, 45%);
+// Trust: a check runs around the shield, then the tick is drawn and the shield pulses.
+@include packet(ta-tr-trace, 0%, 40%);
+@include pulse(ta-tr-ring, 52%, 1.3);
+@keyframes ta-tr-check {
+  0%, 40% { stroke-dashoffset: 100; opacity: 1; }
+  52% { stroke-dashoffset: 0; }
+  90% { opacity: 1; }
+  98%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+// Time series: a cursor reads the history, the present point pulses, the forecast unrolls.
+@include packet(ta-ts-trace, 0%, 40%);
+@include pulse(ta-ts-ring, 40%);
+@keyframes ta-ts-fc {
+  0%, 42% { clip-path: inset(0 100% 0 0); opacity: 1; }
+  70% { clip-path: inset(0 0 0 0); }
+  92% { opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @each $n in sw-ring, sw-p1, sw-n1, sw-p2, sw-n2, ed-p0, ed-ring, ed-p1, ed-n1, ed-p2, ed-n2, ed-up, ed-cloud,
+    ns-f1, ns-f2, ns-f3, ns-p, ns-ring, tr-trace, tr-ring, tr-check, ts-trace, ts-ring, ts-fc {
+    .ta-#{$n} { animation: ta-#{$n} $loop linear infinite; }
+  }
+  .ta-sw-ring, .ta-ed-ring, .ta-ns-ring, .ta-tr-ring, .ta-ts-ring { transform-box: fill-box; transform-origin: center; }
+  .ta-tr-check { stroke-dasharray: 100; }
+}
