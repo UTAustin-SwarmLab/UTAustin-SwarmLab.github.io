@@ -140,7 +140,7 @@ The title links to the first available of: `url` (if not arXiv), `arxiv`, `pdf`,
 | `swarm` | Swarm Coordination & Fleet Learning |
 | `edge` | Edge–Cloud Systems for Embodied AI |
 | `neurosymbolic` | Neuro-Symbolic Video Understanding |
-| `trust` | Trustworthy & Verifiable ML |
+| `trust` | Trustworthy & Verifiable Machine Learning |
 | `timeseries` | Time-Series Generation & Forecasting |
 | `other` | Earlier & other work (does not fit the five themes) |
 
@@ -254,9 +254,9 @@ The Research page is driven by two things: `_data/themes.yml` (the five themes, 
 
 ```yaml
 - slug: trust                      # matches the bib `themes` field
-  name: Trustworthy & Verifiable ML
-  headline: Formal and cryptographic guarantees for deployed models.   # one line, also on Home
-  blurb: >-                        # the paragraph under the title
+  name: Trustworthy & Verifiable Machine Learning
+  headline: Formal and cryptographic guarantees for AI models.   # also on Home; keep to ~45-55 characters
+  blurb: >-                        # the paragraph under the title: two sentences, ~200-220 characters
     Deployed models face adversaries, ...
   representative: [baser2026tensorcommitments, cheng2022task, agarwal2022synthesizing]   # 3 bib keys shown as "Selected papers"; the rest are collapsed
 ```

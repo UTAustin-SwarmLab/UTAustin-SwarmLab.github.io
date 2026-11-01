@@ -4,19 +4,17 @@
   name: Swarm Coordination & Fleet Learning
   headline: From cooperative planning to collective data collection.
   blurb: >-
-    Fleets of robots and vehicles generate more data than they can upload, label, or supervise.
-    We develop game-theoretic, submodular, and multi-agent learning methods that decide how robots
-    plan together, which data each robot collects and shares, and where human supervision goes,
-    so the whole swarm improves as one.
+    Robot fleets collect more data than they can upload, label, or supervise. We develop
+    game-theoretic and multi-agent learning methods that decide how robots plan together, which
+    data they share, and where human supervision goes.
   representative: [bhatt2025uncap, akcin2025dual, li2023taskaware]
 - slug: edge
   name: Edge–Cloud Systems for Embodied AI
-  headline: Communication-efficient perception and inference across networks.
+  headline: Efficient perception and inference across networks.
   blurb: >-
-    Embodied agents share limited bandwidth, compute, and power with the cloud. We co-design
-    learning with communication through task-aware compression, offloading, adaptive model
-    selection, and resource allocation, together with representations that make robot perception
-    efficient at the edge.
+    Robots share limited bandwidth, compute, and power with the cloud. We co-design learning
+    and communication through task-aware compression, offloading, and adaptive model selection
+    for efficient perception at the edge.
   representative: [Omama2024exploiting, qiu2022ml, nakanoya2021co]
 - slug: neurosymbolic
   name: Neuro-Symbolic Video Understanding
@@ -27,12 +25,12 @@
     logic and formal verification.
   representative: [Choi_2024_ECCV, sharan2025neuro, shah2025neus]
 - slug: trust
-  name: Trustworthy & Verifiable ML
-  headline: Formal and cryptographic guarantees for deployed models.
+  name: Trustworthy & Verifiable Machine Learning
+  headline: Formal and cryptographic guarantees for AI models.
   blurb: >-
     Deployed models face adversaries, privacy leakage, deepfakes, and untrusted compute providers.
     We build verifiable LLM inference, privacy-aware representations, deepfake defenses, and robust
-    controllers under adversarial conditions.
+    controllers.
   representative: [baser2026tensorcommitments, cheng2022task, agarwal2022synthesizing]
 - slug: timeseries
   name: Time-Series Generation & Forecasting
