@@ -264,7 +264,7 @@ The Research page is driven by two things: `_data/themes.yml` (the five themes, 
 - Papers from **2021 on** are listed under the **primary** (first) theme.
 - Papers before 2021 go into the "Before Swarm Lab" block, grouped by theme; `themes={other}` goes into "Earlier & other work".
 - `representative` takes bib keys that must exist in `references.bib`. Pick the most relevant papers from the strongest venues, from 2021 on, whose **primary** theme is this theme (otherwise the "Show N more" count is off).
-- Slugs must match exactly. Adding a sixth theme is a design decision: also check `research.md`, where each theme has its own small illustration, and ask first.
+- Slugs must match exactly. Adding a sixth theme is a design decision: each theme has its own small animated illustration in `_includes/theme_art.html` (motion in `_sass/_theme_art.scss`), used on Home and Research, so ask first.
 - The intro sentence at the top of the Research page lists the theme names by hand (`lede:` in `research.md`). Update it when you rename, add or remove a theme.
 
 ## Write a blog post
