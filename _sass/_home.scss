@@ -293,17 +293,21 @@
   /* ---------- Sponsors ---------- */
   .home-sponsors { padding-block: var(--space-xl) var(--space-2xl); }
   .home-sponsors__title { text-align: center; color: var(--text-muted); margin-bottom: var(--space-m); }
+  /* Ten logos: 2 rows of 5 (2 columns on phones), so no logo sits alone on a row */
   .home-sponsors__row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
-    justify-content: center;
-    gap: var(--space-m);
-    margin: 0;
+    gap: var(--space-m) var(--space-l);
+    max-width: 52rem;
+    margin: 0 auto;
     padding: 0;
     list-style: none;
   }
-  .home-sponsors__row li { display: flex; align-items: center; justify-content: center; width: 6.25rem; height: 3.25rem; }
+  @media (min-width: 40rem) {
+    .home-sponsors__row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  .home-sponsors__row li { display: flex; align-items: center; justify-content: center; height: 4.5rem; }
   .home-sponsors__row img {
     max-width: 100%;
     max-height: 100%;
